@@ -3,6 +3,8 @@ const nextConfig = {
   // Unit tests run under tsx and are not part of the build.
   typescript: { tsconfigPath: 'tsconfig.build.json' },
   agentRules: false,
+  // The dev badge means nothing to someone trying the app; real errors still show as an overlay.
+  devIndicators: false,
   // Dev only: hosted dev environments (Codespaces, Gitpod) serve the app from their own domain.
   allowedDevOrigins: ['127.0.0.1', '*.app.github.dev', '*.gitpod.io', ...(process.env.FORMS_DEV_ORIGINS || '').split(',').filter(Boolean)],
   serverExternalPackages: ['better-sqlite3'],

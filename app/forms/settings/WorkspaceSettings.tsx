@@ -82,7 +82,8 @@ export default function WorkspaceSettingsPage() {
   if (error) return <div style={{ padding: 32 }}><div className="fb-banner fb-banner--coral fb-banner--inline" role="alert"><Icon name="alert" size={15} /><span style={{ flex: 1 }}>Couldn’t load settings: {error}</span><Btn size="sm" onClick={load}>Retry</Btn></div></div>
   if (!draft || !saved) return <div style={{ padding: 32 }} aria-busy="true"><Skeleton width="40%" /><Skeleton width="70%" style={{ marginTop: 14 }} /></div>
 
-  const sender = senders.find(s => s.owner === draft.notifications.sender) ?? null
+  // One sender at most: the SMTP address, used whenever email is set up.
+  const sender = senders.find(s => s.canSend) ?? null
   const section = (id: string, title: string, sub: string, body: React.ReactNode) => (
     <Card style={{ padding: 22, display: 'flex', flexDirection: 'column', gap: 16 }} data-testid={`ws-${id}`} id={id}>
       <div><h2 style={{ margin: 0, fontSize: 17, fontWeight: 800 }}>{title}</h2><p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--tx2)', lineHeight: 1.5 }}>{sub}</p></div>
@@ -114,14 +115,11 @@ export default function WorkspaceSettingsPage() {
 
       {section('notifications', 'Notifications', 'Who hears about a new response, and whether respondents get a confirmation. New forms start with these; each form can change its own in Settings › Notifications.', (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 640 }}>
-          <Field label="Send form email from" htmlFor="ws-sender" hint={<>The connected Google account alerts and confirmations go out from. Link a mailbox in <Link href="/settings">Settings › Sending identity</Link>.</>}>
-            <Select id="ws-sender" value={draft.notifications.sender ?? ''} onChange={e => setNotify({ sender: e.target.value || null })} data-testid="ws-sender">
-              <option value="">Nobody — no form email is sent</option>
-              {senders.map(s => <option key={s.owner} value={s.owner} disabled={!s.canSend}>{s.label}{s.canSend ? '' : ' — can’t send (reconnect with Gmail access)'}</option>)}
-            </Select>
-          </Field>
-          {!draft.notifications.sender && <Banner tone="gold" icon="alert" inline>Until an account is chosen, alerts and confirmations are logged on each form as not sent.</Banner>}
-          {sender && <p style={{ margin: 0, fontSize: 12.5, color: 'var(--tx2)' }}>Respondents and recipients see <strong>{sender.email}</strong> in From.</p>}
+          {sender ? (
+            <p style={{ margin: 0, fontSize: 13.5, color: 'var(--tx2)' }} data-testid="ws-email-on">Email is on. Alerts and confirmations go out from <strong>{sender.email}</strong>.</p>
+          ) : (
+            <Banner tone="gold" icon="alert" inline>Email isn’t set up on this install, so alerts and confirmations are logged on each form as not sent. To turn it on, set <code>FORMS_SMTP_URL</code> and <code>FORMS_EMAIL_FROM</code> (any SMTP provider: Resend, Postmark, SES, Gmail with an app password) and restart. The README’s Settings section has examples.</Banner>
+          )}
           <Toggle on={draft.notifications.owner} onChange={v => setNotify({ owner: v })} label="Alert recipients when a response arrives" sub="Each form sends to its own recipients, or to its owner when it has none." testId="ws-owner-alerts" />
           <Field label="Default recipients" htmlFor="ws-recipients" hint="Email addresses, separated by commas. Leave empty to alert each form’s owner.">
             <Input id="ws-recipients" value={recipients} onChange={e => setRecipients(e.target.value)} placeholder="ops@example.com, owner@example.com" data-testid="ws-recipients" />

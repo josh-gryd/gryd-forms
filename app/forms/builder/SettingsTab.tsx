@@ -93,7 +93,7 @@ export default function SettingsTab() {
   const loadLog = useCallback(() => { formsApi.notifications(d.id).then(setLog).catch(() => setLog([])) }, [d.id])
   useEffect(() => {
     loadLog()
-    formsApi.workspace().then(w => setSender(w.senders.find(s => s.owner === w.settings.notifications.sender) ?? null)).catch(() => setSender(null))
+    formsApi.workspace().then(w => setSender(w.senders.find(s => s.canSend) ?? null)).catch(() => setSender(null))
   }, [loadLog])
 
   // The section list follows the scroll: the last section whose top has passed the line is "here".
@@ -201,7 +201,7 @@ export default function SettingsTab() {
   const passwordOn = ops.hasPassword || !!opened.password
   const slackOn = ops.slack.on || !!opened.slack
   const onceDefault: DuplicateMode = ops.access === 'restricted' ? 'account' : 'device'
-  const noSender = sender === null && <Banner tone="gold" icon="alert" inline action={<Link href="/forms/settings#notifications" className="fb-btn fb-btn--sm">Choose one</Link>}>No sending account is chosen for Forms, so no email goes out yet. Attempts are logged below as not sent.</Banner>
+  const noSender = sender === null && <Banner tone="gold" icon="alert" inline action={<Link href="/forms/settings#notifications" className="fb-btn fb-btn--sm">How to set it up</Link>}>Email isn’t set up on this install, so no email goes out yet. Attempts are logged below as not sent.</Banner>
 
   return (
     <div ref={scroller} className="fb-scroll fb-rise fb-settings" style={{ flex: 1, minHeight: 0, padding: '66px 32px 64px' }} data-testid="settings-tab">

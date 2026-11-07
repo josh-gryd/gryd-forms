@@ -614,7 +614,8 @@ function EndingView({ ending, def, answers, theme, T, device, mode, card, onRest
           <span style={{ fontSize: 12.5, color: theme.muted }}>{ui.editLinkNote}</span>
         </div>
       )}
-      {mode === 'preview' && <button type="button" onClick={onRestart} style={{ border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: theme.muted, textDecoration: 'underline', textDecorationThickness: 2, cursor: 'pointer', marginTop: 6 }}>{ui.startOver}</button>}
+      {/* Preview's own way back, unless the ending already offers one. */}
+      {mode === 'preview' && !(ending.kind === 'restart' && !oneResponse) && <button type="button" onClick={onRestart} style={{ border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: theme.muted, textDecoration: 'underline', textDecorationThickness: 2, cursor: 'pointer', marginTop: 6 }}>{ui.startOver}</button>}
     </section>
   )
 }

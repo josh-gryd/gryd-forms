@@ -18,6 +18,10 @@ We used to pay $120 a month for Typeform and then $80 a month for Fillout. Neith
 - **Spam.** A honeypot, timing and user-agent signals, and per-IP rate limits.
 - **Phone.** The public form and the portal both work at phone width.
 
+## Try the live demo
+
+**[gryd-forms-demo.fly.dev](https://gryd-forms-demo.fly.dev)**: build a form, publish it, answer it, read the responses. No sign-up. It's shared with everyone and resets every hour, so don't enter anything real.
+
 ## Try it in your browser (no install)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/josh-gryd/gryd-forms)

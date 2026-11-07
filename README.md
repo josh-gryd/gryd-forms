@@ -1,5 +1,7 @@
 # GRYD Forms
 
+**[▶ Try the live demo](https://gryd-forms-demo.fly.dev)** (no sign-up) · [Open in Codespaces](https://codespaces.new/josh-gryd/gryd-forms) · [Deploy your own](#deploy-it)
+
 Self-hosted forms you own. A builder, public form links, branching logic, file uploads, and an inbox for responses, all in one small app with a SQLite file for storage.
 
 ![All forms](docs/all-forms.png)

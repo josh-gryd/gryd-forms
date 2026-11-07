@@ -18,6 +18,12 @@ We used to pay $120 a month for Typeform and then $80 a month for Fillout. Neith
 - **Spam.** A honeypot, timing and user-agent signals, and per-IP rate limits.
 - **Phone.** The public form and the portal both work at phone width.
 
+## Try it in your browser (no install)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/josh-gryd/gryd-forms)
+
+Codespaces installs everything and starts the app; a browser tab opens on it when it's ready (about two minutes). It's free within GitHub's monthly Codespaces allowance.
+
 ## Run it locally
 
 You need Node 20.9 or newer.
@@ -66,6 +72,7 @@ Every setting is in [`.env.example`](.env.example). The main ones:
 | `FORMS_DATA_DIR` | Where the database and uploads live (default `./data`). |
 | `FORMS_SMTP_URL`, `FORMS_EMAIL_FROM` | Turn on email. Any SMTP provider works: Resend, Postmark, SES, Gmail with an app password… |
 | `SLACK_BOT_TOKEN` | Turn on Slack posts. Create a Slack app with `chat:write`, `channels:read`, `groups:read`, `users:read` and `users:read.email`, install it, and invite it to the channel. |
+| `FORMS_DEV_ORIGINS` | Dev only: extra hostnames allowed to open the dev server (Codespaces and Gitpod already are). |
 | `FORMS_PUBLIC_HOST` | Serve forms at the root of a second domain (`forms.example.com/<slug>`). |
 | `BUCKET_NAME` + `AWS_*` | Store uploads in S3, R2 or Tigris instead of the data folder. |
 

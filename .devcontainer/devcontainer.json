@@ -1,0 +1,8 @@
+{
+  "name": "GRYD Forms",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  "postCreateCommand": "npm install",
+  "postAttachCommand": "npm run dev",
+  "forwardPorts": [3000],
+  "portsAttributes": { "3000": { "label": "Forms", "onAutoForward": "openBrowser" } }
+}

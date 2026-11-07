@@ -10,6 +10,7 @@ import { ServiceError } from './errors'
 import { formsLog } from './log'
 import { getStorage, assetKey, BytesLimitError } from './storage'
 import { emailFrom } from '../integrations/email.js'
+import { demoRefuse, isDemo } from '../demo.js'
 import {
   DEFAULT_THEME, parseTheme, isFormLanguage, longId, extensionOf, isStockThanks, uiFor,
   type Theme, type FormLanguage, type ProgressStyle, type FormDefinition,
@@ -143,7 +144,7 @@ export interface Sender { owner: string; email: string; label: string; canSend: 
 
 /** Who form email can send as: the SMTP sender, when email is set up. */
 export async function listSenders(): Promise<Sender[]> {
-  const from = emailFrom()
+  const from = isDemo() ? null : emailFrom()
   return from ? [{ owner: 'smtp', email: from, label: from, canSend: true }] : []
 }
 
@@ -153,6 +154,7 @@ const LOGO_TYPES: Record<string, string> = { png: 'image/png', jpg: 'image/jpeg'
 const LOGO_MAX = 4 * 1024 * 1024
 
 export async function uploadWorkspaceAsset(input: { name: string; body: Readable; by: string | null }): Promise<{ id: string; url: string; name: string; size: number; mime: string }> {
+  demoRefuse('images')
   const ext = extensionOf(input.name)
   const mime = LOGO_TYPES[ext]
   if (!mime) throw new ServiceError(422, 'images only (PNG, JPG, GIF or WebP)')

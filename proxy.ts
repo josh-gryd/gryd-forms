@@ -5,7 +5,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SESSION_COOKIE, authEnabled, verifySession } from '@/lib/auth'
 
-const OPEN = ['/api/public/forms', '/api/health', '/api/auth/sign-in', '/fonts', '/icon.svg', '/favicon.ico']
+const OPEN = ['/api/public/forms', '/api/health', '/api/auth/sign-in', '/fonts', '/icon.svg', '/favicon.ico', '/robots.txt']
 const FORMS_HOST = (process.env.FORMS_PUBLIC_HOST || '').toLowerCase()
 
 const under = (pathname: string, p: string) => pathname === p || pathname.startsWith(p + '/')
@@ -18,6 +18,13 @@ function withSurface(req: NextRequest, surface: string | null): Headers {
 }
 
 export async function proxy(req: NextRequest) {
+  const res = await gate(req)
+  // Demo content is strangers' content: never indexed, whatever the page.
+  if (process.env.FORMS_DEMO === '1') res.headers.set('x-robots-tag', 'noindex, nofollow')
+  return res
+}
+
+async function gate(req: NextRequest): Promise<NextResponse> {
   const { pathname } = req.nextUrl
   const host = (req.headers.get('host') || '').split(':')[0].toLowerCase()
 

@@ -1,7 +1,4 @@
-# fly launch --copy-config --no-deploy, then:
-#   fly volumes create forms_data --size 1
-#   fly secrets set FORMS_ADMIN_PASSWORD=... FORMS_PUBLIC_URL=https://<app>.fly.dev
-#   fly deploy
+# Deploy steps: README → "Put it online for real". `fly deploy -a <name>` overrides the app name below.
 app = "my-forms"
 primary_region = "iad"
 

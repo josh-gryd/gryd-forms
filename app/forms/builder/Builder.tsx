@@ -15,7 +15,7 @@ import {
   type ComponentType, type ConversionPlan,
   type FormDefinition, type Block, type BlockWidth, type Page, type Ending, type Rule, type Theme, type FormSettings, type LogicIssue,
 } from '@/lib/forms-core/index'
-import { formsApi, ApiError, publicFormUrl, type FormDetail } from '@/lib/forms/api'
+import { formsApi, formsChanged, ApiError, publicFormUrl, type FormDetail } from '@/lib/forms/api'
 import { Btn, IconBtn, Seg, Tag, SaveState, Menu, Confirm, Banner, Skeleton, EmptyState, Stamp, useToast, useAnnounce, useMediaQuery, type MenuItem, type MenuAt, type SaveStateValue } from '../ui'
 import { Icon } from '../ui/icons'
 import { FormRunner } from '../render/FormRunner'
@@ -129,6 +129,8 @@ export default function Builder({ id, initialTab, initialPreview = false, build 
         const loop = new SaveLoop(async (def, baseRevision) => {
           try {
             const r = await formsApi.saveDraft(id, def, baseRevision)
+            // The list (All forms) shows publish state; it refreshes on this event.
+            if (r.ok) formsChanged()
             if (r.ok) { setDetail(prev => (prev ? { ...prev, publishState: r.publishState, unpublishedChanges: r.unpublishedChanges, revision: r.revision, draftUpdatedAt: r.updatedAt, slug: r.slug ?? prev.slug } : prev)); return { kind: 'saved', revision: r.revision } }
             return { kind: 'conflict', revision: r.revision, def: r.definition, updatedBy: r.updatedBy, updatedAt: r.updatedAt }
           } catch (err) {
@@ -151,7 +153,8 @@ export default function Builder({ id, initialTab, initialPreview = false, build 
         } else if (decision.kind === 'conflict') setRecovery({ def: decision.local, at: decision.localAt })
       } catch (err) { if (!cancelled) setLoadError((err as Error).message) }
     })()
-    return () => { cancelled = true; loopRef.current?.stop() }
+    // Leaving inside the app (no page hide) still saves what's pending, then stops.
+    return () => { cancelled = true; const l = loopRef.current; void l?.flush(); l?.stop() }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 

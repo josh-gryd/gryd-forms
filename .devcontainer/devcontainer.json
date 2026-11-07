@@ -4,5 +4,9 @@
   "postCreateCommand": "npm install",
   "postAttachCommand": "npm run dev",
   "forwardPorts": [3000],
-  "portsAttributes": { "3000": { "label": "Forms", "onAutoForward": "openBrowser" } }
+  "portsAttributes": {
+    "3000": { "label": "Forms (open this one)", "onAutoForward": "openBrowser" },
+    "3001": { "label": "Internal (not for you)", "onAutoForward": "ignore" }
+  },
+  "otherPortsAttributes": { "onAutoForward": "ignore" }
 }

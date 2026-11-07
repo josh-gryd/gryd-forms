@@ -47,7 +47,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 /** Sign-in happens on the portal's own host, then comes back to the form there. */
 function signInUrl(slug: string): string {
   const base = (process.env.FORMS_PUBLIC_URL || '').replace(/\/+$/, '')
-  return `${base}/auth/sign-in?callbackUrl=${encodeURIComponent(`/f/${slug}`)}`
+  return `${base}/auth/sign-in?next=${encodeURIComponent(`/f/${slug}`)}`
 }
 
 export default async function PublicFormPage(

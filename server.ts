@@ -22,6 +22,9 @@ async function main() {
   getDb()
   appSecret()
   startFormsMaintenance()
+  const { startDemo, isDemo } = await import('./engine/demo.js')
+  await startDemo()
+  if (isDemo()) console.log('[forms] demo mode: open to everyone, wiped at the top of every hour')
   await new Promise<void>(resolve => createApiServer().listen(enginePort, '127.0.0.1', () => resolve()))
 
   const app = next({ dev, dir: process.cwd(), hostname: 'localhost', port })
@@ -33,7 +36,7 @@ async function main() {
   server.on('upgrade', (req, socket, head) => { void upgrade(req, socket, head) })
   server.listen(port, () => {
     console.log(`[forms] ready on http://localhost:${port} (data: ${config.dataDir})`)
-    if (!process.env.FORMS_ADMIN_PASSWORD) {
+    if (!process.env.FORMS_ADMIN_PASSWORD && process.env.FORMS_DEMO !== '1') {
       console.log(dev ? '[forms] FORMS_ADMIN_PASSWORD is not set: the portal is open (development only).' : '[forms] FORMS_ADMIN_PASSWORD is not set: nobody can sign in until you set it.')
     }
   })

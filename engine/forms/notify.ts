@@ -15,6 +15,7 @@ import { loadDefinition } from './definitions'
 import { parseOps, isEmail, mailboxKey } from './ops'
 import { getWorkspace } from './workspace'
 import { emailFrom, sendEmail } from '../integrations/email.js'
+import { isDemo } from '../demo.js'
 import { postToSlack, slackProblem, slackTestText, slackText } from './slack'
 import { ServiceError } from './errors'
 import { allBlocks, componentDef, isInputBlock, renderTemplate, uiFor, formatWhen, type AnswerMap, type FormDefinition } from './core/index'
@@ -48,6 +49,8 @@ const responseUrl = (portal: string, formId: string, submissionId: string): stri
 
 /** Fire and forget: called after a response commits. Never throws. */
 export function notifySubmission(formId: string, submissionId: string, extra: { editToken?: string | null; edited?: boolean } = {}): void {
+  // The demo never sends: strangers' forms must not email or post anywhere.
+  if (isDemo()) return
   const p: Promise<void> = run(formId, submissionId, extra)
     .catch(err => formsLog.error('notify_failed', err, { form: formId, submission: submissionId }))
     .finally(() => { pending.delete(p) })
@@ -58,6 +61,7 @@ export function notifySubmission(formId: string, submissionId: string, extra: { 
 export async function sendSlackTest(formId: string, by: string | null): Promise<{ ok: true; target: string }> {
   const row = repo.getForm(formId)
   if (!row) throw new ServiceError(404, 'form not found')
+  if (isDemo()) throw new ServiceError(403, 'Slack is turned off in the demo.')
   const ops = parseOps(row.ops)
   const target = ops.slack.target
   if (!target) throw new ServiceError(400, 'Choose a Slack channel or person first')

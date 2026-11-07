@@ -7,6 +7,7 @@
 import { listSlackChannels, listSlackUsers, postSlackMessage, slackToken } from '../integrations/slack.js'
 import { allBlocks, componentDef, isInputBlock, renderTemplate, type AnswerMap, type FormDefinition } from './core/index'
 import type { SlackSettings, SlackTarget } from './ops'
+import { isDemo } from '../demo.js'
 
 export function slackSender(): string {
   return 'forms'
@@ -98,6 +99,7 @@ function rank(label: string, q: string): number {
 
 /** Channels the Slack app can see and people in the workspace, matching `query`. */
 export async function slackTargets(query: string): Promise<{ options: SlackOption[]; unavailable?: string }> {
+  if (isDemo()) return { options: [], unavailable: 'Slack is turned off in the demo. Run your own copy to post responses to Slack.' }
   const agent = slackSender()
   const token = await directory.token(agent)
   if (!token) return { options: [], unavailable: `Slack isn't connected. Set SLACK_BOT_TOKEN (see the README) and restart.` }

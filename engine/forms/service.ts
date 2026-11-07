@@ -5,6 +5,7 @@
 
 import crypto from 'node:crypto'
 import type { Readable } from 'node:stream'
+import { demoCheckCreate, demoCheckPublish, demoRefuse } from '../demo.js'
 import * as repo from './repo'
 import { getStorage, fileKey, assetKey, BytesLimitError } from './storage'
 import { formsLog } from './log'
@@ -140,6 +141,7 @@ export function getFormDetail(id: string): FormDetail {
  *  thank-you message); a document handed in keeps its own, unless `defaults`
  *  says otherwise (a built-in template takes everything but its questions). */
 export function createForm(input: { title?: string; definition?: unknown; createdBy: string | null; folderId?: string | null; defaults?: 'all' | 'settings' | 'none' }): FormDetail {
+  demoCheckCreate()
   let def = input.definition ? acceptDefinition(input.definition) : emptyForm(input.title?.trim() || 'Untitled form')
   const defaults = input.defaults ?? (input.definition ? 'none' : 'all')
   if (defaults !== 'none') def = withWorkspaceDefaults(def, { theme: defaults === 'all' })
@@ -198,6 +200,7 @@ export function patchForm(id: string, patch: { title?: string; slug?: string; cl
 export function duplicateForm(id: string, by: string | null): FormDetail {
   const row = repo.getForm(id)
   if (!row) throw new ServiceError(404, 'form not found')
+  demoCheckCreate()
   const def = cloneDefinition(loadDefinition(row.draftDefinition))
   def.title = `${def.title} copy`
   const newId = longId('frm')
@@ -224,6 +227,7 @@ export function publishForm(id: string, input: { baseRevision?: number; by: stri
   const def = loadDefinition(row.draftDefinition)
   const issues = checkRules(def)
   if (issues.length) throw new ServiceError(422, 'fix broken rules before publishing', { issues })
+  demoCheckPublish(def)
   const hasQuestion = allBlocks(def).some(isInputBlock)
   if (!hasQuestion) throw new ServiceError(422, 'add at least one question before publishing', { issues: [{ kind: 'empty_form', message: 'The form has no questions yet.' }] })
   const existingLive = row.liveVersionId ? repo.getVersion(row.liveVersionId) : undefined
@@ -808,6 +812,7 @@ export interface UploadRequest { token?: string | null; versionId?: string | nul
 export interface UploadGrant { fileId: string; uploadToken: string; url: string; method: 'PUT'; headers: Record<string, string>; transport: 'direct' | 'proxy'; maxBytes: number }
 
 export async function createUpload(formId: string, input: UploadRequest): Promise<UploadGrant> {
+  demoRefuse('uploads')
   const live = respondentContext(formId, input.auth ?? {})
   const session = input.token ? repo.getSubmissionByTokenHash(sha256(input.token)) : undefined
   const ctx = sessionContext(formId, input.versionId, session && session.formId === formId && session.status === 'partial' ? session.versionId : null, live)
@@ -1117,6 +1122,7 @@ const ASSET_TYPES: Record<string, string> = { png: 'image/png', jpg: 'image/jpeg
 export const ASSET_MAX_BYTES = 8 * 1024 * 1024
 
 export async function uploadAsset(formId: string, input: { name: string; body: Readable; by: string | null }): Promise<{ id: string; url: string; name: string; size: number; mime: string }> {
+  demoRefuse('images')
   if (!repo.getForm(formId)) throw new ServiceError(404, 'form not found')
   const ext = extensionOf(input.name)
   const mime = ASSET_TYPES[ext]

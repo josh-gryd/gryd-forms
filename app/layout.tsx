@@ -8,12 +8,18 @@ import PhoneChrome from './components/phone/PhoneChrome'
 import { THEME_INIT_SCRIPT } from './components/theme'
 import { DSProvider } from './components/v2/ds-context'
 import { authEnabled } from '@/lib/auth'
+import { DEMO_REPO_URL, isDemo } from '@/lib/demo'
+import DemoBanner from './components/demo/DemoBanner'
 
 const BRAND = process.env.FORMS_BRAND_NAME || 'Forms'
 
-export const metadata: Metadata = {
-  title: BRAND,
-  icons: { icon: '/icon.svg' },
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: isDemo() ? `${BRAND} · live demo` : BRAND,
+    icons: { icon: '/icon.svg' },
+    // Demo forms are strangers' content: keep them out of search results.
+    ...(isDemo() ? { robots: { index: false, follow: false } } : {}),
+  }
 }
 
 export const viewport: Viewport = {
@@ -56,6 +62,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" href="/fonts/Plus-Jakarta-Sans-400-latin.woff2" />
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <DSProvider ds="v2">
+          {isDemo() ? <DemoBanner repo={DEMO_REPO_URL} /> : null}
           <Shell brand={BRAND} signOut={authEnabled()}>{children}</Shell>
           <PhoneChrome />
         </DSProvider>

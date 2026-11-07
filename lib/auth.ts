@@ -10,6 +10,8 @@ export const SESSION_COOKIE = 'forms_session'
 const SESSION_DAYS = 30
 
 export function authEnabled(): boolean {
+  // The public demo is open to everyone by design.
+  if (process.env.FORMS_DEMO === '1') return false
   return !!process.env.FORMS_ADMIN_PASSWORD || process.env.NODE_ENV === 'production'
 }
 

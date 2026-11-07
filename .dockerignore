@@ -1,0 +1,9 @@
+node_modules
+.next
+data
+test-results
+e2e
+.git
+.env
+.env.*
+*.tsbuildinfo

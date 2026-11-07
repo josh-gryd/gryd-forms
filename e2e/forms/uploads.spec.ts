@@ -1,0 +1,82 @@
+import { test, expect } from '@playwright/test'
+import { apiCreateForm, apiPublish, apiSubmit, BASE } from './helpers'
+import { emptyForm, newBlock } from '../../engine/forms/core/index'
+
+function formWithUpload(maxSizeMb = 25) {
+  const def = emptyForm('Upload form')
+  const name = newBlock('short', { label: 'Name', required: true })
+  const file = newBlock('upload', { label: 'Your document', required: true, settings: { accept: 'docs-images', maxSizeMb, maxFiles: 2 } })
+  def.pages[0].blocks.push(name, file)
+  return { def, name, file }
+}
+
+const pdf = (kb: number) => Buffer.concat([Buffer.from('%PDF-1.4\n'), Buffer.alloc(kb * 1024, 'a')])
+
+test.describe('File uploads', () => {
+  test('pick → progress → done chip; remove; type and size gates use the handoff copy', async ({ page, request }) => {
+    const { def, file } = formWithUpload(1)
+    const f = await apiCreateForm(request, { title: def.title, definition: def })
+    const pub = await apiPublish(request, f.id)
+    await page.goto(`/f/${pub.slug}`)
+    const input = page.locator(`#in-${file.id}`)
+    await input.setInputFiles({ name: 'evil.exe', mimeType: 'application/octet-stream', buffer: Buffer.from('MZ') })
+    await expect(page.locator(`#er-${file.id}`)).toHaveText(/That file type isn’t accepted here\. Try PDF, DOCX, PNG\./)
+    await input.setInputFiles({ name: 'big.pdf', mimeType: 'application/pdf', buffer: pdf(1500) })
+    await expect(page.locator(`#er-${file.id}`)).toHaveText(/Files need to be under 1 MB\./)
+    await input.setInputFiles({ name: 'brief.pdf', mimeType: 'application/pdf', buffer: pdf(120) })
+    await expect(page.getByTestId('upload-done')).toContainText('brief.pdf')
+    await expect(page.getByTestId('upload-done')).toContainText('Uploaded')
+    await expect(page.locator(`#er-${file.id}`)).toHaveCount(0)
+    await page.getByTestId('upload-remove').click()
+    await expect(page.getByTestId('upload-done')).toHaveCount(0)
+    await expect(page.getByTestId('upload-dropzone')).toBeVisible()
+  })
+
+  test('a dropped connection fails only that field with Retry; the submission then stores the file and Results can download it', async ({ page, request }) => {
+    const { def, name, file } = formWithUpload()
+    const f = await apiCreateForm(request, { title: def.title, definition: def })
+    const pub = await apiPublish(request, f.id)
+    await page.goto(`/f/${pub.slug}`)
+    await page.locator(`#in-${name.id}`).fill('Uploader')
+    await page.route('**/api/public/forms/uploads/*/bytes**', route => route.abort('failed'))
+    const input = page.locator(`#in-${file.id}`)
+    await input.setInputFiles({ name: 'plan.pdf', mimeType: 'application/pdf', buffer: pdf(200) })
+    const failed = page.getByTestId('upload-failed')
+    await expect(failed).toBeVisible()
+    await expect(failed).toContainText(/Connection dropped at \d+%\. Nothing else on the form was affected\.|didn’t upload/)
+    await expect(page.locator(`#in-${name.id}`)).toHaveValue('Uploader')
+    await page.unroute('**/api/public/forms/uploads/*/bytes**')
+    await page.getByTestId('upload-retry').click()
+    await expect(page.getByTestId('upload-done')).toContainText('plan.pdf')
+    await page.getByTestId('continue').click()
+    await expect(page.getByTestId('ending')).toBeVisible()
+    const list = await (await request.get(`${BASE}/api/forms/${f.id}/responses?status=all`)).json()
+    expect(list.total).toBe(1)
+    const detail = await (await request.get(`${BASE}/api/forms/${f.id}/responses/${list.rows[0].id}?status=all`)).json()
+    expect(detail.files.length).toBe(1)
+    expect(detail.files[0].status).toBe('uploaded')
+    expect(detail.answers[file.id][0].name).toBe('plan.pdf')
+    const dl = await request.get(`${BASE}/api/forms/${f.id}/files/${detail.files[0].id}`, { maxRedirects: 5 })
+    expect(dl.status()).toBe(200)
+    const body = await dl.body()
+    expect(body.length).toBe(pdf(200).length)
+    expect(body.subarray(0, 8).toString()).toBe('%PDF-1.4')
+  })
+
+  test('adversarial: a submission cannot reference a file that never uploaded, and a busy upload blocks Continue', async ({ page, request }) => {
+    const { def, name, file } = formWithUpload()
+    const f = await apiCreateForm(request, { title: def.title, definition: def })
+    const pub = await apiPublish(request, f.id)
+    const r = await apiSubmit(request, f.id, { [name.id]: 'Faker', [file.id]: [{ fileId: 'fil_doesnotexist0000', name: 'x.pdf', size: 10, mime: 'application/pdf' }] })
+    expect([400, 422]).toContain(r.status)
+    await page.goto(`/f/${pub.slug}`)
+    await page.locator(`#in-${name.id}`).fill('Slow')
+    await page.route('**/api/public/forms/uploads/*/bytes**', () => { /* never answer: the upload stays busy */ })
+    await page.locator(`#in-${file.id}`).setInputFiles({ name: 'slow.pdf', mimeType: 'application/pdf', buffer: pdf(300) })
+    await expect(page.getByTestId('upload-busy')).toBeVisible()
+    await page.getByTestId('continue').click()
+    await expect(page.locator(`#er-${file.id}`)).toHaveText('Wait for the upload to finish.')
+    await page.getByRole('button', { name: 'Cancel upload' }).click()
+    await expect(page.getByTestId('upload-busy')).toHaveCount(0)
+  })
+})

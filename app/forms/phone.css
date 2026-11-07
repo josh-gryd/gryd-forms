@@ -1,0 +1,86 @@
+/* Forms on the phone (direction "Jump", engine/docs/design/phone/README.md).
+   The phone views are in Phone*.tsx; these rules only lift the Forms kit's own
+   layers (dialog, confirm, toast) onto the phone's: a dialog is a bottom sheet
+   above any open sheet, a toast sits where the phone toast does. Every rule is
+   scoped to html[data-ph], which only the phone layer sets. */
+
+/* Dialogs and confirms rise from the bottom, over the phone's sheets. */
+html[data-ph] .fb-scrim { z-index: 1150; }
+html[data-ph] .fb-modal {
+  top: auto; bottom: 0; left: 0; right: 0; transform: none;
+  width: 100% !important; max-width: none; box-sizing: border-box;
+  max-height: calc(100dvh - var(--ph-safe-top) - 44px); overflow-y: auto;
+  border-radius: 22px 22px 0 0; border-bottom: 0; box-shadow: none; z-index: 1160;
+  padding: 24px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+  animation: ph-sheet-up var(--dur-slow) var(--ph-ease-ios) both;
+}
+html[data-ph] .fb-modal::before {
+  content: ''; position: absolute; top: 8px; left: 50%; width: 40px; height: 5px; margin-left: -20px;
+  border-radius: 3px; background: var(--line2);
+}
+html[data-ph] .fb-modal .fb-btn { height: 44px; padding: 0 16px; font-size: 15px; }
+html[data-ph] .fb-modal .fb-input,
+html[data-ph] .fb-modal .fb-select { min-height: 44px; }
+html[data-ph] .fb-swatch-pick { min-height: 64px; }
+
+/* The Forms toast takes the phone toast's place: above the Jump bar, full width. */
+html[data-ph] [data-fb-toaster] {
+  left: 12px !important; right: 12px !important;
+  bottom: calc(var(--ph-bar-bottom) + 64px) !important; z-index: 1175 !important;
+  transition: bottom var(--dur-base) var(--ph-ease-out);
+}
+html[data-ph][data-ph-barhidden] [data-fb-toaster] { bottom: calc(var(--ph-bar-bottom) + 38px) !important; }
+html[data-ph][data-ph-overlay] [data-fb-toaster] { bottom: calc(var(--ph-bar-bottom) + 72px) !important; }
+html[data-ph] [data-fb-toaster] .fb-toast { min-width: 0; max-width: none; min-height: 50px; font-size: 14.5px; }
+html[data-ph] [data-fb-toaster] .fb-btn { height: 40px; }
+html[data-ph] [data-fb-toaster] .fb-iconbtn { width: 40px; height: 40px; }
+
+/* Forms › Settings: one column, 44px controls, the save bar above the Jump bar. */
+html[data-ph] [data-testid="forms-settings"] { padding: 12px 12px 140px !important; gap: 14px !important; }
+html[data-ph] [data-testid="forms-settings"] > nav {
+  position: sticky; top: 0; z-index: 3; margin: 0 -12px; padding: 8px 12px; overflow-x: auto; scrollbar-width: none;
+  background: var(--bg); border-bottom: 1px solid var(--line); gap: 6px !important;
+}
+html[data-ph] [data-testid="forms-settings"] > nav > a {
+  flex: none; display: inline-flex; align-items: center; height: 36px; padding: 0 12px; border-radius: 9px;
+  font-size: 14px; font-weight: 700; color: var(--mut) !important; text-decoration: none; white-space: nowrap;
+}
+html[data-ph] [data-testid="forms-settings"] [data-testid^="ws-"] { scroll-margin-top: 60px; }
+html[data-ph] [data-testid="forms-settings"] .fb-card { padding: 16px !important; }
+html[data-ph] [data-testid="ws-branding"] > div:last-child { grid-template-columns: minmax(0, 1fr) !important; }
+html[data-ph] [data-testid="ws-preview"] { position: static !important; max-height: none !important; }
+html[data-ph] [data-testid="ws-defaults"] > div:last-child { grid-template-columns: minmax(0, 1fr) !important; }
+html[data-ph] [data-testid="forms-settings"] .fb-btn { min-height: 44px; }
+html[data-ph] [data-testid="forms-settings"] .fb-input,
+html[data-ph] [data-testid="forms-settings"] .fb-select,
+html[data-ph] [data-testid="forms-settings"] .fb-textarea { min-height: 44px; }
+html[data-ph] [data-testid="ws-savebar"] {
+  position: fixed !important; left: 12px; right: 12px; bottom: calc(var(--ph-bar-bottom) + 64px) !important;
+  z-index: 990; flex-wrap: wrap; align-self: auto !important;
+}
+html[data-ph][data-ph-barhidden] [data-testid="ws-savebar"] { bottom: calc(var(--ph-bar-bottom) + 38px) !important; }
+
+/* The Forms scope underlines and colours every link; the phone's rows and
+   buttons are links that read as rows and buttons. */
+html[data-ph] [data-forms-root] a.ph-row,
+html[data-ph] [data-forms-root] a.ph-btn { color: var(--tx); text-decoration: none; }
+html[data-ph] [data-forms-root] a.ph-btn[data-tone="primary"] { color: var(--on-accent); }
+
+/* Responses › Summary: the per-day chart's heading stacks over its controls. */
+html[data-ph] [data-testid="summary-per-day"] > div:first-child { flex-wrap: wrap; row-gap: 4px; }
+html[data-ph] [data-testid="summary-per-day"] > div:first-child > h3 { flex: 1 1 100% !important; }
+html[data-ph] [data-testid="summary-per-day"] > div:first-child > .fb-btn { margin-left: auto; height: 36px; }
+
+/* Settings' segmented choices (form width, corners…) are 44px targets. */
+html[data-ph] [data-testid="forms-settings"] .fb-seg--card button { min-height: 44px; }
+
+/* The forms root is a height:100% flex column, and .ph-page's min-height:100%
+   let these pages shrink to it: their last rows overflowed past
+   .mobile-main's room for the command bar and sat under the pill (QA Q8).
+   They keep their full height and carry that room themselves (the main's
+   padding sits outside the 100%-height root, so it never scrolls into view);
+   the nested read-only page drops its min-height so it adds no blank screen. */
+html[data-ph] :is([data-testid="ph-form"], [data-testid="forms-home"], [data-testid="forms-archived"]) {
+  flex: none; padding-bottom: calc(var(--ph-bar-bottom) + 76px);
+}
+html[data-ph] [data-testid="ph-form"] .ph-page { min-height: 0; }

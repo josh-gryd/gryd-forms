@@ -1,0 +1,821 @@
+/* ════════════════════════════════════════════════════════════════════════
+   GRYD v2.4.2 — the switchable design system.
+
+   Everything in this file is scoped under html[data-ds="v2"], set by the root
+   layout from the gryd-ds cookie (Settings → Appearance). With the cookie at
+   v1 none of it matches and the portal is exactly the pre-v2 build.
+
+   Source of truth: the GRYD v2 Design System artifact (v2.4.2); repo mirror in
+   design/gryd-v2/. Token values below are copied from its globals.v2.css —
+   change them there first. Two deliberate departures, both so v1 pages that
+   were never ported still read right:
+     · --font-display is the TITLE face (Plus Jakarta Sans). Syne, which the
+       system reserves for the header band's H1, is --font-band.
+     · --side is not the system's black rail variant; this portal's rail sits
+       on --bg, and pages read --side as a quiet panel surface.
+   ════════════════════════════════════════════════════════════════════════ */
+
+@font-face { font-family: 'Syne'; src: url('/fonts/Syne-Variable-latin.woff2') format('woff2'); font-weight: 400 800; font-display: swap; }
+
+html[data-ds="v2"] {
+  --bg: #f3ebcb;
+  --paper: #f3ebcb;
+  --card: #faf5e1;
+  --inset: #f1e9c8;
+  --input: #fffbea;
+  --sel: #d9ec9c;
+  --track: #e6dcae;
+  --canvas: #f3ebcb;
+  --doc: #f6efd3;
+  --ink: #161616;
+  --inkbg: #161616;
+  --oninkbg: #f3ebcb;
+  --tx: #161616;
+  --tx2: #3f3d33;
+  --tx3: #2c2a22;
+  --mut: #3f3d33;
+  --mut2: #4a4838;
+  --mut3: #55533f;
+  --line: #e3d9a8;
+  --line2: #cfc38a;
+  --scrim: rgba(22,22,22,.46);
+  --lime: #8dc63f;
+  --lime-bg: #d9ec9c;
+  --lime-tx: #2f5a0c;
+  --gold: #ffc72c;
+  --gold-bg: #ffe7a0;
+  --gold-tx: #6b4400;
+  --coral: #ee4b2b;
+  --coral-bg: #f9c9bf;
+  --coral-tx: #9a1f0a;
+  --blu: #1e4fb8;
+  --blu-bg: #d6e0f7;
+  --blu-tx: #1b3f8f;
+  --pur: #6d5bd0;
+  --pur-bg: #e4dcf7;
+  --pur-tx: #4c3ea3;
+  --teal: #0f7f75;
+  --teal-bg: #cfe8e4;
+  --teal-tx: #0b5f57;
+  /* Peach: GRYD Code's frame colour. */
+  --peach: #ffd5ab;
+  --peach-bg: #ffd5ab;
+  --neu-bg: #e9e0b9;
+  --grn: var(--lime);
+  --grn-bg: var(--lime-bg);
+  --grn-tx: var(--lime-tx);
+  --amb: var(--gold);
+  --amb-bg: var(--gold-bg);
+  --amb-tx: var(--gold-tx);
+  --red: var(--coral);
+  --red-bg: var(--coral-bg);
+  --red-tx: var(--coral-tx);
+  --on-accent: #161616;
+  --on-hue: #fffcf2;
+  --on-fill: #161616;
+  --on-amb: #161616;
+  --on-tint: #161616;
+  --go: var(--lime);
+  --ongo: #161616;
+  --link: #161616;
+  --linkhv: var(--coral-tx);
+  --hi-bg: var(--gold);
+  --hi-tx: #161616;
+  --hi-accent: var(--ink);
+  --ava-alf: #2f6b45;
+  --ava-claw: #44505f;
+  --ava-penny: #7325bb;
+  --ava-scout: #a75a05;
+  --ava-flux: #b3306b;
+  --ava-none: #6b6552;
+  --on-ava: #ffffff;
+  --own-a: #1b2a4a;
+  --own-nick: var(--blu);
+  --own-b: var(--pur);
+  --chart-1: var(--lime);
+  --chart-2: var(--gold);
+  --chart-3: var(--coral);
+  --chart-4: var(--blu);
+  --chart-5: var(--pur);
+  --heat-1: #fff1b8;
+  --heat-2: #ffc72c;
+  --heat-3: #ee4b2b;
+  --heat-4: #161616;
+  --syn-surface: #161616;
+  --syn-text: #f3ebcb;
+  --syn-meta: #948e78;
+  --syn-comment: #948e78;
+  --syn-keyword: #b69dff;
+  --syn-key: #8fb0ff;
+  --syn-string: #a6dc5a;
+  --syn-bool: #ff9b84;
+  --syn-number: #ffd35c;
+  --el-1: 2px 2px 0 #161616;
+  --el-2: 3px 3px 0 #161616;
+  --el-3: 4px 5px 0 #161616;
+  --el-4: 8px 10px 0 #161616;
+  --el-stamp: 2px 2px 0 #161616;
+  --glow-extra: 0 0 0 rgba(0,0,0,0);
+  --sp-1: 4px;
+  --sp-2: 6px;
+  --sp-3: 8px;
+  --sp-4: 10px;
+  --sp-5: 13px;
+  --sp-6: 16px;
+  --sp-7: 20px;
+  --sp-8: 22px;
+  --sp-9: 24px;
+  --sp-10: 28px;
+  --sp-11: 32px;
+  --sp-12: 48px;
+  --sp-13: 64px;
+  --r-stamp: 5px;
+  --r-chip-sm: 7px;
+  --r-chip: 8px;
+  --r-control: 10px;
+  --r-tile: 11px;
+  --r-card-sm: 11px;
+  --r-card: 14px;
+  --r-bubble: 16px;
+  --r-pill: 20px;
+  --r-round: 50%;
+  --r-cut: 2px;
+  --bd: 2px;
+  --bd-thin: 1.5px;
+  --bd-hair: 1px;
+  --type-h1: 34px;
+  --type-h1-lg: 44px;
+  --type-modal-title: 20px;
+  --type-card-title: 15px;
+  --type-kpi: 28px;
+  --type-kpi-lg: 34px;
+  --type-body: 15px;
+  --type-ui: 13.5px;
+  --type-control: 13px;
+  --type-seg: 12.5px;
+  --type-dense: 12px;
+  --type-chip: 11.5px;
+  --type-label: 11px;
+  --type-micro: 10.5px;
+  --type-nano: 10px;
+  --type-stamp: 9.5px;
+  --track-display: -.02em;
+  --track-label: .1em;
+  --track-stamp: .1em;
+  --track-field: .06em;
+  --weight-heavy: 800;
+  --weight-strong: 700;
+  --weight-dense: 600;
+  --weight-body: 400;
+  --leading-body: 1.6;
+  --rail-w: 224px;
+  --row-h: 44px;
+  --cell-x: 14px;
+  --ctl-h: 36px;
+  --ctl-h-sm: 30px;
+  --card-pad: 18px 20px;
+  --card-pad-sm: 12px 14px;
+  --stack-gap: 16px;
+  --section-gap: 32px;
+  --page-x: 28px;
+  --page-y: 24px;
+  --touch-min: 44px;
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 360ms;
+  --dur-done: 600ms;  /* a stamp-like state landing once */
+  --dur-tilt: 180ms;  /* agent tile tilt on hover */
+  --dur-fill: 520ms;  /* a progress bar growing to its value */
+  --dur-idle: 12s;
+  --dur-hover: 120ms;
+  --dur-control: 220ms;
+  --dur-sheet: 360ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --font-body: 'Plus Jakarta Sans', 'Public Sans', system-ui, sans-serif;
+  --font-title: 'Plus Jakarta Sans', 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  --font-display-alt: 'Gabarito', sans-serif;
+  --font-display: var(--font-title);
+  --font-band: 'Syne', 'Bricolage Grotesque', sans-serif;
+  --app-font: var(--font-body);
+  --side: #ebe1b8;
+  /* v1 names this portal's pages still read, pointed at v2 values. */
+  --ink-base: #161616;
+  --ava-petrol: var(--blu); --ava-indigo: var(--pur);
+  --chart-followers: var(--blu); --chart-connections: var(--coral);
+  --t-grn: var(--grn-bg); --t-blu: var(--blu-bg); --t-pur: var(--pur-bg);
+  --t-amb: var(--amb-bg); --t-red: var(--red-bg); --t-neu: var(--neu-bg);
+  --tok-edge: rgba(22,22,22,.22); --tok-num: #fffbea;
+  --gold-a: var(--gold-bg); --gold-b: var(--gold); --on-gold: #161616;
+  --hi-glow: 0 0 0 rgba(0,0,0,0);
+  --r-tab: 9px;
+  --r-card-sm: 11px; --r-card: 14px;
+  --card-border: var(--bd) solid var(--ink);
+  --dur-theme: 280ms;
+  color-scheme: light;
+}
+html[data-ds="v2"][data-theme="dark"] {
+  --bg: #131311;
+  --paper: #1b1a16;
+  --card: #1e1d18;
+  --inset: #26241d;
+  --input: #22201a;
+  --sel: #3a4a17;
+  --track: #2c2a22;
+  --canvas: #141311;
+  --doc: #181712;
+  --ink: rgba(243,235,203,.92);
+  --inkbg: #f3ebcb;
+  --oninkbg: #161616;
+  --tx: #f3ebcb;
+  --tx2: #cfc8ab;
+  --tx3: #dcd5b8;
+  --mut: #c4bd9f;
+  --mut2: #a8a189;
+  --mut3: #948e78;
+  --line: rgba(243,235,203,.14);
+  --line2: rgba(243,235,203,.24);
+  --scrim: rgba(8,8,6,.76);
+  --lime: #a6dc5a;
+  --lime-bg: #2b3d12;
+  --lime-tx: #c6ec8a;
+  --gold: #ffd35c;
+  --gold-bg: #3f3210;
+  --gold-tx: #ffdf85;
+  --coral: #ff7a5c;
+  --coral-bg: #46201a;
+  --coral-tx: #ff9b84;
+  --blu: #8fb0ff;
+  --blu-bg: #172a47;
+  --blu-tx: #aebfe8;
+  --pur: #b69dff;
+  --pur-bg: #271f42;
+  --pur-tx: #b69dff;
+  --teal: #3fd6c4;
+  --teal-bg: #123a36;
+  --teal-tx: #5fe0d0;
+  --on-hue: #161616;
+  --peach: #e9a366;
+  --peach-bg: #3a2415;
+  --neu-bg: #26241d;
+  --grn: var(--lime);
+  --grn-bg: var(--lime-bg);
+  --grn-tx: var(--lime-tx);
+  --amb: var(--gold);
+  --amb-bg: var(--gold-bg);
+  --amb-tx: var(--gold-tx);
+  --red: var(--coral);
+  --red-bg: var(--coral-bg);
+  --red-tx: var(--coral-tx);
+  --on-tint: #f3ebcb;
+  --go: var(--lime);
+  --link: #f3ebcb;
+  --linkhv: var(--coral);
+  --hi-bg: var(--card);
+  --hi-tx: var(--gold);
+  --hi-accent: var(--gold);
+  --own-a: #33507f;
+  --own-nick: #2f4f9e;
+  --own-b: #5b3fb0;
+  --chart-1: var(--lime);
+  --chart-2: var(--gold);
+  --chart-3: var(--coral);
+  --chart-4: var(--blu);
+  --chart-5: var(--pur);
+  --heat-1: #2b2612;
+  --heat-2: #7a5a12;
+  --heat-3: #ffc72c;
+  --heat-4: #ff7a5c;
+  --el-1: 2px 2px 0 rgba(243,235,203,.92), 0 0 18px rgba(255,211,92,.10);
+  --el-2: 3px 3px 0 rgba(243,235,203,.92), 0 0 18px rgba(255,211,92,.10);
+  --el-3: 4px 5px 0 rgba(243,235,203,.92), 0 0 18px rgba(255,211,92,.10);
+  --el-4: 8px 10px 0 rgba(243,235,203,.92);
+  --el-stamp: 2px 2px 0 rgba(243,235,203,.92);
+  --glow-extra: 0 0 18px rgba(255,211,92,.10);
+  --side: #1b1a16;
+  --ink-base: rgba(243,235,203,.92);
+  --tok-edge: rgba(243,235,203,.34); --tok-num: rgba(243,235,203,.16);
+  --hi-glow: 0 0 18px rgba(255,211,92,.18);
+  color-scheme: dark;
+}
+
+/* ── Apps. data-v2app on the frame (and on each rail tile) sets the app's
+   colours once. The colour lives only in the frame — rail tile, sidebar,
+   header band; cards, tables and tags stay neutral, so lime, gold and coral
+   keep meaning live, pending and failed. Mix in oklab, never oklch. ── */
+html[data-ds="v2"] [data-v2app] { --app-bg2: color-mix(in oklab, var(--app) 45%, var(--bg)); --app-hv: color-mix(in oklab, var(--app) 22%, var(--bg)); }
+html[data-ds="v2"] [data-v2app="home"]     { --app: var(--lime);  --app-bg: var(--lime-bg);  --on-app: var(--on-accent); }
+/* Code wears --code-tint (design README 1): the chat list, its rail tile and the project tile. Never lime as a surface.
+   The tint is a mix of two tokens, so dark mode follows without its own colours. */
+html[data-ds="v2"] [data-v2app="code"]     { --code-tint: color-mix(in oklab, var(--gold-bg) 55%, var(--coral-bg)); --app: var(--peach); --app-bg: var(--code-tint); --app-bg2: color-mix(in oklab, var(--ink) 9%, var(--code-tint)); --app-hv: color-mix(in oklab, var(--ink) 6%, var(--code-tint)); --on-app: var(--on-accent); }
+html[data-ds="v2"] [data-v2app="outreach"] { --app: var(--gold);  --app-bg: var(--gold-bg);  --on-app: var(--on-accent); }
+html[data-ds="v2"] [data-v2app="finance"]  { --app: var(--pur);   --app-bg: var(--pur-bg);   --on-app: var(--on-hue); }
+html[data-ds="v2"] [data-v2app="flows"]    { --app: var(--blu);   --app-bg: var(--blu-bg);   --on-app: var(--on-hue); }
+/* Forms is purple end to end: the band is the builder's own
+   --pur-tx band, so the list, the builder and the frame never change colour
+   as you move between them; the sidebar is the lavender picked. Deeper
+   and bluer than Finance's violet. */
+html[data-ds="v2"] [data-v2app="forms"]    { --app: #4c3ea3; --app-bg: #c2b8ea; --on-app: var(--on-hue); }
+html[data-ds="v2"][data-theme="dark"] [data-v2app="forms"] { --app: #b69dff; --app-bg: #2a2250; }
+/* LinkedIn is not in the approved set and every system hue is taken, so it
+   wears LinkedIn's own blue — lighter and bluer than Flows' in both themes. */
+/* LinkedIn is the approved design, colour for colour: the band,
+   the sidebar, the current row and the switcher card are its own blues, not
+   mixes. --li-rail-bg / --li-sel feed the inbox itself (parts.tsx, below). */
+html[data-ds="v2"] [data-v2app="linkedin"] {
+  --app: #2c56cc; --app-bg: #c4d1f1; --app-bg2: #a0baf5; --app-hv: #b2c6f3; --on-app: var(--on-hue);
+  --app-switcher: #a0baf5; --li-rail-bg: var(--bg); --li-sel: #c4d1f1;
+}
+html[data-ds="v2"][data-theme="dark"] [data-v2app="linkedin"] {
+  --app: #7f9ff0; --app-bg: #16213f; --app-bg2: #26386a; --app-hv: #1e2d55;
+  --app-switcher: #26386a; --li-sel: #1e2d55;
+}
+/* Webinars is plum end to end, GRYD Live inside the frame
+   included. The current row and hover are set, not mixed from the page's
+   cream; the current rail tile is lighter than the band so the camera glyph
+   reads on it. */
+html[data-ds="v2"] [data-v2app="webinars"] {
+  --app: #6e2f63; --app-bg: #ead3e4; --app-bg2: #d3a9c9; --app-hv: #dfbfd7; --app-tile: #b879a9; --on-app: var(--on-hue);
+}
+html[data-ds="v2"][data-theme="dark"] [data-v2app="webinars"] { --app: #d49ac4; --app-bg: #2e1428; --app-bg2: #4a2442; --app-hv: #3b1c35; --app-tile: #d49ac4; }
+/* Links is green end to end, the approved design's own greens: the band,
+   the sidebar and the current row are set, not mixed. In dark mode the band
+   stays deep green with cream text, as designed, rather than turning light. */
+html[data-ds="v2"] [data-v2app="links"] {
+  --app: #2f7a4d; --app-bg: #d3e3cb; --app-bg2: #a9d49c; --app-hv: #bfdcb4; --app-tile: #6fae7f; --on-app: #f3ebcb;
+}
+html[data-ds="v2"][data-theme="dark"] [data-v2app="links"] { --app: #1f4a30; --app-bg: #1c2a20; --app-bg2: #2f5a3a; --app-hv: #25382a; --app-tile: #4f9a66; --on-app: #f3ebcb; }
+html[data-ds="v2"] [data-v2app="docs"]     { --app: var(--inkbg); --app-bg: var(--neu-bg);   --on-app: var(--oninkbg); }
+html[data-ds="v2"] [data-v2app="settings"] { --app: var(--inkbg); --app-bg: var(--neu-bg);   --on-app: var(--oninkbg); }
+
+/* v1's per-app identity redrew --ink in the app's hue; v2 keeps ink ink and
+   puts the colour in the frame instead. The v1 surface names map onto it. */
+html[data-ds="v2"] [data-app-frame] {
+  --ink: var(--ink-base);
+  --app-ink: var(--ink-base);
+  --app-paper: var(--bg);
+  --app-panel: var(--app-bg);
+  --app-chip: var(--app-bg2);
+  --app-line: var(--line2);
+  --app-slab: var(--app);
+  --app-slab-tx: var(--on-app);
+  --app-slab-sub: var(--on-app);
+  background: var(--bg) !important;
+}
+html[data-ds="v2"][data-theme="dark"] [data-app-frame] {
+  --app-slab: var(--app);
+  --app-slab-sub: var(--on-app);
+  --app-panel: var(--app-bg);
+  --app-chip: var(--app-bg2);
+  --app-ink: var(--ink-base);
+}
+html[data-ds="v2"] body { font-family: var(--font-body); }
+/* Docs draws its own sidebar with v1's switcher card; in v2 that card sits on
+   --card like the shell's, never on the app's (near-black, for Docs) chip. */
+html[data-ds="v2"] [data-app-switcher] { background: var(--card); }
+
+/* ── Frame. The sidebar carries the frame's top, left (rounded) and right
+   edges; the content column only continues the top line. With no app
+   sidebar (Docs draws its own) the column takes the left edge back. ── */
+html[data-ds="v2"] .shell-main { border-left: 0; background: var(--bg); }
+html[data-ds="v2"] .shell-main:has(.docs-page-root) { border-left: var(--bd) solid var(--ink); }
+
+html[data-ds="v2"] .shell-main:has(.docs-page-root) { border-top-left-radius: var(--r-card); }
+/* Code draws its chat list inside the column too, so the column takes the left edge back
+   (without it the frame's top line curved into nothing when the list was hidden). Not on a phone. */
+@media (min-width: 761px) { html[data-ds="v2"] .shell-main:has(.code-root) { border-left: var(--bd) solid var(--ink); border-top-left-radius: var(--r-card); } }
+/* Rail hidden: the column sits flush with the window edge, so its top-left corner is square (as the app sidebar's is). */
+@media (min-width: 761px) { html[data-ds="v2"][data-rail-off] .shell-main:has(.code-root, .docs-page-root) { border-left: 0; border-top-left-radius: 0; } }
+@media (max-width: 760px) { html[data-ds="v2"] .shell-main { border: 0; } }
+/* 761–999: the app sidebar goes (as in v1), so the rail keeps no border of its own. */
+@media (min-width: 761px) and (max-width: 999px) {
+  html[data-ds="v2"] aside[data-v2-rail] { border-right: 0; }
+  html[data-ds="v2"] .shell-main { border-left: var(--bd) solid var(--ink); border-top-left-radius: var(--r-card); }
+}
+/* The design's sidebar is 256px; v1's ≤1100 narrowing still applies. */
+@media (max-width: 760px) {
+  html[data-ds="v2"] .sidebar { background: var(--bg); }
+  html[data-ds="v2"] .sidebar aside[data-v2-sidebar] { border-left: var(--bd) solid var(--ink) !important; }
+}
+
+/* The rail carries eight apps plus the theme button and you, which outgrows a
+   short window (a laptop with the dock up). Tighten its rhythm there rather
+   than cut the account menu off the bottom; tiles keep their size. */
+@media (max-height: 760px) {
+  html[data-ds="v2"] aside[data-v2-rail] { gap: var(--sp-2) !important; padding: var(--sp-4) 0 !important; }
+  html[data-ds="v2"] aside[data-v2-rail] > div:last-child { padding-top: var(--sp-2) !important; gap: var(--sp-2) !important; }
+}
+
+/* ── LinkedIn inbox (the design of 09-25). The list sits on card paper; the
+   row under your attention is a full-bleed blue band with the app colour down
+   its left edge — no lifted card. Done · Snooze · Label still ride in it. ── */
+html[data-ds="v2"] [data-v2app="linkedin"] [data-li-list] { background: var(--card) !important; }
+html[data-ds="v2"] [data-v2app="linkedin"] .li-row[data-selected="true"] {
+  margin: 0; padding: 9px 20px; border: 0; border-bottom: 1px solid var(--line2); border-radius: 0;
+  background: var(--li-sel); box-shadow: inset 4px 0 0 var(--app);
+}
+html[data-ds="v2"] [data-v2app="linkedin"] .li-row[data-selected="true"][data-unread="true"] { padding: 10px 20px; }
+html[data-ds="v2"] [data-v2app="linkedin"] .li-row[data-selected="true"][data-due="true"] { background: var(--amb-bg); }
+html[data-ds="v2"] [data-v2app="linkedin"] .li-row[data-selected="true"]:active { transform: none; }
+@media (max-width: 760px) {
+  html[data-ds="v2"] [data-v2app="linkedin"] .li-row[data-selected="true"] { margin: 0; padding: 10px 14px; }
+}
+
+/* ── Header band — v1's slab, drawn as the system's AppHeader (accent band):
+   the app hue, 16/22 padding, the page title in Syne 34, a 2px ink foot.
+   Controls a page hands the band keep sitting on their own cards. ── */
+html[data-ds="v2"] [data-app-slab] {
+  height: auto; min-height: 0; gap: var(--sp-5); --slab-ctl-h: 36px;
+  padding: var(--sp-6) var(--sp-8);
+  background: var(--app); color: var(--on-app);
+  border-bottom: var(--bd) solid var(--ink);
+}
+html[data-ds="v2"] [data-app-slab] h1, html[data-ds="v2"] [data-app-slab] [data-page-title] {
+  font-family: var(--font-band) !important; font-size: 34px; font-weight: 800;
+  line-height: 1.05; letter-spacing: var(--track-display); color: var(--on-app);
+}
+html[data-ds="v2"] [data-slab-text] { gap: var(--sp-3); min-height: 40px; }
+/* ⓘ — the system's IconBtn sm with Lucide's info glyph, in the band's colour. */
+html[data-ds="v2"] [data-slab-info] {
+  width: 28px; height: 28px; border: 2px solid transparent; border-radius: 8px;
+  color: var(--on-app); transition: background-color var(--dur-fast) var(--ease-out);
+}
+html[data-ds="v2"] [data-slab-info] > span[aria-hidden] { font-size: 0; width: 15px; height: 15px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat; }
+html[data-ds="v2"] [data-slab-info]:hover, html[data-ds="v2"] [data-slab-info]:focus-visible {
+  background: color-mix(in oklab, currentColor 16%, transparent); border-color: transparent; color: var(--on-app);
+}
+html[data-ds="v2"] [data-slab-subpop] { border-color: var(--ink); border-radius: var(--r-card-sm); }
+html[data-ds="v2"] [data-slab-tools] { color: var(--on-app); gap: var(--sp-4); }
+/* Every group leads with a 2×26 divider in the band's text colour at half. */
+html[data-ds="v2"] [data-slab-tools]:not(:empty)::before { width: 2px; height: 26px; border-radius: 0; background: var(--on-app); opacity: .5; }
+html[data-ds="v2"] [data-slab-actions] { gap: var(--sp-3); }
+html[data-ds="v2"] [data-app-slab] [data-primary-action] {
+  padding: 8px 16px; font-size: 13px; border: 2px solid var(--ink); border-radius: 10px;
+  background: var(--card); color: var(--tx); box-shadow: var(--el-1);
+}
+html[data-ds="v2"] [data-app-slab] :focus-visible { outline-color: var(--on-app); }
+@media (max-width: 1100px) { html[data-ds="v2"] [data-app-slab] { padding: var(--sp-5) var(--sp-6); } }
+@media (max-width: 760px) {
+  html[data-ds="v2"] [data-app-slab] { padding: 10px 12px; --slab-ctl-h: 30px; }
+  html[data-ds="v2"] [data-app-slab] h1, html[data-ds="v2"] [data-app-slab] [data-page-title] { font-size: 22px; }
+}
+
+/* The Checkbox's drawn box answers the keyboard for the real input under it:
+   focus-visible only, so a mouse click never draws it. */
+html[data-ds="v2"] .gx-check-input:focus-visible + .gx-check { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ── Motion (the system's platform-shell presets). Rail tiles and the theme
+   button grow their shadow on hover and stamp flat on press; the active tile
+   lands lifted. Nav rows tint on hover and never move. ── */
+html[data-ds="v2"] .mo-lift { transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out); }
+html[data-ds="v2"] .mo-lift:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink), var(--glow-extra); }
+html[data-ds="v2"] .mo-lift:active, html[data-ds="v2"] .mo-stamp:active { transform: translate(2px, 2px) scale(.98); box-shadow: 0 0 0 var(--ink), var(--glow-extra); transition-duration: 60ms; }
+@keyframes mo-pop-kf { from { opacity: 0; transform: scale(.6) rotate(6deg); } to { opacity: 1; transform: scale(1) rotate(var(--tilt-stamp, -4deg)); } }
+@keyframes mo-pop-flat-kf { from { opacity: 0; transform: translateY(-6px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes mo-done-kf { 0% { transform: rotate(0); } 30% { transform: rotate(var(--tilt-done, -2deg)) scale(1.03); } 100% { transform: rotate(0); } }
+html[data-ds="v2"] .mo-pop { animation: mo-pop-kf var(--dur-base) var(--ease-pop) both; transform-origin: 50% 100%; }
+html[data-ds="v2"] .mo-pop-flat { animation: mo-pop-flat-kf var(--dur-base) var(--ease-pop) both; }
+html[data-ds="v2"] .mo-done { animation: mo-done-kf var(--dur-done) var(--ease-pop) both; }
+html[data-ds="v2"] .mo-tilt { transition: transform var(--dur-tilt) var(--ease-pop); }
+html[data-ds="v2"] .mo-tilt:hover { transform: rotate(-3deg); }
+/* Theme flip: a circle wipes the new theme in from the top right (ThemeToggle adds html.gx-vt around the view transition). */
+@keyframes mo-wipe-kf { from { clip-path: circle(0 at var(--wipe-x, 100%) var(--wipe-y, 0)); } to { clip-path: circle(160% at var(--wipe-x, 100%) var(--wipe-y, 0)); } }
+html.gx-vt::view-transition-old(root), html.gx-vt::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+html.gx-vt::view-transition-new(root) { animation: mo-wipe-kf var(--dur-slow) var(--ease-out) both; }
+html.gx-vt::view-transition { pointer-events: none; }
+html[data-ds="v2"] .gx-railtile { transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-pop), box-shadow var(--dur-fast) var(--ease-out); }
+html[data-ds="v2"] .gx-railtile:not([aria-current]):hover { box-shadow: 3px 3px 0 var(--ink) !important; }
+html[data-ds="v2"] .gx-railtile:active { transform: translate(2px, 2px) !important; box-shadow: 0 0 0 var(--ink) !important; transition-duration: 60ms; }
+html[data-ds="v2"] .gx-navrow { background: transparent; transition: background-color var(--dur-fast) var(--ease-out); }
+html[data-ds="v2"] .gx-navrow:hover { background: var(--app-hv); }
+html[data-ds="v2"] .gx-menuitem:hover, html[data-ds="v2"] .gx-menuitem:focus-visible { background: var(--sel); }
+html[data-ds="v2"] .gx-iconbtn { transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
+@media (prefers-reduced-motion: reduce) {
+  html[data-ds="v2"] .gx-railtile, html[data-ds="v2"] .mo-lift, html[data-ds="v2"] .gx-navrow { transition: none; }
+  html[data-ds="v2"] .gx-railtile:active, html[data-ds="v2"] .mo-lift:hover, html[data-ds="v2"] .mo-lift:active { transform: none !important; }
+}
+html[data-ds="v2"][data-motion="reduced"] .gx-railtile, html[data-ds="v2"][data-motion="reduced"] .mo-lift, html[data-ds="v2"][data-motion="reduced"] .mo-tilt, html[data-ds="v2"][data-motion="reduced"] .gx-navrow { transition: none; }
+html[data-ds="v2"][data-motion="reduced"] .mo-lift:hover, html[data-ds="v2"][data-motion="reduced"] .mo-lift:active, html[data-ds="v2"][data-motion="reduced"] .mo-tilt:hover { transform: none !important; }
+html[data-motion="reduced"]::view-transition-new(root) { animation: none; }
+html[data-ds="v2"][data-motion="reduced"] .mo-pop, html[data-ds="v2"][data-motion="reduced"] .mo-pop-flat, html[data-ds="v2"][data-motion="reduced"] .mo-done { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-ds="v2"] .mo-tilt { transition: none; }
+  html[data-ds="v2"] .mo-tilt:hover { transform: none !important; }
+  html[data-ds="v2"] .mo-pop, html[data-ds="v2"] .mo-pop-flat, html[data-ds="v2"] .mo-done { animation: none; }
+}
+
+/* ── Plan keeps its own palette. The
+   planner canvas and its portalled popover get the v1 tokens back; the v2
+   shell around them stays v2. ── */
+html[data-ds="v2"] .mobile-main:has(.plan-wrap),
+html[data-ds="v2"] .cal-pop {
+  --app-font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+  /* surfaces — Light Mode: warm monochromatic parchment/oatmeal, layered.
+     NO pure white anywhere; cards are Alabaster on a cream base. */
+  --c-bg: var(--bg);
+  --c-surface: var(--card);
+  --c-surface-2: var(--inset);
+  --c-surface-3: var(--track);
+  --c-surface-inset: var(--inset);
+  /* Sidebar — warm parchment rail in light mode (deep navy in dark). Its text
+     tokens are theme-scoped so the rail reads correctly in both. */
+  --c-sidebar: var(--side);
+  --c-sidebar-border: var(--line2);
+  --c-sidebar-active: var(--sel);
+  --c-sidebar-hover: var(--inset);
+  --c-sidebar-text: var(--tx3);
+  --c-sidebar-text-strong: var(--tx);
+  --c-sidebar-text-faint: var(--mut);
+  --c-track: var(--track);
+  --c-disabled-bg: var(--neu-bg);
+  --c-overlay: var(--scrim);
+  /* text — legible slate on warm bg (no pale grays) */
+  --c-text: var(--tx3);
+  --c-text-strong: var(--tx);
+  --c-text-mid: var(--tx2);
+  --c-text-dim: var(--mut);
+  --c-text-faint: var(--mut2);
+  /* borders — crisp warm grey-beige structure */
+  --c-border: var(--line2);
+  --c-border-soft: var(--line);
+  --c-border-strong: var(--line2);
+  /* accent (brand red) */
+  --c-accent: var(--red);
+  --c-accent-strong: var(--red-tx);
+  --c-accent-bg: var(--red-bg);
+  --c-accent-border: var(--red);
+  --c-on-solid: var(--on-fill);
+  /* chart accents (glowing lines) */
+  --chart-max: var(--blu);   /* blue — the Max/subscription line */
+  --chart-api: var(--red);   /* red — the API line */
+  --chart-glow: 0.25;     /* soft-shadow strength in light mode */
+  /* primary "ink" button */
+  --c-btn-ink-bg: var(--inkbg);
+  /* status — low-alpha tints so the warm base shows through (no cool neon washes) */
+  --st-green-fg: var(--grn-tx);  --st-green-solid: var(--grn); --st-green-bg: var(--grn-bg); --st-green-border: var(--grn);
+  --st-red-fg: var(--red-tx);    --st-red-solid: var(--red);   --st-red-bg: var(--red-bg);   --st-red-border: var(--red);
+  --st-amber-fg: var(--amb-tx);  --st-amber-solid: var(--amb); --st-amber-bg: var(--amb-bg); --st-amber-border: var(--amb);
+  --st-blue-fg: var(--blu-tx);   --st-blue-solid: var(--blu);  --st-blue-bg: var(--blu-bg); --st-blue-border: var(--blu);
+  --st-purple-fg: var(--pur); --st-purple-solid: var(--pur);--st-purple-bg: var(--pur-bg);--st-purple-border: var(--pur);
+  --st-pink-fg: var(--pur);   --st-pink-bg: var(--pur-bg);   --st-pink-solid: var(--pur);
+  /* Extra label-pill solids (Tweek-style fuller palette) — solid is all a pill needs. */
+  --st-yellow-solid: var(--amb); --st-teal-solid: var(--teal); --st-indigo-solid: var(--pur);
+  --st-slate-solid: var(--mut); --st-black-solid: var(--inkbg);
+  /* Today view — sage-green secondary accent (the calm structural colour that
+     "lines up with the lines"), the calendar frame, and event-block fills.
+     All event fill/ink pairs verified AA (≥13:1 light). */
+  --green: #6E9060; --green-strong: #567049; --green-bg: #E4EADD; --green-border: #C3D2B4;
+  --cal-surface: var(--card); --cal-rule: var(--line2); --cal-rule-soft: var(--line);
+  --cal-event-ink: var(--tx);
+  /* Event fills — "Vintage Indigo" ramp, primary #545E75. g1 lightest → g5
+     darkest; ink flips to white at g4/g5. All AA-verified. */
+  --g1: #DDDFE3; --g1-ink: #2A2F3A;
+  --g2: #BBBFC8; --g2-ink: #22262F;
+  --g3: #989EAC; --g3-ink: #191D24;
+  --g4: #545E75; --g4-ink: #FFFFFF;
+  --g5: #434B5E; --g5-ink: #FFFFFF;
+  color-scheme: light;
+  --bg: #eceae3; --paper: #eceae3; --side: #dedcd1; --card: #f6f5f0;
+  --inset: #f0eee7; --canvas: #efede4; --doc: #efede6;
+  /* --ink-base is the PLATFORM ink; --ink is what borders and --el-* shadows
+     actually read, so an app frame can point it at its own hue (a
+     self-referential --ink: color-mix(… var(--ink)) would be thrown away). */
+  --ink-base: #0e172c;
+  --ink: var(--ink-base); --inkbg: #0e172c; --oninkbg: #ffffff;
+  --tx: #0e172c; --tx2: #475569; --tx3: #334155;
+  --mut: #4b5563; --mut2: #556070; --mut3: #556070;
+  --line: #e7e4db; --line2: #d8d3c5; --track: #e4e1d8;
+  --input: #ffffff; --sel: #e1e8fc; --scrim: rgba(14,23,44,.42);
+  /* The source zone of a data token, over --sel. Darkens in light mode,
+     lightens in dark, so the chip reads the same way in both. */
+  --tok-edge: rgba(14,23,44,.22); --tok-num: #ffffff;
+
+  /* Semantic families — each is a triplet: solid · -bg tint · -tx text-on-tint.
+     Pick by meaning, never by hue. */
+  --grn: #14713a; --grn-tx: #0f5730; --grn-bg: #DCF3E3;
+  --amb: #9c6108; --amb-tx: #95500a; --amb-bg: #FBE3A8;
+  --red: #EF233C; --red-tx: #b0192b; --red-bg: #FBD5D9;
+  --blu: #2f52b8; --blu-tx: #24408e; --blu-bg: #DCEAFB;
+  --pur: #6d5bd0; --pur-tx: #6d5bd0; --pur-bg: #E4D8FB;
+  --teal: #0f7f75; --neu-bg: #EAE7DC;
+  /* Chart series. Deliberately NOT the status hues: amber, green and red all
+     already mean a state, and a series wearing one reads as that state. This
+     pair is CVD-validated against the card surface (protan ΔE 10.4, normal
+     22.7) so the two lines stay tellable apart without relying on colour. */
+  --chart-followers: #3453c4; --chart-connections: #b4468c;
+  --on-amb: #1a1003; --on-fill: #ffffff; --on-tint: #0e172c;
+
+  /* Agent identity — never repurposed as status. */
+  --ava-alf: #3a5cb8; --ava-claw: #0f7f75; --ava-penny: #7325bb; --ava-scout: #a75a05;
+  /* Flux predates the handoff and has no designer token; darkened from #EC6A9C
+     (2.95:1 on white initials) the same way the four above were. */
+  --ava-flux: #b3306b; --ava-none: #4a5568;
+  /* App identity hues that belong to no agent. Petrol is Flows'; the other
+     three are reserved so the next app has somewhere to land. */
+  --ava-petrol: #0d5c86;
+  --ava-indigo: #3d3a99; --ava-plum: #7d2b4c; --ava-bronze: #7a4a12;
+  --own-a: #1b2a4a; --own-b: var(--pur);
+
+  /* Tints + links */
+  --t-grn: var(--grn-bg); --t-blu: var(--blu-bg); --t-pur: var(--pur-bg);
+  --t-amb: var(--amb-bg); --t-red: var(--red-bg); --t-neu: var(--neu-bg);
+  --link: #3E66D6; --linkhv: var(--red);
+  --go: var(--grn); --ongo: #ffffff;
+  --glow-extra: 0 0 0 rgba(0,0,0,0);
+  --hi-bg: #F4C64B; --hi-tx: #101726; --hi-accent: var(--ink); --hi-glow: 0 0 0 rgba(0,0,0,0);
+
+  /* The legacy --selred / --redtx / --ambbg / … alias layer is GONE. Every call
+     site now names its family directly (--red-bg, --red-tx, --amb-bg, …). The
+     aliases were pure pass-throughs, so nothing rendered differently — but both
+     forms appeared inside the same expression in places, and nobody could tell
+     whether the two halves were meant to be the same family. Do not add them back;
+     check:theme fails on the names. */
+
+  /* Code-block syntax. The code surface stays dark in both themes (a
+     deliberate convention, like the prototype's doc reader), so these do not
+     flip — but they live here so they're changeable in one place. */
+  --gold-a: #FDE7C0; --gold-b: #F4C64B; --on-gold: #101726;
+
+  --heat-1: #CFE0FB; --heat-2: #8FB6F2; --heat-3: #4F7BEE; --heat-4: #1F3E9E;
+
+  --syn-surface: #0b1226; --syn-text: #dfe6f2; --syn-meta: #64748b;
+  --syn-comment: #6b7280; --syn-keyword: #a78bfa; --syn-key: #60a5fa;
+  --syn-string: #86efac; --syn-bool: #f472b6; --syn-number: #fb923c;
+
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --chip-mix: 15%; --chip-mix-on: 30%;
+  /* spacing — the values that recur */
+  --sp-1: 4px;  --sp-2: 6px;  --sp-3: 8px;  --sp-4: 10px;
+  --sp-5: 13px;   /* input padding-x, modal header gap */
+  --sp-6: 16px;
+  --sp-7: 20px;   /* card padding-x, PageHeader gap */
+  --sp-8: 22px;   /* modal padding-x */
+  --sp-9: 24px;   /* page gutter */
+
+  /* radius — a step per component class, not a scale */
+  --r-chip-sm: 7px;   /* Tag small, CChip, Tok(20) */
+  --r-chip: 8px;      /* Tag */
+  --r-tab: 9px;       /* Tabs, ThemeToggle, cIn */
+  --r-control: 10px;  /* Btn, Seg, SearchBox, input, CBtn */
+  --r-tile: 11px;     /* Modal icon tile, toggle track */
+  --r-card-sm: 14px;  /* cCard — every Scout tool view */
+  --r-card: 18px;     /* cardS + Modal — page-level cards */
+  --r-pill: 20px;     /* CPill, health pill, ViewOnlyPill, search pill */
+  --r-round: 50%;     /* presence dot, toggle knob, person avatar */
+
+  /* border weight — thinner as the object gets smaller */
+  --bd-hair: 1px;     /* Toggle track, monoChip, system bar */
+  --bd-tile: 1.3px;   /* MonoTile */
+  --bd-thin: 1.5px;   /* Tag, CPill, Tok, Bar, AccessRow, cIn */
+  --bd: 2px;          /* everything page-level: card, button, input, modal */
+  --card-border: var(--bd) solid var(--ink);
+
+  /* elevation — a HARD offset shadow, never a blur. One step per nesting
+     level. --glow-extra is the dark-mode bloom and rides on every shadow. */
+  --el-1: 2px 2px 0 var(--ink), var(--glow-extra);   /* button, chip, seg, search */
+  --el-2: 3px 4px 0 var(--ink), var(--glow-extra);   /* cCard — compact card */
+  --el-3: 4px 5px 0 var(--ink), var(--glow-extra);   /* cardS — page card */
+  --el-4: 8px 10px 0 var(--ink);                     /* Modal — no glow */
+
+  /* type — display steps */
+  --type-h1: 32px;          /* PageHeader default */
+  --type-h1-lg: 38px;
+  --type-modal-title: 21px;
+  --type-card-title: 15px;
+  /* type — body steps */
+  --type-body: 15px;        /* page subtitles, prose */
+  --type-ui: 13.5px;        /* search input, list rows */
+  --type-control: 13px;     /* button label, tab label */
+  --type-seg: 12.5px;       /* segmented option, system-bar pill */
+  --type-dense: 12px;       /* compact card body, Scout views */
+  --type-chip: 11.5px;      /* Tag, ViewOnlyPill, DocRef */
+  --type-label: 11px;       /* SectionLabel */
+  --type-micro: 10.5px;     /* CPill */
+  --type-nano: 10px;        /* CLab, CChip */
+
+  /* tracking */
+  --track-display: -.02em;  /* every Bricolage heading */
+  --track-label: .12em;     /* SectionLabel caps */
+  --track-field: .06em;     /* Field caps */
+  --track-nano: .11em;      /* CLab caps */
+  --track-chip: .03em;      /* CChip caps */
+
+  /* weight roles */
+  --weight-heavy: 800;      /* headings, labels, buttons, pills, active tab */
+  --weight-strong: 700;     /* emphasis, inactive tab, mono chips */
+  --weight-dense: 600;      /* compact inputs, table cells, doc links */
+  --weight-body: 400;       /* prose only */
+  --leading-body: 1.65;
+
+  /* motion (GRYD DS · tokens/motion.css) — short, functional, never
+     decorative. --gryd-spring below predates these and is the same curve. */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);  /* sheets, drawers, rails */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --dur-hover: 120ms;   /* lift + chip hover */
+  --dur-control: 160ms; /* toggle, segment, tab */
+  --dur-theme: 280ms;   /* the light/dark cross-fade */
+  --dur-sheet: 320ms;   /* mobile bottom sheet */
+  --dur-spin: 0.7s;     /* RevalidateDot */
+  --dur-enter: 200ms;   /* Modal + Popover panel entrance */
+  --dur-toast: 180ms;   /* Toast in */
+}
+html[data-ds="v2"][data-theme="dark"] .mobile-main:has(.plan-wrap),
+html[data-ds="v2"][data-theme="dark"] .cal-pop {
+  /* Dark Mode (Deep & Luminous) */
+  --c-bg: var(--bg);
+  --c-surface: var(--card);
+  --c-surface-2: var(--inset);
+  --c-surface-3: var(--track);
+  --c-surface-inset: var(--inset);
+  --c-sidebar: var(--side);
+  --c-sidebar-border: var(--line2);
+  --c-sidebar-active: var(--sel);
+  --c-sidebar-hover: var(--inset);
+  --c-sidebar-text: var(--tx3);
+  --c-sidebar-text-strong: var(--tx);
+  --c-sidebar-text-faint: var(--mut);
+  --c-track: var(--track);
+  --c-disabled-bg: var(--neu-bg);
+  --c-overlay: var(--scrim);
+  --c-text: var(--tx3);
+  --c-text-strong: var(--tx);
+  --c-text-mid: var(--tx2);
+  --c-text-dim: var(--mut);
+  --c-text-faint: var(--mut2);
+  --c-border: var(--line2);
+  --c-border-soft: var(--line);
+  --c-border-strong: var(--line2);
+  --c-accent: var(--red);
+  --c-accent-strong: var(--red-tx);
+  --c-accent-bg: var(--red-bg);
+  --c-accent-border: var(--red);
+  --c-on-solid: var(--on-fill);
+  /* chart accents (glowing lines) — vibrant + neon bleed in dark */
+  --chart-max: var(--blu);   /* soft periwinkle blue */
+  --chart-api: var(--red);   /* warm red */
+  --chart-glow: 0.45;
+  --c-btn-ink-bg: var(--inkbg);
+  --st-green-fg: var(--grn-tx);  --st-green-solid: var(--grn); --st-green-bg: var(--grn-bg);  --st-green-border: var(--grn);
+  --st-red-fg: var(--red-tx);    --st-red-solid: var(--red);   --st-red-bg: var(--red-bg);    --st-red-border: var(--red);
+  --st-amber-fg: var(--amb-tx);  --st-amber-solid: var(--amb); --st-amber-bg: var(--amb-bg);  --st-amber-border: var(--amb);
+  --st-blue-fg: var(--blu-tx);   --st-blue-solid: var(--blu);  --st-blue-bg: var(--blu-bg);  --st-blue-border: var(--blu);
+  --st-purple-fg: var(--pur); --st-purple-solid: var(--pur);--st-purple-bg: var(--pur-bg);--st-purple-border: var(--pur);
+  --st-pink-fg: var(--pur);   --st-pink-bg: var(--pur-bg); --st-pink-solid: var(--pur);
+  --st-yellow-solid: var(--amb); --st-teal-solid: var(--teal); --st-indigo-solid: var(--pur);
+  --st-slate-solid: var(--mut); --st-black-solid: var(--inkbg);
+  /* Today view — dark. Sage lifts on navy; event fills are deep with light ink. */
+  --green: #8FB77E; --green-strong: #A6C899; --green-bg: rgba(143,183,126,0.14); --green-border: rgba(143,183,126,0.38);
+  --cal-surface: var(--card); --cal-rule: var(--line2); --cal-rule-soft: var(--line);
+  --cal-event-ink: var(--tx);
+  /* Same Vintage Indigo blocks in dark (opaque, read fine on navy). */
+  --g1: #DDDFE3; --g1-ink: #2A2F3A;
+  --g2: #BBBFC8; --g2-ink: #22262F;
+  --g3: #989EAC; --g3-ink: #191D24;
+  --g4: #545E75; --g4-ink: #FFFFFF;
+  --g5: #434B5E; --g5-ink: #FFFFFF;
+  color-scheme: dark;
+  --bg: #0b1120; --paper: #141d33; --side: #0d1526; --card: #101a2e;
+  --inset: #182642; --canvas: #0c1424; --doc: #0f182c;
+  --ink-base: rgba(157,184,255,.92);
+  --ink: var(--ink-base); --inkbg: #9db8ff; --oninkbg: #0b1120;
+  --tx: #e4e3da; --tx2: #a9b3c7; --tx3: #b2bccd;
+  --mut: #9aa5bb; --mut2: #8f9cb4; --mut3: #7e8ba6;
+  --line: rgba(157,184,255,.14); --line2: rgba(157,184,255,.22); --track: #1f2c48;
+  --input: #141f39; --sel: #1e2c4d; --scrim: rgba(3,6,13,.74);
+  --tok-edge: rgba(157,184,255,.34); --tok-num: rgba(157,184,255,.16);
+
+  --grn: #4ed99a; --grn-tx: #4ed99a; --grn-bg: #173322;
+  --amb: #eba14a; --amb-tx: #e8a54a; --amb-bg: #352713;
+  --red: #e2717f; --red-tx: #e07f8b; --red-bg: #3b1e25;
+  --blu: #8fb0ff; --blu-tx: #aebfe8; --blu-bg: #172a47;
+  --pur: #b69dff; --pur-tx: #b69dff; --pur-bg: #271f42;
+  --teal: #3fd6c4; --neu-bg: #20263a;
+  /* Re-stepped for the dark surface rather than flipped — same validation. */
+  --chart-followers: #8fb0ff; --chart-connections: #e58ac4;
+  --on-amb: #20150a; --on-fill: #ffffff; --on-tint: #e4e3da;
+
+  --ava-alf: #3a5cb8; --ava-claw: #0f7f75; --ava-penny: #7325bb; --ava-scout: #a75a05;
+  --ava-flux: #d1729d; --ava-none: #7e8ba6;
+  --ava-petrol: #2f86b8;
+  --ava-indigo: #6b67d6; --ava-plum: #c2688b; --ava-bronze: #b98436;
+  --own-a: #33507f;
+
+  --gold-a: #FDE7C0; --gold-b: #F4C64B; --on-gold: #101726;
+
+  --heat-1: #1c2f52; --heat-2: #2f4f8f; --heat-3: #4f7fd6; --heat-4: #8fb0ff;
+
+  --link: #9db8ff;
+  /* Text on a solid green button. The prototype uses the page background here,
+     not a green-tinted near-black — #06140c read as a muddy green-on-green. */
+  --ongo: #0b1120;
+  --glow-extra: 0 0 18px rgba(120,160,255,.16);
+  --hi-bg: var(--card); --hi-tx: #f5c563; --hi-accent: rgba(245,190,90,.9); --hi-glow: 0 0 18px rgba(245,190,90,.18);
+  --chip-mix: 34%; --chip-mix-on: 50%;
+}

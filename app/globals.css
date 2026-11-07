@@ -1,0 +1,3926 @@
+/* Fonts are SELF-HOSTED from /public/fonts, not fetched from Google.
+ *
+ * These were three chained `@import url(fonts.googleapis.com/...)`. CSS
+ * @import serialises: the browser fetches globals.css, THEN discovers the
+ * imports, THEN fetches each one -- all before first paint, all from a third
+ * party. A network that blocks or throttles Google Fonts therefore blanks the
+ * whole portal, which is exactly what a UAT container showed: 16s to first
+ * paint, 0.4-1.7s once the requests were cut.
+ *
+ * The family NAMES are unchanged on purpose -- 'Public Sans', 'Bricolage
+ * Grotesque' and the rest are referenced as literal strings in ~50 places
+ * across the app. Self-hosting under the same names means none of them move.
+ * Latin + latin-ext only; the other 24 subsets Google serves are dropped.
+ *
+ * Plus Jakarta Sans, Public Sans and Bricolage Grotesque are VARIABLE fonts:
+ * the per-weight files Google hands out are byte-identical copies. Every
+ * weight's rule below points at the family's one file, so the browser fetches
+ * it once (it was fetching the same 27KB up to five times per page). The rules
+ * stay per weight so font matching is exactly what it was.
+ */
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/fonts/Plus-Jakarta-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Press-Start-2P-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Press-Start-2P-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/fonts/Bricolage-Grotesque-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/fonts/Public-Sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Space-Mono-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Space-Mono-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/Space-Mono-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/Space-Mono-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Inter — only the LinkedIn post preview uses it (the face AuthoredUp's
+ * preview renders in, which is the reference that preview is matched to).
+ * Variable, so one file per subset covers every weight; a page that never
+ * draws the preview never fetches it. */
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/fonts/Inter-Variable-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/fonts/Inter-Variable-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL THEME TOKENS — single source of truth for the
+   whole dashboard (light default + dark override on
+   html[data-theme="dark"]). Values mirror the /docs
+   palette exactly so the two surfaces match. Every page
+   reads these via var(--c-*) / var(--st-*); a new page
+   that uses the tokens (or just inherits body bg/text)
+   gets BOTH modes for free — no per-page wiring.
+   ═══════════════════════════════════════════════════ */
+/* These are now ALIASES onto the design-handoff tokens below. They kept their
+   own values until 2026-07-25, which meant the shell rendered slightly-off
+   surfaces on every page — legacy dark --c-bg was #0E172C where the prototype
+   is #0b1120, and --c-text was slate #334155 where the prototype is ink.
+   Aliasing is a no-op in light (several matched exactly) and corrects dark.
+   Do not give these values again; retarget the alias instead. */
+:root {
+  --app-font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+  /* surfaces — Light Mode: warm monochromatic parchment/oatmeal, layered.
+     NO pure white anywhere; cards are Alabaster on a cream base. */
+  --c-bg: var(--bg);
+  --c-surface: var(--card);
+  --c-surface-2: var(--inset);
+  --c-surface-3: var(--track);
+  --c-surface-inset: var(--inset);
+  /* Sidebar — warm parchment rail in light mode (deep navy in dark). Its text
+     tokens are theme-scoped so the rail reads correctly in both. */
+  --c-sidebar: var(--side);
+  --c-sidebar-border: var(--line2);
+  --c-sidebar-active: var(--sel);
+  --c-sidebar-hover: var(--inset);
+  --c-sidebar-text: var(--tx3);
+  --c-sidebar-text-strong: var(--tx);
+  --c-sidebar-text-faint: var(--mut);
+  --c-track: var(--track);
+  --c-disabled-bg: var(--neu-bg);
+  --c-overlay: var(--scrim);
+  /* text — legible slate on warm bg (no pale grays) */
+  --c-text: var(--tx3);
+  --c-text-strong: var(--tx);
+  --c-text-mid: var(--tx2);
+  --c-text-dim: var(--mut);
+  --c-text-faint: var(--mut2);
+  /* borders — crisp warm grey-beige structure */
+  --c-border: var(--line2);
+  --c-border-soft: var(--line);
+  --c-border-strong: var(--line2);
+  /* accent (brand red) */
+  --c-accent: var(--red);
+  --c-accent-strong: var(--red-tx);
+  --c-accent-bg: var(--red-bg);
+  --c-accent-border: var(--red);
+  --c-on-solid: var(--on-fill);
+  /* chart accents (glowing lines) */
+  --chart-max: var(--blu);   /* blue — the Max/subscription line */
+  --chart-api: var(--red);   /* red — the API line */
+  --chart-glow: 0.25;     /* soft-shadow strength in light mode */
+  /* primary "ink" button */
+  --c-btn-ink-bg: var(--inkbg);
+  /* status — low-alpha tints so the warm base shows through (no cool neon washes) */
+  --st-green-fg: var(--grn-tx);  --st-green-solid: var(--grn); --st-green-bg: var(--grn-bg); --st-green-border: var(--grn);
+  --st-red-fg: var(--red-tx);    --st-red-solid: var(--red);   --st-red-bg: var(--red-bg);   --st-red-border: var(--red);
+  --st-amber-fg: var(--amb-tx);  --st-amber-solid: var(--amb); --st-amber-bg: var(--amb-bg); --st-amber-border: var(--amb);
+  --st-blue-fg: var(--blu-tx);   --st-blue-solid: var(--blu);  --st-blue-bg: var(--blu-bg); --st-blue-border: var(--blu);
+  --st-purple-fg: var(--pur); --st-purple-solid: var(--pur);--st-purple-bg: var(--pur-bg);--st-purple-border: var(--pur);
+  --st-pink-fg: var(--pur);   --st-pink-bg: var(--pur-bg);   --st-pink-solid: var(--pur);
+  /* Extra label-pill solids (Tweek-style fuller palette) — solid is all a pill needs. */
+  --st-yellow-solid: var(--amb); --st-teal-solid: var(--teal); --st-indigo-solid: var(--pur);
+  --st-slate-solid: var(--mut); --st-black-solid: var(--inkbg);
+  /* Today view — sage-green secondary accent (the calm structural colour that
+     "lines up with the lines"), the calendar frame, and event-block fills.
+     All event fill/ink pairs verified AA (≥13:1 light). */
+  --green: #6E9060; --green-strong: #567049; --green-bg: #E4EADD; --green-border: #C3D2B4;
+  --cal-surface: var(--card); --cal-rule: var(--line2); --cal-rule-soft: var(--line);
+  --cal-event-ink: var(--tx);
+  /* Event fills — "Vintage Indigo" ramp, primary #545E75. g1 lightest → g5
+     darkest; ink flips to white at g4/g5. All AA-verified. */
+  --g1: #DDDFE3; --g1-ink: #2A2F3A;
+  --g2: #BBBFC8; --g2-ink: #22262F;
+  --g3: #989EAC; --g3-ink: #191D24;
+  --g4: #545E75; --g4-ink: #FFFFFF;
+  --g5: #434B5E; --g5-ink: #FFFFFF;
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  /* Dark Mode (Deep & Luminous) */
+  --c-bg: var(--bg);
+  --c-surface: var(--card);
+  --c-surface-2: var(--inset);
+  --c-surface-3: var(--track);
+  --c-surface-inset: var(--inset);
+  --c-sidebar: var(--side);
+  --c-sidebar-border: var(--line2);
+  --c-sidebar-active: var(--sel);
+  --c-sidebar-hover: var(--inset);
+  --c-sidebar-text: var(--tx3);
+  --c-sidebar-text-strong: var(--tx);
+  --c-sidebar-text-faint: var(--mut);
+  --c-track: var(--track);
+  --c-disabled-bg: var(--neu-bg);
+  --c-overlay: var(--scrim);
+  --c-text: var(--tx3);
+  --c-text-strong: var(--tx);
+  --c-text-mid: var(--tx2);
+  --c-text-dim: var(--mut);
+  --c-text-faint: var(--mut2);
+  --c-border: var(--line2);
+  --c-border-soft: var(--line);
+  --c-border-strong: var(--line2);
+  --c-accent: var(--red);
+  --c-accent-strong: var(--red-tx);
+  --c-accent-bg: var(--red-bg);
+  --c-accent-border: var(--red);
+  --c-on-solid: var(--on-fill);
+  /* chart accents (glowing lines) — vibrant + neon bleed in dark */
+  --chart-max: var(--blu);   /* soft periwinkle blue */
+  --chart-api: var(--red);   /* warm red */
+  --chart-glow: 0.45;
+  --c-btn-ink-bg: var(--inkbg);
+  --st-green-fg: var(--grn-tx);  --st-green-solid: var(--grn); --st-green-bg: var(--grn-bg);  --st-green-border: var(--grn);
+  --st-red-fg: var(--red-tx);    --st-red-solid: var(--red);   --st-red-bg: var(--red-bg);    --st-red-border: var(--red);
+  --st-amber-fg: var(--amb-tx);  --st-amber-solid: var(--amb); --st-amber-bg: var(--amb-bg);  --st-amber-border: var(--amb);
+  --st-blue-fg: var(--blu-tx);   --st-blue-solid: var(--blu);  --st-blue-bg: var(--blu-bg);  --st-blue-border: var(--blu);
+  --st-purple-fg: var(--pur); --st-purple-solid: var(--pur);--st-purple-bg: var(--pur-bg);--st-purple-border: var(--pur);
+  --st-pink-fg: var(--pur);   --st-pink-bg: var(--pur-bg); --st-pink-solid: var(--pur);
+  --st-yellow-solid: var(--amb); --st-teal-solid: var(--teal); --st-indigo-solid: var(--pur);
+  --st-slate-solid: var(--mut); --st-black-solid: var(--inkbg);
+  /* Today view — dark. Sage lifts on navy; event fills are deep with light ink. */
+  --green: #8FB77E; --green-strong: #A6C899; --green-bg: rgba(143,183,126,0.14); --green-border: rgba(143,183,126,0.38);
+  --cal-surface: var(--card); --cal-rule: var(--line2); --cal-rule-soft: var(--line);
+  --cal-event-ink: var(--tx);
+  /* Same Vintage Indigo blocks in dark (opaque, read fine on navy). */
+  --g1: #DDDFE3; --g1-ink: #2A2F3A;
+  --g2: #BBBFC8; --g2-ink: #22262F;
+  --g3: #989EAC; --g3-ink: #191D24;
+  --g4: #545E75; --g4-ink: #FFFFFF;
+  --g5: #434B5E; --g5-ink: #FFFFFF;
+  color-scheme: dark;
+}
+
+/* ═══════════════════════════════════════════════════
+   PORTAL "2b" DESIGN TOKENS — the redesigned portal
+   surfaces (shell + Home/Flows/Skills/Memory/
+   Integrations/Docs/Settings/agent pages) read these.
+   Values copied verbatim from the design prototype
+   (GRYD Portal.dc.html :root / [data-theme=dark]).
+   Legacy --c- and --st- tokens above remain for pages
+   not yet migrated.
+   ═══════════════════════════════════════════════════ */
+:root {
+  --bg: #eceae3; --paper: #eceae3; --side: #dedcd1; --card: #f6f5f0;
+  --inset: #f0eee7; --canvas: #efede4; --doc: #efede6;
+  /* --ink-base is the PLATFORM ink; --ink is what borders and --el-* shadows
+     actually read, so an app frame can point it at its own hue (a
+     self-referential --ink: color-mix(… var(--ink)) would be thrown away). */
+  --ink-base: #0e172c;
+  --ink: var(--ink-base); --inkbg: #0e172c; --oninkbg: #ffffff;
+  --tx: #0e172c; --tx2: #475569; --tx3: #334155;
+  --mut: #4b5563; --mut2: #556070; --mut3: #556070;
+  --line: #e7e4db; --line2: #d8d3c5; --track: #e4e1d8;
+  --input: #ffffff; --sel: #e1e8fc; --scrim: rgba(14,23,44,.42);
+  /* The source zone of a data token, over --sel. Darkens in light mode,
+     lightens in dark, so the chip reads the same way in both. */
+  --tok-edge: rgba(14,23,44,.22); --tok-num: #ffffff;
+
+  /* Semantic families — each is a triplet: solid · -bg tint · -tx text-on-tint.
+     Pick by meaning, never by hue. */
+  --grn: #14713a; --grn-tx: #0f5730; --grn-bg: #DCF3E3;
+  --amb: #9c6108; --amb-tx: #95500a; --amb-bg: #FBE3A8;
+  --red: #EF233C; --red-tx: #b0192b; --red-bg: #FBD5D9;
+  --blu: #2f52b8; --blu-tx: #24408e; --blu-bg: #DCEAFB;
+  --pur: #6d5bd0; --pur-tx: #6d5bd0; --pur-bg: #E4D8FB;
+  --teal: #0f7f75; --neu-bg: #EAE7DC;
+  /* Chart series. Deliberately NOT the status hues: amber, green and red all
+     already mean a state, and a series wearing one reads as that state. This
+     pair is CVD-validated against the card surface (protan ΔE 10.4, normal
+     22.7) so the two lines stay tellable apart without relying on colour. */
+  --chart-followers: #3453c4; --chart-connections: #b4468c;
+  --on-amb: #1a1003; --on-fill: #ffffff; --on-tint: #0e172c;
+
+  /* Agent identity — never repurposed as status. */
+  --ava-alf: #3a5cb8; --ava-claw: #0f7f75; --ava-penny: #7325bb; --ava-scout: #a75a05;
+  /* Flux predates the handoff and has no designer token; darkened from #EC6A9C
+     (2.95:1 on white initials) the same way the four above were. */
+  --ava-flux: #b3306b; --ava-none: #4a5568;
+  /* App identity hues that belong to no agent. Petrol is Flows'; the other
+     three are reserved so the next app has somewhere to land. */
+  --ava-petrol: #0d5c86;
+  --ava-indigo: #3d3a99; --ava-plum: #7d2b4c; --ava-bronze: #7a4a12;
+  /* Links' deep green (the approved Links design). Darker and bluer than the
+     status green, so it never reads as "done". */
+  --ava-grove: #2f7a4d;
+  --own-a: #1b2a4a; --own-b: var(--pur);
+
+  /* Tints + links */
+  --t-grn: var(--grn-bg); --t-blu: var(--blu-bg); --t-pur: var(--pur-bg);
+  --t-amb: var(--amb-bg); --t-red: var(--red-bg); --t-neu: var(--neu-bg);
+  --link: #3E66D6; --linkhv: var(--red);
+  --go: var(--grn); --ongo: #ffffff;
+  --glow-extra: 0 0 0 rgba(0,0,0,0);
+  --hi-bg: #F4C64B; --hi-tx: #101726; --hi-accent: var(--ink); --hi-glow: 0 0 0 rgba(0,0,0,0);
+
+  /* The legacy --selred / --redtx / --ambbg / … alias layer is GONE. Every call
+     site now names its family directly (--red-bg, --red-tx, --amb-bg, …). The
+     aliases were pure pass-throughs, so nothing rendered differently — but both
+     forms appeared inside the same expression in places, and nobody could tell
+     whether the two halves were meant to be the same family. Do not add them back;
+     check:theme fails on the names. */
+
+  /* Code-block syntax. The code surface stays dark in both themes (a
+     deliberate convention, like the prototype's doc reader), so these do not
+     flip — but they live here so they're changeable in one place. */
+  --gold-a: #FDE7C0; --gold-b: #F4C64B; --on-gold: #101726;
+
+  --heat-1: #CFE0FB; --heat-2: #8FB6F2; --heat-3: #4F7BEE; --heat-4: #1F3E9E;
+
+  --syn-surface: #0b1226; --syn-text: #dfe6f2; --syn-meta: #64748b;
+  --syn-comment: #6b7280; --syn-keyword: #a78bfa; --syn-key: #60a5fa;
+  --syn-string: #86efac; --syn-bool: #f472b6; --syn-number: #fb923c;
+
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+}
+html[data-theme="dark"] {
+  --bg: #0b1120; --paper: #141d33; --side: #0d1526; --card: #101a2e;
+  --inset: #182642; --canvas: #0c1424; --doc: #0f182c;
+  --ink-base: rgba(157,184,255,.92);
+  --ink: var(--ink-base); --inkbg: #9db8ff; --oninkbg: #0b1120;
+  --tx: #e4e3da; --tx2: #a9b3c7; --tx3: #b2bccd;
+  --mut: #9aa5bb; --mut2: #8f9cb4; --mut3: #7e8ba6;
+  --line: rgba(157,184,255,.14); --line2: rgba(157,184,255,.22); --track: #1f2c48;
+  --input: #141f39; --sel: #1e2c4d; --scrim: rgba(3,6,13,.74);
+  --tok-edge: rgba(157,184,255,.34); --tok-num: rgba(157,184,255,.16);
+
+  --grn: #4ed99a; --grn-tx: #4ed99a; --grn-bg: #173322;
+  --amb: #eba14a; --amb-tx: #e8a54a; --amb-bg: #352713;
+  --red: #e2717f; --red-tx: #e07f8b; --red-bg: #3b1e25;
+  --blu: #8fb0ff; --blu-tx: #aebfe8; --blu-bg: #172a47;
+  --pur: #b69dff; --pur-tx: #b69dff; --pur-bg: #271f42;
+  --teal: #3fd6c4; --neu-bg: #20263a;
+  /* Re-stepped for the dark surface rather than flipped — same validation. */
+  --chart-followers: #8fb0ff; --chart-connections: #e58ac4;
+  --on-amb: #20150a; --on-fill: #ffffff; --on-tint: #e4e3da;
+
+  --ava-alf: #3a5cb8; --ava-claw: #0f7f75; --ava-penny: #7325bb; --ava-scout: #a75a05;
+  --ava-flux: #d1729d; --ava-none: #7e8ba6;
+  --ava-petrol: #2f86b8;
+  --ava-indigo: #6b67d6; --ava-plum: #c2688b; --ava-bronze: #b98436;
+  --ava-grove: #5aa877;
+  --own-a: #33507f;
+
+  --gold-a: #FDE7C0; --gold-b: #F4C64B; --on-gold: #101726;
+
+  --heat-1: #1c2f52; --heat-2: #2f4f8f; --heat-3: #4f7fd6; --heat-4: #8fb0ff;
+
+  --link: #9db8ff;
+  /* Text on a solid green button. The prototype uses the page background here,
+     not a green-tinted near-black — #06140c read as a muddy green-on-green. */
+  --ongo: #0b1120;
+  --glow-extra: 0 0 18px rgba(120,160,255,.16);
+  --hi-bg: var(--card); --hi-tx: #f5c563; --hi-accent: rgba(245,190,90,.9); --hi-glow: 0 0 18px rgba(245,190,90,.18);
+}
+
+/* ═══════════════════════════════════════════════════
+   GEOMETRY + TYPE SCALE (GRYD DS · tokens/space.css +
+   tokens/typography.css). These names are new; the
+   VALUES are the literals ui.tsx and scout-ui.tsx
+   already ship, so adopting a token never moves a
+   pixel. There is no 4/8px grid — the odd numbers
+   (5, 9, 13, 22) are measured, not rounded.
+   Theme-independent, so they live outside :root/dark.
+   ═══════════════════════════════════════════════════ */
+:root {
+  /* spacing — the values that recur */
+  --sp-1: 4px;  --sp-2: 6px;  --sp-3: 8px;  --sp-4: 10px;
+  --sp-5: 13px;   /* input padding-x, modal header gap */
+  --sp-6: 16px;
+  --sp-7: 20px;   /* card padding-x, PageHeader gap */
+  --sp-8: 22px;   /* modal padding-x */
+  --sp-9: 24px;   /* page gutter */
+
+  /* radius — a step per component class, not a scale */
+  --r-chip-sm: 7px;   /* Tag small, CChip, Tok(20) */
+  --r-chip: 8px;      /* Tag */
+  --r-tab: 9px;       /* Tabs, ThemeToggle, cIn */
+  --r-control: 10px;  /* Btn, Seg, SearchBox, input, CBtn */
+  --r-tile: 11px;     /* Modal icon tile, toggle track */
+  --r-card-sm: 14px;  /* cCard — every Scout tool view */
+  --r-card: 18px;     /* cardS + Modal — page-level cards */
+  --r-pill: 20px;     /* CPill, health pill, ViewOnlyPill, search pill */
+  --r-round: 50%;     /* presence dot, toggle knob, person avatar */
+
+  /* border weight — thinner as the object gets smaller */
+  --bd-hair: 1px;     /* Toggle track, monoChip, system bar */
+  --bd-tile: 1.3px;   /* MonoTile */
+  --bd-thin: 1.5px;   /* Tag, CPill, Tok, Bar, AccessRow, cIn */
+  --bd: 2px;          /* everything page-level: card, button, input, modal */
+  --card-border: var(--bd) solid var(--ink);
+
+  /* elevation — a HARD offset shadow, never a blur. One step per nesting
+     level. --glow-extra is the dark-mode bloom and rides on every shadow. */
+  --el-1: 2px 2px 0 var(--ink), var(--glow-extra);   /* button, chip, seg, search */
+  --el-2: 3px 4px 0 var(--ink), var(--glow-extra);   /* cCard — compact card */
+  --el-3: 4px 5px 0 var(--ink), var(--glow-extra);   /* cardS — page card */
+  --el-4: 8px 10px 0 var(--ink);                     /* Modal — no glow */
+
+  /* type — display steps */
+  --type-h1: 32px;          /* PageHeader default */
+  --type-h1-lg: 38px;
+  --type-modal-title: 21px;
+  --type-card-title: 15px;
+  /* type — body steps */
+  --type-body: 15px;        /* page subtitles, prose */
+  --type-ui: 13.5px;        /* search input, list rows */
+  --type-control: 13px;     /* button label, tab label */
+  --type-seg: 12.5px;       /* segmented option, system-bar pill */
+  --type-dense: 12px;       /* compact card body, Scout views */
+  --type-chip: 11.5px;      /* Tag, ViewOnlyPill, DocRef */
+  --type-label: 11px;       /* SectionLabel */
+  --type-micro: 10.5px;     /* CPill */
+  --type-nano: 10px;        /* CLab, CChip */
+
+  /* tracking */
+  --track-display: -.02em;  /* every Bricolage heading */
+  --track-label: .12em;     /* SectionLabel caps */
+  --track-field: .06em;     /* Field caps */
+  --track-nano: .11em;      /* CLab caps */
+  --track-chip: .03em;      /* CChip caps */
+
+  /* weight roles */
+  --weight-heavy: 800;      /* headings, labels, buttons, pills, active tab */
+  --weight-strong: 700;     /* emphasis, inactive tab, mono chips */
+  --weight-dense: 600;      /* compact inputs, table cells, doc links */
+  --weight-body: 400;       /* prose only */
+  --leading-body: 1.65;
+
+  /* motion (GRYD DS · tokens/motion.css) — short, functional, never
+     decorative. --gryd-spring below predates these and is the same curve. */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);  /* sheets, drawers, rails */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --dur-hover: 120ms;   /* lift + chip hover */
+  --dur-control: 160ms; /* toggle, segment, tab */
+  --dur-theme: 280ms;   /* the light/dark cross-fade */
+  --dur-sheet: 320ms;   /* mobile bottom sheet */
+  --dur-spin: 0.7s;     /* RevalidateDot */
+  --dur-enter: 200ms;   /* Modal + Popover panel entrance */
+  --dur-toast: 180ms;   /* Toast in */
+}
+
+/* Identity chips (rail marks, app tiles, agent pins) tint their own hue into
+   --card rather than carrying a flat fill, so one colour serves both themes.
+   Dark needs a heavier mix to survive the darker card beneath it. */
+:root { --chip-mix: 15%; --chip-mix-on: 30%; }
+html[data-theme="dark"] { --chip-mix: 34%; --chip-mix-on: 50%; }
+
+/* Shell-glyph legibility: a soft drop-shadow under the rail / sidebar emojis so
+   they stay readable over their tinted tiles. Heavier in dark, where the tile
+   sits on a darker card. */
+:root { --gly-sh: 0 1px 1.5px rgba(0,0,0,.30); }
+/* The ground brand marks are drawn for: white in every theme (HubSpot, Slack, Gmail on --on-fill read as dark tiles). */
+:root { --mark-tile: #ffffff; }
+html[data-theme="dark"] { --gly-sh: 0 1px 3px rgba(0,0,0,.65); }
+
+/* Forms folder colours. The colour is the person's choice and the glyph keeps
+   its ink outline, so one hue serves both themes. Global, not in forms.css:
+   the portal sidebar draws folders too. */
+:root {
+  --folder-blue: #2f63d6; --folder-lime: #8dc63f; --folder-gold: #ffc72c; --folder-coral: #ee4b2b;
+  --folder-purple: #7b61e0; --folder-teal: #17a38b; --folder-pink: #e2579c; --folder-grey: #9b9580;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+/* The rail-i lift: rail marks pick up off the page toward the cursor, same
+   grammar as .hv-btn but without the shadow (the mark carries its own). */
+.rail-i { transition: transform var(--dur-hover) var(--ease-out); }
+@media (hover: hover) { .rail-i:hover { transform: translate(-1px, -1px); } }
+
+/* Two-tier shell breakpoints, from the design.
+   ≤1100  the APP sidebar narrows to 204px; the 64px rail never moves.
+   761–999 the app sidebar goes entirely — icon rail only, and the page
+           carries its own sub-nav as a chip row.
+   ≤760   both go; the mobile drawer + bottom nav take over. */
+@media (max-width: 1100px) {
+  aside[data-side]:not([data-rail]) { width: 204px !important; }
+}
+/* The form builder's panels live in this column (AppSidebar hands it a slot)
+   and are laid out for 288px — three tile columns, the field settings — so it
+   does not narrow with the rest of the shell. It still goes at ≤999, where the
+   builder shows its larger-screen fallback. */
+aside[data-side][data-forms-builder] { width: 288px !important; }
+/* The Agreements template builder (lib/agreements/slot.ts): same idea, 266px. */
+aside[data-side][data-agr-builder] { width: 266px !important; }
+@media (min-width: 761px) and (max-width: 999px) {
+  aside[data-side]:not([data-rail]) { display: none !important; }
+  aside[data-rail] { border-right: var(--bd) solid var(--ink); }
+}
+/* Below 760 the top bar goes and MobileTopBar takes over, so the drawer's rail
+   carries the workspace mark itself. */
+/* Content column frame — matches the democup's main area: a 2px ink border on
+   top (under the top bar) and left (the divider after the app sidebar), on the
+   page background. Desktop only; the mobile drawer layout has no such frame. */
+.shell-main { border-top: var(--bd) solid var(--ink); border-left: var(--bd) solid var(--ink); background: var(--bg); }
+/* Docs suppresses the shell's app-sidebar, so its own sidebar is the frame's
+   left edge — round the frame's top-left corner here (every other app gets that
+   round from its app-sidebar). shell-main is overflow:hidden, so this clips the
+   docs sidebar's corner to match. Scoped to docs via :has so the internal
+   corner on other apps stays square. */
+.shell-main:has(.docs-page-root, .code-root) { border-top-left-radius: var(--r-card); }
+html[data-rail-off] .shell-main:has(.docs-page-root, .code-root) { border-top-left-radius: 0; }
+@media (max-width: 760px) { .shell-main { border: 0; background: transparent; } }
+
+/* The resize handle on a shell column's edge. 5px of hit area, invisible until
+   you reach for it — a permanent line would read as a border the app does not
+   have. Sits above the column's content so a nav row cannot swallow the drag. */
+[data-resize-handle] {
+  position: absolute; top: 0; right: -3px; width: 6px; height: 100%;
+  cursor: col-resize; z-index: 5; background: transparent;
+  border: 0; padding: 0; touch-action: none;
+}
+[data-resize-handle][data-edge="left"] { right: auto; left: -3px; }
+[data-resize-handle]::after {
+  content: ''; position: absolute; inset: 0 2px;
+  background: var(--app-ink, var(--ink)); opacity: 0;
+  transition: opacity .12s ease;
+}
+[data-resize-handle]:hover::after,
+[data-resize-handle]:focus-visible::after,
+[data-resize-handle][data-dragging="true"]::after { opacity: .55; }
+[data-resize-handle]:focus-visible { outline: none; }
+@media (max-width: 999px) { [data-resize-handle] { display: none; } }
+
+/* --shell-inset: how far in the content column starts — what a position:fixed
+   float inside it must clear to sit in that column rather than under the rail.
+   The Plan app's floating pill bar and its two FABs are the consumers; they are
+   anchored to the VIEWPORT, but custom properties inherit down the DOM, so they
+   read this from .shell-main regardless.
+
+   It tracks the shell breakpoints declared above, band for band: full app
+   sidebar → 204px → rail only → drawer (which is out of flow, so zero). Only
+   the rail's collapsed state is invisible to CSS, so that is the one part
+   Sidebar.tsx publishes (--shell-rail-w); its 64px fallback is the rail's
+   rendered width, so the first paint is already right and nothing shifts once
+   that effect lands. The standalone Plan host draws no shell at all, so :root's
+   0px is what it gets.
+
+   Not accurate under /docs, which suppresses the app sidebar at every width —
+   nothing there reads it, and the planner never renders under that path. */
+:root { --shell-inset: 0px; }
+.shell-main { --shell-inset: calc(var(--shell-rail-w, 64px) + var(--shell-app-w, 246px)); }
+@media (max-width: 1100px) { .shell-main { --shell-inset: calc(var(--shell-rail-w, 64px) + var(--shell-app-w, 204px)); } }
+@media (max-width: 999px) { .shell-main { --shell-inset: var(--shell-rail-w, 64px); } }
+@media (max-width: 767px) { .shell-main { --shell-inset: 0px; } }
+
+/* Rail hover tooltip — shows the app name to the right of its mark, immediately
+   (the native title has a ~1s delay). Escapes the 64px column because the rail's
+   scroll container is overflow:visible. */
+.rail-i { position: relative; }
+.rail-i::after {
+  content: attr(data-tip);
+  position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%);
+  padding: 5px 10px; border-radius: var(--r-control);
+  background: var(--ink); color: var(--oninkbg);
+  font-family: var(--font-display); font-size: 12.5px; font-weight: 800;
+  white-space: nowrap; pointer-events: none; z-index: 80;
+  opacity: 0; transition: opacity .1s ease; box-shadow: var(--el-2);
+}
+.rail-i:hover::after, .rail-i:focus-visible::after { opacity: 1; }
+@media (max-width: 760px) { .rail-i::after { display: none; } }
+
+/* Inbox row quick-actions (Archive / Snooze) — "when I hover over
+   an icon it should enlarge a little, have some interaction, and tell me what
+   it does, like a tooltip." Enlarge on hover, plus an immediate labelled
+   tooltip above the icon (the native title lags ~1s). */
+.qa-icon { position: relative; transition: transform .12s var(--ease-out), box-shadow .12s var(--ease-out); }
+.qa-icon:hover  { transform: scale(1.18); box-shadow: 2.5px 2.5px 0 var(--ink), var(--glow-extra) !important; z-index: 2; }
+.qa-icon:active { transform: scale(1.05); }
+.qa-icon::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%);
+  padding: 4px 8px; border-radius: var(--r-control);
+  background: var(--ink); color: var(--oninkbg);
+  font-family: var(--font-display); font-size: 11px; font-weight: 800;
+  white-space: nowrap; pointer-events: none; z-index: 90;
+  opacity: 0; transition: opacity .1s ease; box-shadow: var(--el-2);
+}
+.qa-icon:hover::after, .qa-icon:focus-visible::after { opacity: 1; }
+
+/* Inbox-zero plate — dim a bright GIF only in the dark theme, so it doesn't
+   glare in a dark workspace (the one thing tokens can't fix). Off in light. */
+.es-plate-scrim { position: absolute; inset: 0; pointer-events: none; background: var(--scrim); opacity: 0; }
+html[data-theme="dark"] .es-plate-scrim { opacity: .3; }
+
+/* ===== Per-app identity — PERAPPIDENTITY.md option 3a, "washed panel" =====
+   Replaces the gradient wash this block used to hold (PER-APP-TINT.md): the two
+   are alternatives, never both.
+
+   GRYD draws everything in 2px borders and hard offset shadows, and --ink is
+   the token behind both — so redefining --ink on the app frame recolours every
+   border and every shadow inside it in ONE declaration. No component edits.
+   Everything else here is three surfaces and a colour table.
+
+   --ink is border + shadow only. Text is --tx, inverted fills are --inkbg, the
+   modal scrim is --scrim. None of those move. */
+
+[data-app-frame] {
+  --hue: var(--ava-none);
+  /* Dose. The spec shipped at
+     62/3/14/22/34 and read too faint next to the mock — this is its own §9
+     escalation path, one line per surface. --ink carries most of the identity,
+     so it moves furthest. */
+  --app-ink: color-mix(in oklab, var(--hue) 80%, var(--ink-base));
+
+  /* THE ONE LINE THAT DOES THE WORK. */
+  --ink: var(--app-ink);
+
+  --app-paper: color-mix(in oklab, var(--hue) 6%,  var(--bg));
+  --app-panel: color-mix(in oklab, var(--hue) 24%, var(--side));
+  --app-chip:  color-mix(in oklab, var(--hue) 32%, var(--card));
+  --app-line:  color-mix(in oklab, var(--hue) 46%, var(--line2));
+
+  --app-slab: var(--hue);
+  --app-slab-tx: var(--on-fill);
+  --app-slab-sub: color-mix(in oklab, var(--on-fill) 74%, var(--hue));
+
+  transition: background .22s ease;
+}
+
+/* hue per app. These MUST be compound selectors — a bare [data-app="finance"]
+   loses to the [data-app-frame] default above on specificity. */
+[data-app-frame][data-app="home"]     { --hue: var(--own-a); }
+[data-app-frame][data-app="outreach"] { --hue: var(--ava-scout); }
+[data-app-frame][data-app="finance"]  { --hue: var(--ava-penny); }
+[data-app-frame][data-app="flows"]    { --hue: var(--ava-petrol); }
+[data-app-frame][data-app="forms"]    { --hue: var(--ava-indigo); }
+[data-app-frame][data-app="webinars"] { --hue: var(--ava-plum); }
+[data-app-frame][data-app="links"]    { --hue: var(--ava-grove); }
+[data-app-frame][data-app="code"]     { --hue: var(--ava-none); }
+[data-app-frame][data-app="linkedin"] { --hue: var(--blu); }
+/* LinkedIn wants only a WHISPER of blue on its canvas — on the
+   13% wash that carried through every section: "it went from a 0 to an 8, I
+   wanted it to be like a 2… ever so slightly more than what we had before."
+   So the message list and the general sections keep just a hint of the hue,
+   below the 6% default (blue reads a touch darker on the warm --bg, so a hair
+   under the numeric parity lands where his eye wants it). The chrome — sidebar
+   panel, chips, borders, the slab — still carries the fuller blue. */
+[data-app-frame][data-app="linkedin"] { --app-paper: color-mix(in oklab, var(--hue) 4%, var(--bg)); }
+[data-app-frame][data-app="alf"]      { --hue: var(--ava-alf); }
+/* Docs and Settings share the grey deliberately — told apart by their mark. */
+[data-app-frame][data-app="docs"],
+[data-app-frame][data-app="settings"] { --hue: var(--ava-none); }
+
+/* The department rail sits INSIDE the frame element in the DOM (rail and app
+   sidebar are one drawer on mobile, and splitting them would break it), so it
+   takes the platform ink back explicitly: the rail reads as "above" the apps. */
+[data-rail], [data-rail] * { --ink: var(--ink-base); }
+
+/* the three surfaces */
+[data-app-canvas] { background: var(--app-paper); transition: background .22s ease; }
+[data-app-panel]  { background: var(--app-panel);  transition: background .22s ease; }
+[data-app-panel] [aria-current="page"],
+[data-app-panel] [data-active="true"] { background: var(--app-chip); }
+[data-app-panel] hr,
+[data-app-panel] [data-keyline] { background: var(--app-line); border-color: var(--app-line); }
+[data-app-switcher] { background: var(--app-chip); }
+
+/* The masthead. One layout for every tab of every app: title, subtitle, and a
+   single primary action on the right. */
+/* The band does the toolbar's job. ONE row, 64px, carrying the title, whatever
+   controls the page hands it, and the single primary action — so the page needs
+   no strip of its own underneath.
+   Type is down ~20% from the first cut: title 26 → 21, band 90 → 64. */
+[data-app-slab] {
+  flex: none; z-index: 20;
+  display: flex; align-items: center; gap: 16px;
+  height: 64px; padding: 0 20px 0 24px; --slab-ctl-h: 32px;
+  background: var(--app-slab);
+  border-bottom: var(--bd) solid var(--app-ink);
+  color: var(--app-slab-tx);
+}
+[data-slab-text] { display: flex; align-items: center; gap: 8px; flex: none; min-width: 0; }
+[data-app-slab] h1, [data-app-slab] [data-page-title] {
+  margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -.02em;
+  line-height: 1.1; color: var(--app-slab-tx); white-space: nowrap;
+}
+
+/* The subtitle explains the page once, then costs height forever — so it moves
+   behind the ⓘ and the band keeps the row. */
+[data-slab-info] {
+  position: relative; flex: none; cursor: help;
+  width: 16px; height: 16px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--app-slab-sub); color: var(--app-slab-sub);
+  font-family: var(--font-display); font-size: 10px; font-weight: 800; line-height: 1;
+}
+[data-slab-info]:hover, [data-slab-info]:focus-visible {
+  border-color: var(--app-slab-tx); color: var(--app-slab-tx); outline: none;
+}
+[data-slab-subpop] {
+  display: none; position: absolute; top: calc(100% + 9px); left: -8px; z-index: 30;
+  width: max-content; max-width: 46ch; padding: 10px 13px;
+  background: var(--card); color: var(--tx);
+  border: var(--bd) solid var(--app-ink); border-radius: var(--r-card-sm);
+  box-shadow: var(--el-2);
+  font-size: 12.5px; font-weight: 600; line-height: 1.5; text-wrap: pretty;
+  white-space: normal; text-align: left;
+}
+[data-slab-info]:hover [data-slab-subpop],
+[data-slab-info]:focus-visible [data-slab-subpop] { display: block; }
+[data-app-slab] [data-page-sub] { margin: 0; display: block; }
+
+/* The page's toolbar. Grows to take the middle, and scrolls rather than wraps —
+   a band that reflows to two rows is the third band coming back. */
+[data-slab-tools] {
+  /* Controls handed to the band inherit ITS text colour — a page tone like
+     --mut2 reads as unstyled grey once it is sitting on the hue. */
+  color: var(--app-slab-tx);
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px;
+  overflow-x: auto; overflow-y: visible; scrollbar-width: none;
+  /* Scrolling sideways clips vertically too (overflow-y: visible computes to
+     auto), and the strip is exactly the controls' height, so their 2px drop
+     shadow was cut off at the bottom. Room for it, given back by the margin. */
+  padding: 0 3px 3px 0; margin: 0 -3px -3px 0;
+}
+[data-slab-tools]::-webkit-scrollbar { display: none; }
+[data-slab-tools]:empty { flex: 1; }
+
+[data-slab-actions] { display: flex; align-items: center; gap: 9px; flex: none; margin-left: auto; }
+
+/* A record's own name (SlabTitle — a link, a campaign) gives way to the page's
+   controls: it ends in an ellipsis instead of pushing them off the band. */
+[data-slab-text]:has(> [data-slab-slot] > h1) { flex: 0 1 auto; }
+[data-app-slab]:has([data-slab-text] > [data-slab-slot] > h1) [data-slab-tools] { flex: 0 0 auto; }
+
+/* The band is ONE row, so everything standing in it is one height. Controls
+   arrive from a dozen pages that each size themselves, and a row of 32/33/35/36
+   reads as a mistake even when nobody can name it. */
+[data-slab-tools] > *,
+[data-slab-tools] [data-slab-group] > *,
+[data-slab-actions] > *,
+[data-slab-actions] [data-slab-slot] > * {
+  height: var(--slab-ctl-h); box-sizing: border-box; flex: none;
+  display: inline-flex; align-items: center;
+}
+/* A square control stays square at that height. */
+[data-app-slab] [data-slab-icon] { width: var(--slab-ctl-h); height: var(--slab-ctl-h); }
+/* Text handed to the band (a count, an "as of" stamp) keeps the row's height
+   but must not draw itself a box. */
+[data-slab-tools] > [data-slab-note] { background: none; border: none; box-shadow: none; }
+
+/* The title is one thing and the page's tools are another — the rule says so
+   without costing a row. */
+[data-slab-tools]:not(:empty)::before {
+  content: ''; flex: none; align-self: center;
+  width: 2px; height: 20px; border-radius: 1px;
+  background: var(--app-slab-sub); opacity: .55;
+}
+/* Anything pushed sits at the right end of the tools, landing beside the
+   primary action rather than trailing the toolbar. */
+[data-slab-tools] [data-slab-push] { margin-left: auto; }
+/* A cluster that travels together (a filter beside its search, say) so one
+   conditional control disappearing cannot strand the rest. */
+[data-slab-tools] [data-slab-group] { display: inline-flex; align-items: center; gap: 9px; min-width: 0; }
+/* A pushed group shrinks before it clips: the band scrolls rather than wraps,
+   so a toolbar that outgrows the row would otherwise hide its last control
+   under the primary action instead of giving way. */
+[data-slab-tools] [data-slab-push] { min-width: 0; }
+/* A page that fills a slot replaces the registry default rather than joining it. */
+[data-slab-slot]:not(:empty) + [data-slab-default] { display: none; }
+
+/* The primary action sits ON the band, so it steps back to neutral — one
+   loudest thing per screen. */
+[data-app-slab] [data-primary-action] {
+  display: inline-flex; align-items: center; gap: 7px;
+  height: var(--slab-ctl-h); box-sizing: border-box;
+  padding: 0 13px; border-radius: var(--r-control);
+  background: var(--card); color: var(--tx);
+  border: var(--bd) solid var(--app-ink); box-shadow: var(--el-1);
+  font-family: inherit; font-size: 12.5px; font-weight: 800;
+  white-space: nowrap; cursor: pointer; text-decoration: none;
+}
+
+@media (max-width: 1100px) { [data-app-slab] { padding: 0 14px 0 16px; gap: 12px; } }
+/* On a phone MobileTopBar carries the workspace, so the slab is the page's own
+   line: the title and its one action, without the subtitle's four lines. */
+@media (max-width: 760px) {
+  [data-app-slab] { height: 52px; padding: 0 12px; gap: 10px; --slab-ctl-h: 30px; }
+  [data-app-slab] h1, [data-app-slab] [data-page-title] { font-size: 17px; }
+  [data-app-slab] [data-primary-action] { padding: 0 11px; font-size: 12px; }
+}
+
+/* Dark mode: two overrides. The slab mixes toward the code-surface navy because
+   two hues can't clear 4.5:1 against white on a dark page, and the panel wash
+   needs more dose to be visible on dark surfaces. */
+html[data-theme="dark"] [data-app-frame] {
+  --app-slab: color-mix(in oklab, var(--hue) 62%, var(--syn-surface));
+  --app-slab-sub: color-mix(in oklab, var(--on-fill) 68%, var(--app-slab));
+  --app-panel: color-mix(in oklab, var(--hue) 30%, var(--side));
+  --app-chip:  color-mix(in oklab, var(--hue) 38%, var(--card));
+  /* Dark ink runs a LOWER dose than light, not a higher one: --ink-base is a
+     pale periwinkle here and four of the hues are the same dark values they
+     take in light (they're avatar colours, tuned for white initials). Push the
+     mix and Outreach's brown border disappears into the page. */
+  --app-ink: color-mix(in oklab, var(--hue) 50%, var(--ink-base));
+}
+
+/* The rail keeps platform ink; only the active tile picks up the app it points
+   at — the one place the rail touches app colour. */
+[data-rail] [aria-current="page"] [data-tile] {
+  background: color-mix(in srgb, var(--tile-hue, var(--card)) 20%, var(--card));
+  border-color: var(--ink-base);
+}
+
+/* The editor's post preview is a faithful replica of LinkedIn's OWN feed
+   surface, so it is deliberately FIXED — it must look like LinkedIn in both the
+   portal's light and dark themes, not re-tint with our palette. */
+:root {
+  --li-card: #ffffff; --li-page: #f4f2ee;
+  --li-ink: rgba(0,0,0,0.9); --li-ink-soft: rgba(0,0,0,0.6); --li-line: rgba(0,0,0,0.08);
+  --li-blue: #0a66c2; --li-heart: #df704d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-app-frame], [data-app-canvas], [data-app-panel] { transition: none; }
+}
+
+@media (max-width: 760px) {
+  [data-sysbar] { display: none !important; }
+  .rail-logo { display: flex !important; }
+}
+
+/* ── Prototype responsive attributes — pages tag elements with data-*
+      hooks and these rules reflow them, exactly as in GRYD Portal.dc.html.
+      (Sidebar/system-bar visibility keeps the existing drawer pattern; the
+      content-level rules are verbatim.) ── */
+[data-monly] { display: none; }
+
+/* The Inbox/Invites two-pane shell. The person panel is a fixed 320px next to a
+   flexible list; below 1040px it's dropped rather than crushed, because at
+   ~300px it stops being readable and the list is the part you came for. */
+@media (max-width: 1040px) {
+  [data-two-pane] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-side-panel] { display: none !important; }
+}
+
+/* DEV-337: the All flows list. STATUS, OWNER, STEPS and 7-DAY RUNS are fixed
+   widths and FLOW takes what is left, so on a laptop or tablet the names were
+   squeezed to nothing and the folder badges painted over the icons. The step
+   dots fold first, then the owner's name (the avatar stays) and the nesting
+   indent narrows. The phone list is its own component. */
+@media (max-width: 1365px) {
+  [data-fsteps] { display: none !important; }
+}
+@media (max-width: 1100px) {
+  [data-fown] { width: 80px !important; }
+  [data-foname] { display: none !important; }
+  [data-findent="1"] { padding-left: 32px !important; }
+}
+@media (max-width: 900px) {
+  [data-fcount] { display: none !important; }
+}
+
+@media (max-width: 1100px) {
+  [data-rg="5"] { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+  [data-rg="3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [data-pad] { padding: 22px 20px !important; }
+}
+@media (max-width: 760px) {
+  [data-pad] { padding: 16px 14px 116px !important; }
+  [data-rg="5"] { grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important; }
+  /* minmax(0,1fr), not bare 1fr: grid items (e.g. Penny's SVG charts) default
+     to min-width:auto, which refuses to shrink below their intrinsic content
+     size and silently clips off-screen on narrow viewports otherwise. */
+  [data-rg="3"], [data-rg="17"], [data-rg="2"] { grid-template-columns: minmax(0,1fr) !important; }
+  [data-stack] { flex-direction: column !important; align-items: stretch !important; }
+  [data-monly] { display: block !important; }
+  [data-mhide] { display: none !important; }
+  [data-fgrow] { width: auto !important; flex: 1 1 auto !important; min-width: 0; }
+  /* DEV-284: the desktop 74px child-flow indent left ~3 chars for the name on a
+     phone. A small indent still shows the folder nesting without eating the row. */
+  [data-findent="1"] { padding-left: 16px !important; }
+  [data-wfull] { width: 100% !important; }
+  [data-docpad] { padding: 22px 16px !important; }
+  [data-hist] { grid-template-columns: minmax(0,1fr) !important; }
+  [data-mrail] { width: 100% !important; flex-direction: row !important; flex-wrap: wrap !important; gap: 14px !important; }
+  [data-pad] { gap: 15px !important; }
+  /* Page titles scale up on mobile — but not an <h1> that is semantically a
+     section label. Home's OVERVIEW is a 13px label carried on an h1 for
+     landmark reasons; this rule was blowing it up to 22px, ~2x the design. */
+  [data-pad] h1:not([data-seclabel]) { font-size: 22px !important; }
+  [data-rg] { gap: 11px !important; }
+  [data-rg="5"] > div { padding: 11px 13px !important; }
+  [data-rg="5"] > div > div:last-child { font-size: 22px !important; }
+  [data-rg="5"] > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  [data-frow], [data-frow] + div { gap: 10px !important; }
+  [data-mst] { width: auto !important; }
+  /* DEV-298: the folder NAME grows to claim the row's width on a phone, so the
+     failed-runs badge can't shrink it to a single letter ("S…"). */
+  [data-fnm] { flex: 1 1 auto !important; }
+  [data-mown] { width: auto !important; }
+  [data-mown] > span:last-child { display: none !important; }
+  span[data-mown] { gap: 0 !important; }
+  [data-fbar] { gap: 8px !important; }
+  [data-fbar] > div:last-child { margin-left: 0 !important; width: 100%; }
+  [data-mleft] { margin-left: 0 !important; width: 100%; }
+  [data-msub] { display: none !important; }
+  [data-movl] { align-items: flex-end !important; padding: 0 !important; }
+  [data-mpanel] { width: 100% !important; border-radius: 20px 20px 0 0 !important; border-left: none !important; border-right: none !important; border-bottom: none !important; box-shadow: none !important; max-height: 88dvh; overflow-y: auto; }
+}
+
+/* Tablet and phone: the flow header may take a second row rather than clip the
+   title or the sandbox card; the title keeps at least ~14 characters. */
+@media (max-width: 1100px) {
+  [data-fbar] { height: auto !important; min-height: 65px; flex-wrap: wrap !important; overflow: visible !important; }
+  [data-fbar] [data-testid="flow-title"] { min-width: 14ch !important; flex: 1 1 auto !important; }
+  [data-fbar] [data-fbar-right] { flex-wrap: wrap; margin-left: auto; }
+  [data-fbar] [data-fbar-card] { height: 46px !important; box-sizing: border-box; }
+}
+
+/* DEV-301: a doc's Do / Don't card pair uses a fixed 1fr 1fr grid, so on a
+   phone (iPhone 14, 390px) each card was ~164px wide and every line wrapped
+   2-3×. Stack them to one column on a narrow screen. */
+@media (max-width: 560px) {
+  [data-dodont] { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-bg);
+  /* Emoji fonts last so emoji glyphs prefer Apple's set (then the platform's best). */
+  font-family: 'Public Sans', system-ui, -apple-system, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol";
+  color: var(--c-text);
+  /* The prototype leaves line-height `normal` and sets it explicitly (1.6) only
+     on real prose. Tailwind's preflight puts 1.5 on <html>, which cascaded into
+     every label, nav item and button and made them ~1.25x taller than the
+     design — measured on 15 pages. Prose keeps its own rule below. */
+  line-height: normal;
+}
+/* Genuine multi-line copy still reads at the prototype's 1.6. */
+p, li, blockquote, [data-prose] {
+  line-height: 1.6;
+}
+/* Theme transition — gentle cross-fade, applied ONLY for the brief window
+   after a manual toggle (the provider adds .theme-transition for ~260ms),
+   so it never fires on first paint / hydration / navigation. */
+html.theme-transition body, html.theme-transition body * {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, fill 0.2s ease, stroke 0.2s ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transition body, html.theme-transition body * { transition: none !important; }
+}
+
+/* Chart-line glow — a luminous drop-shadow bleed on the SVG lines (box-shadow
+   doesn't wrap SVG strokes; drop-shadow does). Soft in light (0.25), neon in
+   dark (0.45), matching the line colours. */
+.chart-glow-api { filter: drop-shadow(0 4px 8px rgba(239, 35, 60, 0.25)); }
+.chart-glow-max { filter: drop-shadow(0 4px 8px rgba(79, 123, 238, 0.25)); }
+html[data-theme="dark"] .chart-glow-api { filter: drop-shadow(0 4px 10px rgba(243, 88, 107, 0.45)); }
+html[data-theme="dark"] .chart-glow-max { filter: drop-shadow(0 4px 10px rgba(118, 156, 255, 0.45)); }
+
+/* Native-feel touch scrolling. Modern iOS Safari (13+) does momentum
+   scrolling by default for overflow:auto/scroll containers; this rule is
+   a no-op for current iOS but helps in WebViews and older Safari builds.
+   Apple's published spring easing for sheets / drawers — paired with the
+   per-element transition durations below. */
+:root {
+  --gryd-spring: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--c-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--c-track);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-border-strong);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--c-track) 25%, var(--c-surface-3) 50%, var(--c-track) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 4px;
+}
+html[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, #1D293D 25%, #283750 37%, #1D293D 63%);
+  background-size: 400% 100%;
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Modal / Popover / Toast entrance — shared by ui.tsx's Modal + Popover and
+   the linkedin/inbox Scrim/ModalCard fork (same visual language, two call
+   sites). Entrance only: every caller conditionally unmounts on close, so
+   there is no DOM node left to run an exit transition on. */
+@keyframes modal-scrim-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-panel-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes popover-in {
+  from { opacity: 0; transform: translateX(var(--pop-dx, 0px)) scale(0.96); }
+  to   { opacity: 1; transform: translateX(var(--pop-dx, 0px)) scale(1); }
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+/* Inline confirmation text (Flows' "Saved ✓" style, next to the control it
+   confirms) — same purpose as .toast-pop but no floating pill, so it needs
+   its own tiny lift-in rather than the pill's slide-up-from-below. */
+@keyframes inline-confirm-in { from { opacity: 0; transform: translateY(-2px); } to { opacity: 1; transform: translateY(0); } }
+.modal-scrim { animation: modal-scrim-in 160ms ease both; }
+.modal-panel { animation: modal-panel-in var(--dur-enter) var(--ease-out) both; }
+.popover-panel { animation: popover-in var(--dur-control) var(--ease-out) both; }
+.toast-pop { animation: toast-in var(--dur-toast) var(--ease-out) both; }
+.inline-confirm { animation: inline-confirm-in var(--dur-toast) var(--ease-out) both; }
+@media (prefers-reduced-motion: reduce) {
+  .modal-scrim, .modal-panel, .popover-panel, .toast-pop, .inline-confirm { animation-duration: 1ms; }
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL INTERACTION SYSTEM (DESIGN-SYSTEM.md §3).
+   Semantics: buttons LIFT toward the cursor and press
+   down on click; clickable cards LIFT; chips/pills/
+   toggles DIM; clickable rows TINT; text links underline.
+   Hover implies affordance — nothing non-clickable gets
+   these classes. !important is required where the base
+   value lives in an inline style (shadow/background).
+   Gated on hover-capable devices so touch never sticks
+   a hover state.
+   ═══════════════════════════════════════════════════ */
+@media (hover: hover) {
+  /* --glow-extra rides on every shadow (tokens/space.css). Omitting it here
+     dropped the dark-mode bloom on hover, so a hovered button read flatter
+     than its resting state — the one moment it should look picked up. */
+  .hv-btn, .hv-lift { transition: transform var(--dur-hover) var(--ease-out), box-shadow var(--dur-hover) var(--ease-out); }
+  .hv-btn:hover,  .hv-lift:hover  { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink), var(--glow-extra) !important; }
+  .hv-btn:active, .hv-lift:active { transform: translate(1px,1px);   box-shadow: 1px 1px 0 var(--ink), var(--glow-extra) !important; }
+  .hv-card { transition: transform var(--dur-hover) var(--ease-out), box-shadow var(--dur-hover) var(--ease-out); }
+  .hv-card:hover { transform: translate(-1px,-1px); box-shadow: 5px 6px 0 var(--ink), var(--glow-extra) !important; }
+  /* Reports tiles: grip + header actions stay out of the way until hover. */
+  .rw-rsz { opacity: 0; transition: opacity .15s; }
+  .rw-card:hover .rw-rsz { opacity: 1; }
+  .rw-actions { opacity: 0; transition: opacity .12s; }
+  .hv-card:hover .rw-actions { opacity: 1; }
+  .hv-chip { transition: opacity var(--dur-hover) var(--ease-out); cursor: pointer; }
+  .hv-chip:hover { opacity: .78; }
+  .hv-row { transition: background var(--dur-hover) var(--ease-out); }
+  .hv-row:hover { background: var(--inset) !important; }
+  /* The DS hover system moves links to --linkhv; the underline is kept on top
+     of it so the affordance never depends on colour alone. */
+  .hv-link { transition: color var(--dur-hover) var(--ease-out); }
+  .hv-link:hover { color: var(--linkhv); text-decoration: underline; }
+  /* Segmented controls: divider between options; hover tints
+     INACTIVE options only (the active one carries data-on). */
+  .seg-wrap > span + span { border-left: 1.5px solid var(--line2); }
+  .seg-wrap > span:not([data-on]):hover { background: var(--inset) !important; }
+}
+
+/* No global focus ring — the DESIGN-SYSTEM §3
+   2.5px blue :focus-visible ring lit up every text field on focus (browsers
+   treat typing fields as always focus-visible) and was rejected in live use.
+   Do not re-add without a new decision. */
+
+/* ═══════════════════════════════════════════════════
+   PROGRESSIVE DISCLOSURE — reveal secondary / destructive
+   row actions on hover (desktop) while keeping them ALWAYS
+   visible on touch. Gated on @media (hover: hover) so a
+   phone (hover: none) never hides them — no hover on touch.
+   Keyboard focus inside the row reveals them too (a11y).
+   opacity-only (no display/layout change) → zero reflow on
+   reveal, and the row stays the hover target so the action
+   is visible by the time the pointer reaches it.
+   Usage: put .reveal-host on the row, .reveal-on-hover on
+   the action wrapper.
+   ═══════════════════════════════════════════════════ */
+@media (hover: hover) {
+  .reveal-on-hover {
+    opacity: 0;
+    transition: opacity 0.12s ease;
+  }
+  .reveal-host:hover .reveal-on-hover,
+  .reveal-host:focus-within .reveal-on-hover,
+  .reveal-on-hover:focus-within {
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   BOTTOM TAB BAR — hidden on desktop, flex on mobile
+   ═══════════════════════════════════════════════════ */
+.bottom-tab-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-border);
+  z-index: 200;
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ═══════════════════════════════════════════════════
+   HAMBURGER — hidden on desktop, flex on mobile
+   ═══════════════════════════════════════════════════ */
+.hamburger-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--c-text);
+  font-size: 20px;
+  padding: 0;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR OVERLAY — hidden on desktop
+   ═══════════════════════════════════════════════════ */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--c-overlay);
+  z-index: 399;
+}
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR CLOSE BTN — hidden on desktop
+   ═══════════════════════════════════════════════════ */
+.sidebar-close-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-surface-3);
+  border: none;
+  cursor: pointer;
+  color: var(--c-text);
+  font-size: 15px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Skills back button — hidden on desktop */
+.skills-back-btn {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE TOP BAR — hidden on desktop; iOS UINavigationBar
+   pattern on mobile (sticky, backdrop blur, centered title,
+   back chevron on nested routes).
+   ═══════════════════════════════════════════════════ */
+.mobile-top-bar {
+  display: none;
+}
+
+/* More sheet — hidden on desktop. */
+.more-sheet-overlay { display: none; }
+
+/* ═══════════════════════════════════════════════════
+   DOCS PAGE — theme tokens (light default + dark override).
+   Every color in the docs renderer reads one of these vars,
+   so the whole page re-themes by flipping data-doc-theme.
+   ═══════════════════════════════════════════════════ */
+.docs-page-root {
+  /* Swap --doc-font in one place to match a supplied type spec. */
+  --doc-font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+  --doc-main-bg: #f5f2ee;
+  --doc-sidebar-bg: #ede9e3;
+  --doc-sidebar-border: #ddd8d0;
+  --doc-card: #ffffff;
+  --doc-card-border: #e5e7eb;
+  --doc-inner: #fdfcfa;
+  --doc-inner-border: #ece9e3;
+  --doc-text: #374151;
+  --doc-text-strong: #111827;
+  --doc-text-dim: #6b7280;
+  --doc-text-faint: #9ca3af;
+  --doc-accent: #EF233C;
+  --doc-accent-bg: #FDE9EC;
+  --doc-link: #EF233C;
+  --doc-code-bg: #1e1e2e;
+  --doc-code-border: #2d2d3d;
+  --doc-icode-bg: #f3f4f6;
+  --doc-icode-border: #e5e7eb;
+  --doc-icode-fg: inherit;
+  --doc-quote-bar: #d1d5db;
+  --doc-quote-bg: #f9fafb;
+  --doc-quote-fg: #4b5563;
+  --doc-table-head-bg: #f9fafb;
+  --doc-table-border: #e5e7eb;
+  --doc-row-border: #f3f4f6;
+  --doc-row-border-soft: #f5f3ef;
+  --doc-fatcard-bg: #fafaf8;
+  --doc-fatcard-border: #ece9e3;
+  --doc-task-bg: #ffffff;
+  --doc-task-border: #e5e7eb;
+  --doc-task-done-bg: #fafafa;
+  --doc-task-done-border: #f1f1f1;
+  --doc-hr: #e5e7eb;
+  --doc-hover: #ffffff;
+  --doc-tab-track: #f1efea;
+  --doc-tab-active: #ffffff;
+  /* callouts: bg / bar / fg per kind */
+  --cal-green-bg: #f0fdf4; --cal-green-bar: #16a34a; --cal-green-fg: #15803d;
+  --cal-amber-bg: #fffbeb; --cal-amber-bar: #d97706; --cal-amber-fg: #92400e;
+  --cal-red-bg: #FDE9EC;   --cal-red-bar: #EF233C;   --cal-red-fg: #C91D32;
+  --cal-blue-bg: #eff6ff;  --cal-blue-bar: #2563eb;  --cal-blue-fg: #1e40af;
+  --cal-orange-bg: #FDE9EC; --cal-orange-bar: #EF233C; --cal-orange-fg: #D72036;
+}
+/* Dark palette — the exact tints: #0E172C (deepest) / #1D293D (surface) /
+   #314257 (elevated/border), with slate text + the brand orange accent. */
+.docs-page-root[data-doc-theme="dark"] {
+  --doc-main-bg: #0E172C;
+  --doc-sidebar-bg: #111c33;
+  --doc-sidebar-border: #283750;
+  --doc-card: #1D293D;
+  --doc-card-border: #314257;
+  --doc-inner: #16223C;
+  --doc-inner-border: #2b3a52;
+  --doc-text: #c5d1e3;
+  --doc-text-strong: #f3f7fd;
+  --doc-text-dim: #8a9ab4;
+  --doc-text-faint: #5e708c;
+  --doc-accent: #F3586B;
+  --doc-accent-bg: rgba(239,35,60,0.16);
+  --doc-link: #F67F8E;
+  --doc-code-bg: #0a1326;
+  --doc-code-border: #283750;
+  --doc-icode-bg: #2a3a54;
+  --doc-icode-border: #3a4c68;
+  --doc-icode-fg: #e6edf8;
+  --doc-quote-bar: #3a4c68;
+  --doc-quote-bg: #16223C;
+  --doc-quote-fg: #aebacd;
+  --doc-table-head-bg: #1b2840;
+  --doc-table-border: #2b3a52;
+  --doc-row-border: #243350;
+  --doc-row-border-soft: #1d2a44;
+  --doc-fatcard-bg: #18243f;
+  --doc-fatcard-border: #2b3a52;
+  --doc-task-bg: #1D293D;
+  --doc-task-border: #314257;
+  --doc-task-done-bg: #14203a;
+  --doc-task-done-border: #243350;
+  --doc-hr: #243350;
+  --doc-hover: #243350;
+  --doc-tab-track: #14203a;
+  --doc-tab-active: #314257;
+  --cal-green-bg: rgba(34,197,94,0.13);  --cal-green-bar: #34d27e; --cal-green-fg: #74e6a6;
+  --cal-amber-bg: rgba(217,119,6,0.15);  --cal-amber-bar: #f59e0b; --cal-amber-fg: #fcc24d;
+  --cal-red-bg: rgba(239,35,60,0.14);    --cal-red-bar: #F03048;  --cal-red-fg: #F68694;
+  --cal-blue-bg: rgba(56,120,235,0.16);  --cal-blue-bar: #4d8bff; --cal-blue-fg: #93bbff;
+  --cal-orange-bg: rgba(239,35,60,0.15); --cal-orange-bar: #F3586B; --cal-orange-fg: #F795A1;
+}
+.docs-page-root[data-doc-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, #1D293D 25%, #283750 37%, #1D293D 63%) !important;
+  background-size: 400% 100% !important;
+}
+
+/* Sidebar nav buttons (plans, tree, start-here) — hover via CSS, not inline JS. */
+.docs-page-root .docs-navbtn:hover {
+  background: var(--doc-hover) !important;
+  border-color: var(--doc-card-border) !important;
+}
+.docs-page-root .docs-navbtn:hover,
+.docs-page-root .docs-navbtn:hover * {
+  color: var(--doc-text-strong);
+}
+/* In-prose links — subtle underline on hover. */
+.docs-prose .docs-link:hover { text-decoration: underline !important; }
+/* TOC links brighten on hover. */
+.docs-toc-link:hover { color: var(--doc-text-strong) !important; }
+
+/* ═══════════════════════════════════════════════════
+   DOCS PAGE — desktop defaults (in-flow sidebar).
+   Mobile rules below in the @media block convert the
+   sidebar to a slide-from-left drawer.
+   ═══════════════════════════════════════════════════ */
+.docs-mobile-header {
+  display: none;
+}
+.docs-drawer-header {
+  display: none;
+}
+.docs-overlay {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   PRE-INSTRUCTIONS TABS — hide horizontal scrollbar so the
+   row scrolls cleanly when there are many agents (desktop + mobile)
+   ═══════════════════════════════════════════════════ */
+.pre-instructions-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE  ≤ 767px
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Lock horizontal scroll. Multiple pages have legacy fixed-px widths
+        (e.g. /org's connector bar = agents*180, /agents detail header,
+        wide tables) that exceed a 390 px viewport and made the whole app
+        rubber-band sideways. Clamping at the body suppresses that without
+        breaking inner horizontally-scrollable children (`.pre-instructions
+        -tabs`, `pre`, `.run-entry-line`) which set their own
+        `overflow-x: auto`. ── */
+  html, body { overflow-x: hidden; }
+
+  /* ── Global typography ── */
+  body {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  pre, code { font-size: 12px; }
+
+  /* ── Safe-area: leave the top inset to MobileTopBar (which extends
+        its backdrop-blur into the status-bar zone for the proper iOS
+        UINavigationBar look). Keep left/right insets on body so content
+        clears the notch in landscape. ── */
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* ── HealthBar: hide entirely on mobile. The "SYSTEM" pills row is a
+        desktop-only status panel; on a phone the More sheet surfaces the
+        same info on demand, and screen space is precious. ── */
+  .health-bar { display: none !important; }
+
+  /* ── Bottom tab bar ── */
+  .bottom-tab-bar {
+    display: flex !important;
+    align-items: stretch;
+  }
+  .bottom-tab-bar-dot {
+    position: absolute;
+    top: 3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--c-accent);
+  }
+
+  /* ── Mobile top bar — UINavigationBar pattern. Extends into the
+        safe-area-top zone so its backdrop-blur background sits behind
+        the iOS status bar (matching themeColor in layout.tsx), and the
+        bar's *content* (back chevron, title, action button) sits below
+        the inset. Without this, the status-bar text overlapped page
+        content on notched devices ("the notch cuts into some areas"). ── */
+  .mobile-top-bar {
+    display: flex !important;
+    align-items: center;
+    height: calc(48px + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) 6px 0;
+    background: color-mix(in srgb, var(--c-sidebar) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--c-sidebar-border);
+    flex-shrink: 0;
+    z-index: 60;
+  }
+  .mobile-top-bar-side {
+    width: 56px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .mobile-top-bar-left { justify-content: flex-start; }
+  .mobile-top-bar-right { justify-content: flex-end; }
+  .mobile-top-bar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--c-accent);
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-top-bar-btn:active { opacity: 0.5; }
+  /* Text action button on the right side of the bar (e.g. "Pages" on the
+     agent detail route). Tinted with the accent like iOS bar buttons. */
+  .mobile-top-bar-text-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--c-accent);
+    font-size: 15px;
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-top-bar-text-btn:active { opacity: 0.5; }
+  .mobile-top-bar-title {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c-text-strong);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── More sheet — bottom sheet listing secondary destinations ── */
+  .more-sheet-overlay {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: var(--c-overlay);
+    z-index: 500;
+    animation: more-sheet-fade 0.18s ease;
+  }
+  @keyframes more-sheet-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .more-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--c-surface);
+    border-radius: 16px 16px 0 0;
+    padding: 8px 0 calc(12px + env(safe-area-inset-bottom));
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.18);
+    z-index: 501;
+    animation: more-sheet-slide 0.34s var(--gryd-spring);
+    /* Spring back from a drag — the JS hook clears its inline transform on
+       release, and this transition handles the snap. The hook overrides
+       with `transition:none` while a drag is in progress. */
+    transition: transform 0.32s var(--gryd-spring);
+    touch-action: pan-y;
+  }
+  /* Make the grab zone visually distinct as the drag affordance. */
+  .more-sheet [data-sheet-grab="true"] {
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    padding-bottom: 4px;
+  }
+  @keyframes more-sheet-slide {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  .more-sheet-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--c-border-strong);
+    border-radius: 2px;
+    margin: 0 auto 10px;
+  }
+  .more-sheet-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--c-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 20px 8px;
+  }
+  .more-sheet-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .more-sheet-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--c-text-strong);
+    border-top: 1px solid var(--c-border-soft);
+    min-height: 56px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .more-sheet-item:active { background: var(--c-surface-3); }
+  .more-sheet-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .more-sheet-item-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--c-text-strong);
+  }
+  .more-sheet-item-desc {
+    font-size: 13px;
+    color: var(--c-text-dim);
+  }
+  .more-sheet-chevron {
+    flex-shrink: 0;
+    color: var(--c-text-faint);
+  }
+
+  /* ── Hamburger ── (kept hidden; MobileTopBar superseded it) */
+  .hamburger-btn {
+    display: none !important;
+  }
+
+  /* ── Sidebar becomes fixed drawer ──
+        Top: clears MobileTopBar (48px) + safe-area-inset-top so drawer
+        sits below the notch + chrome. Bottom: clears BottomNav (60px) +
+        its own safe-area. */
+  /* The drawer is now the two-tier composition (rail + app sidebar) rather
+     than a single <aside>, so this targets the wrapper by class. */
+  .sidebar {
+    position: fixed !important;
+    top: calc(48px + env(safe-area-inset-top)) !important;
+    left: 0 !important;
+    bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+    height: auto !important;
+    width: 84% !important;
+    max-width: 320px !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.34s var(--gryd-spring) !important;
+    z-index: 400 !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0) !important;
+  }
+
+  /* Inside the drawer both tiers show at once and scroll as one. */
+  .sidebar aside[data-side] {
+    display: flex !important;
+    height: auto !important;
+    border-top-left-radius: 0 !important;
+  }
+  .sidebar aside[data-side]:not([data-rail]) { flex: 1 1 auto !important; width: auto !important; }
+
+  /* ── Sidebar overlay ── */
+  .sidebar-overlay {
+    display: block;
+    top: calc(48px + env(safe-area-inset-top));
+    bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+
+  .sidebar-overlay.sidebar-open {
+    display: block;
+  }
+
+  /* ── Close button ── */
+  .sidebar-close-btn {
+    display: flex !important;
+  }
+
+  /* ── Sidebar agent links taller ── */
+  .sidebar-agent-link {
+    min-height: 48px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* ── Main content: space for bottom tab bar (incl. safe-area). Momentum
+        scrolling so it feels native on iOS Safari. overflow-x:hidden at
+        the scroll-container level is the real horizontal-scroll lock —
+        the body-level rule doesn't trap children inside a scroll context
+        that has its own overflow:auto (the agent detail page still
+        rubber-banded sideways after the Phase 3 patch). ── */
+  .mobile-main {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  /* ── Page content padding ── */
+  .page-content {
+    padding: 12px 14px !important;
+  }
+
+  /* ── Home page stat pills: 2-col grid ── */
+  .stat-pills-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    flex-wrap: unset !important;
+  }
+
+  .stat-pill-card {
+    min-width: unset !important;
+  }
+
+  /* ── Home page main grid: stack with Live Activity (right column)
+        promoted ABOVE pre-instructions (left column). On-the-go view
+        leads with "what's happening now," not the editor. ── */
+  .home-grid {
+    /* minmax(0,1fr) (not 1fr) lets the single column shrink below its
+       min-content — otherwise the non-wrapping pre-instructions tab row /
+       textarea blows the track past a 320px viewport and clips. */
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+  .home-grid-left  { order: 2; }
+  .home-grid-right { order: 1; }
+
+  /* Pre-instructions: the 280-px textarea was eating two phone screens.
+     Shrink it to a sensible-on-mobile height; the user can drag-resize
+     if they actually want to draft a lot here. */
+  .pre-instructions-card textarea {
+    min-height: 140px !important;
+  }
+  .pre-instructions-card { font-size: 14px; }
+
+  /* ── Agent detail: header tighter on mobile so the agent name + status
+        + action buttons don't push the page sideways. ── */
+  .agent-detail-header {
+    padding: 12px 14px !important;
+    gap: 8px !important;
+  }
+  /* ── Agent detail: Performance card ── */
+  .performance-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .performance-right {
+    border-left: none !important;
+    padding-left: 0 !important;
+    border-top: 1px solid var(--c-border-soft) !important;
+    padding-top: 14px !important;
+    margin-top: 8px !important;
+  }
+
+  /* ── Agent detail: Health score 2×2 grid ── */
+  .health-score-components {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    flex: unset !important;
+    border-radius: 8px !important;
+  }
+
+  .health-score-component-item {
+    border-right: none !important;
+    border-bottom: 1px solid var(--c-border) !important;
+  }
+
+  .health-score-component-item:nth-child(1),
+  .health-score-component-item:nth-child(2) {
+    border-right: 1px solid var(--c-border) !important;
+  }
+
+  .health-score-component-item:nth-child(odd) {
+    border-right: none !important;
+  }
+
+  .health-score-component-item:nth-child(1),
+  .health-score-component-item:nth-child(3) {
+    border-right: 1px solid var(--c-border) !important;
+  }
+
+  .health-score-component-item:nth-child(3),
+  .health-score-component-item:nth-child(4) {
+    border-bottom: none !important;
+  }
+
+  /* ── Agent detail: Config/Skills grid ──
+        minmax(0,1fr) (not plain 1fr) so the single mobile column can shrink
+        below its min-content — otherwise a wide child (the model <select>)
+        blows the track out past the viewport and gets clipped. ── */
+  .config-skills-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* ── Run history rows ── */
+  .run-row-inner {
+    flex-wrap: wrap !important;
+    padding: 10px 14px !important;
+    gap: 6px !important;
+    min-height: 56px !important;
+  }
+
+  .run-row-time {
+    display: none !important;
+  }
+
+  .run-row-timeago {
+    display: none !important;
+  }
+
+  .run-row-expand {
+    margin-left: auto !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Kill (✕) — full touch target on phones. */
+  .run-row-kill {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  /* The live row's status sentence is desktop-only chrome; drop it on
+     phones so the row stays a single compact line (the expanded log
+     below makes the "what's happening" self-evident). */
+  .run-row-livemsg {
+    display: none !important;
+  }
+
+  /* Run detail expanded container */
+  .run-detail-entries {
+    max-height: 300px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .run-entry-line {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Skills page ── */
+  .skills-layout {
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .skills-list-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-shrink: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--c-border) !important;
+    max-height: 45vh !important;
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  .skills-detail-panel {
+    display: none !important;
+    flex-direction: column !important;
+  }
+
+  .skills-detail-panel.mobile-open {
+    display: flex !important;
+    position: fixed !important;
+    top: calc(48px + env(safe-area-inset-top)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+    z-index: 300 !important;
+    background: var(--c-surface) !important;
+    overflow-y: auto !important;
+  }
+
+  /* Back button visible on mobile */
+  .skills-back-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--c-accent);
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--c-border);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Sticky save on mobile */
+  .skills-save-sticky {
+    position: sticky !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: var(--c-surface) !important;
+    border-top: 1px solid var(--c-border) !important;
+    padding: 10px 16px !important;
+    z-index: 10 !important;
+    display: flex !important;
+    gap: 8px !important;
+    justify-content: flex-end !important;
+  }
+
+  /* ── Org / Agents tab — drop the org-chart visual on mobile and render
+        as a clean iOS-style list. The horizontal-bar + per-card 160 px
+        widths blew the viewport sideways. ── */
+  .org-connector-bar { display: none; }
+  .org-agent-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    padding: 0 14px;
+  }
+  .org-agent-cell { align-items: stretch !important; }
+  .org-agent-connector { display: none; }
+  .org-agent-card-link { display: block; width: 100%; }
+  .org-agent-card {
+    width: 100% !important;
+    min-height: 60px;
+    padding: 14px 16px !important;
+    box-sizing: border-box;
+  }
+  .org-hire-card { height: auto !important; padding: 18px !important; }
+
+  /* ── Schedules page ── */
+  .schedules-page {
+    padding: 16px 14px !important;
+  }
+  /* Stack timestamps over a full-width action row on mobile so the
+     "Today's plan" + "Run now" + ⋯ trio stays finger-sized. */
+  .schedule-row-bottom {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px;
+  }
+  .schedule-row-times {
+    flex-wrap: wrap;
+    gap: 12px !important;
+  }
+  .schedule-row-actions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 8px !important;
+  }
+  .schedule-row-actions > button {
+    min-height: 38px;
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+  }
+
+  /* ── Integrations page ── */
+  .integrations-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .integrations-page {
+    padding: 16px 14px !important;
+  }
+
+  /* ── Modals become bottom sheets ── */
+  .modal-overlay {
+    align-items: flex-end !important;
+  }
+
+  .modal-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0 !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 14px 16px calc(20px + env(safe-area-inset-bottom)) !important;
+    transition: transform 0.32s var(--gryd-spring) !important;
+    touch-action: pan-y;
+  }
+  /* Visual cue + drag affordance on the grab zone of every modal-sheet. */
+  .modal-sheet [data-sheet-grab="true"] {
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Handle bar on sheets — visible on mobile (!important so it wins
+     against inline `display:none` left on a few modals that were only
+     designed for desktop). */
+  .modal-handle {
+    display: block !important;
+    width: 36px;
+    height: 4px;
+    background: var(--c-border-strong);
+    border-radius: 2px;
+    margin: 10px auto 6px;
+    flex-shrink: 0;
+  }
+
+  /* ── Input/select: prevent iOS zoom ── */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* ── Form controls must never force horizontal overflow on a phone.
+        A content-sized <select> (e.g. a model picker) or a fixed-width input
+        in a flex row was widening cards past the viewport, and overflow-x
+        :hidden then CLIPPED the row instead of scrolling — hiding controls.
+        Capping at 100% lets them shrink to fit; the box-sizing keeps padding
+        inside the cap. ── */
+  main select, main textarea, main input:not([type="checkbox"]):not([type="radio"]) {
+    max-width: 100%;
+    box-sizing: border-box;
+    /* min-width:0 lets a content-sized <select> shrink to fit ALONGSIDE its
+       label in a flex row (default min-width:auto keeps it at content width
+       and pushes the row past the viewport). */
+    min-width: 0;
+  }
+
+  /* ── Mobile reflow utilities (best-practice: use the full width on a phone) ──
+        Page headers and dense rows are laid out as horizontal columns for the
+        desktop. On a narrow screen those columns crush the text into a few
+        words per line. These classes stack them so the body/description gets
+        the whole width. Desktop is untouched (rules live inside ≤767px). ── */
+  .page-head {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+  }
+  /* Dense feed/list row: meta | content | actions. Let the fixed-width side
+     columns wrap to full width below the content instead of squeezing it. */
+  .reflow-row { flex-wrap: wrap !important; }
+  .reflow-row > .reflow-main { flex: 1 1 200px !important; min-width: 0 !important; }
+  .reflow-row > .reflow-side {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  /* ── Wide numeric tables: scroll sideways, don't crush ──
+        A table with several fixed-width numeric columns (e.g. /Penny/margin's
+        Revenue·Hours·$/hr·Cost·Margin·%) can't reflow to one column without
+        losing the row-to-row alignment that makes it readable. Wrap it so it
+        scrolls horizontally inside its card; the inner holds its natural width
+        so columns stay aligned. ── */
+  .table-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    /* edge fade hint that there's more to the right */
+    margin: 0 -2px;
+  }
+  .table-scroll > .table-scroll-inner {
+    min-width: 480px;
+  }
+
+  /* ── Code/log lines: horizontal scroll ── */
+  pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Touch targets ── */
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ── Reduce heading size ── */
+  h1:not([data-seclabel]) { font-size: 18px !important; }
+  /* Section labels scale DOWN on mobile in the prototype, not up. */
+  h1[data-seclabel] { font-size: 11.5px !important; letter-spacing: .14em !important; }
+
+  /* ═══════════════════════════════════════════════════
+     DOCS PAGE — mobile-native: sidebar becomes a drawer,
+     content takes full width, sticky top bar with a
+     Browse button, prose typography tuned for phones.
+     ═══════════════════════════════════════════════════ */
+
+  /* Docs internal sidebar: fixed slide-from-left drawer overlaying content.
+     Top clears MobileTopBar (48px) + safe-area; bottom clears BottomNav. */
+  .docs-page-root .docs-sidebar {
+    position: fixed !important;
+    top: calc(48px + env(safe-area-inset-top)) !important;
+    left: 0 !important;
+    bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+    height: auto !important;
+    width: 84% !important;
+    max-width: 320px !important;
+    transform: translateX(-100%);
+    transition: transform 0.34s var(--gryd-spring);
+    z-index: 410 !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .docs-page-root .docs-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  /* Drawer top row with title + close button. */
+  .docs-drawer-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--doc-sidebar-border);
+    background: var(--doc-sidebar-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  /* Dim backdrop for tap-to-dismiss. */
+  .docs-overlay {
+    display: block !important;
+    position: fixed;
+    top: calc(48px + env(safe-area-inset-top));
+    left: 0;
+    right: 0;
+    bottom: calc(60px + env(safe-area-inset-bottom));
+    background: rgba(0, 0, 0, 0.42);
+    z-index: 405;
+    animation: docs-fade-in 0.18s ease;
+  }
+  @keyframes docs-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Main content area takes full width on mobile. */
+  .docs-page-root .docs-main {
+    width: 100%;
+  }
+
+  /* Sticky mini-header above the content with the Browse button on the left
+     and the current doc title centred. Mirrors iOS UINavigationBar. */
+  .docs-mobile-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 12px;
+    background: color-mix(in srgb, var(--doc-main-bg) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--doc-card-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .docs-browse-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 34px;
+    padding: 0 10px 0 8px;
+    background: var(--doc-card);
+    border: 1px solid var(--doc-card-border);
+    border-radius: 9px;
+    color: var(--doc-text);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 84px;
+  }
+  .docs-browse-btn:active { background: var(--doc-hover); }
+  .docs-mobile-title {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--doc-text-strong);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Tighter content padding — keep edges close to screen on a phone.
+     Outer container loses its 32px side-padding so the content card uses
+     the full screen width. */
+  .docs-content-container {
+    padding: 10px 7px 48px !important;
+  }
+  .docs-content-wrap {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .docs-content-card {
+    padding: 15px 14px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Breadcrumb: hide the engine-side absolute path; keep only the
+     readable trail. */
+  .docs-engine-path { display: none !important; }
+  .docs-breadcrumb-row { margin-bottom: 14px !important; }
+
+  /* Prose: long-form reading needs generous line-height + a body size at
+     or above the iOS no-zoom threshold (16 px). overflow-wrap: anywhere
+     stops long URLs/identifiers from causing one-word-per-line wraps. */
+  .docs-prose {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .docs-prose p {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 11px !important;
+  }
+  .docs-prose li {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    margin: 4px 0 !important;
+  }
+  .docs-prose blockquote {
+    font-size: 14px !important;
+  }
+  /* Compact headings on phones so more of the page is visible at once. */
+  .docs-prose h1 { font-size: 21px !important; margin-top: 22px !important; }
+  .docs-prose h2 { font-size: 17px !important; margin-top: 28px !important; margin-bottom: 8px !important; }
+  .docs-prose h3 { font-size: 15.5px !important; margin-top: 20px !important; }
+  .docs-prose h4 { font-size: 14.5px !important; margin-top: 16px !important; }
+
+  /* Tables: already wrapped in an overflow-x scroll container; tighten
+     cell padding so columns don't push the row off-screen unnecessarily. */
+  .docs-prose table { font-size: 13px !important; }
+  .docs-prose th, .docs-prose td { padding: 6px 8px !important; }
+
+  /* Code: prevent the code block itself from breaking out of the card. */
+  .docs-prose pre {
+    margin: 12px 0 !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+  }
+  .docs-prose pre code { font-size: 12px !important; line-height: 1.55 !important; }
+
+  /* Inline code: shrink slightly so it doesn't dominate the prose. */
+  .docs-prose code { font-size: 14px !important; }
+
+  /* Bigger tap targets in the file tree + plans rows so the drawer is
+     finger-friendly. Apple's HIG minimum is 44 px. */
+  .docs-page-root .docs-sidebar button,
+  .docs-page-root .docs-sidebar a {
+    min-height: 44px;
+  }
+}
+
+@keyframes ping {
+  /* Explicit 0% state so every iteration starts from a known baseline,
+     not whatever inline opacity the element happened to settle at on the
+     previous loop. Safari has been spotty about this. */
+  0% { transform: scale(1); opacity: 0.6; }
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+/* ── Floor view (/floor) — agent tokens + zones ───────────────────── */
+@keyframes floor-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes floor-bob-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes floor-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.0); }
+  50% { box-shadow: 0 0 0 4px rgba(34,197,94,0.18); }
+}
+@keyframes floor-pulse {
+  0%, 100% { opacity: 0.18; transform: translateX(-50%) scaleX(0.8); }
+  50% { opacity: 0.4; transform: translateX(-50%) scaleX(1.15); }
+}
+.floor-bob { animation: floor-bob 1.8s ease-in-out infinite; }
+.floor-bob-slow { animation: floor-bob-slow 4.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .floor-bob, .floor-bob-slow { animation: none; }
+}
+/* Floor room FX — animated glow spots over the static room image */
+@keyframes floor-flicker { 0%,100% { opacity: 0.35; } 40% { opacity: 0.72; } 55% { opacity: 0.42; } 72% { opacity: 0.85; } 85% { opacity: 0.55; } }
+@keyframes floor-pulseglow { 0%,100% { opacity: 0.3; transform: translate(-50%,-50%) scale(0.85); } 50% { opacity: 0.62; transform: translate(-50%,-50%) scale(1.12); } }
+@keyframes floor-orb { 0%,100% { opacity: 0.42; transform: translate(-50%,-50%) scale(0.9); } 50% { opacity: 0.85; transform: translate(-50%,-50%) scale(1.16); } }
+.floor-flicker { animation: floor-flicker 2.4s ease-in-out infinite; }
+.floor-flicker2 { animation: floor-flicker 3.1s ease-in-out infinite 0.5s; }
+.floor-pulseglow { animation: floor-pulseglow 3.6s ease-in-out infinite; }
+.floor-orb { animation: floor-orb 2.8s ease-in-out infinite; }
+/* ambient dust motes — slow drift + twinkle (transform/opacity only) */
+@keyframes floor-mote { 0% { transform: translate(0,0); opacity: 0; } 15% { opacity: 0.55; } 85% { opacity: 0.5; } 100% { transform: translate(var(--mdx,10px), -42px); opacity: 0; } }
+.floor-mote { animation: floor-mote var(--mdur,26s) linear infinite; will-change: transform, opacity; }
+/* andon stack-light pulse on amber/red */
+@keyframes floor-andon { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+.floor-andon-pulse { animation: floor-andon 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .floor-flicker, .floor-flicker2, .floor-pulseglow, .floor-orb, .floor-mote, .floor-andon-pulse { animation: none; }
+}
+/* Floor people — walk cycle, idle breathe, typing arms */
+@keyframes fa-leg-l { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-3px) } }
+@keyframes fa-leg-r { 0%,100% { transform: translateY(-3px) } 50% { transform: translateY(0) } }
+@keyframes fa-bob { 0%,100% { transform: translateX(-50%) translateY(0) } 50% { transform: translateX(-50%) translateY(-1.5px) } }
+@keyframes fa-breathe { 0%,100% { transform: translateX(-50%) translateY(0) } 50% { transform: translateX(-50%) translateY(-1px) } }
+@keyframes fa-type { 0%,100% { transform: translateY(0) } 50% { transform: translateY(2px) } }
+.fa-walk .fa-leg-l { animation: fa-leg-l 0.34s linear infinite; }
+.fa-walk .fa-leg-r { animation: fa-leg-r 0.34s linear infinite; }
+.fa-walk .fa-head, .fa-walk .fa-body { animation: fa-bob 0.34s linear infinite; }
+.fa-idle .fa-head { animation: fa-breathe 3.2s ease-in-out infinite; }
+.fa-type { animation: fa-type 0.3s linear infinite; }
+.fa-type2 { animation: fa-type 0.3s linear infinite 0.15s; }
+@media (prefers-reduced-motion: reduce) {
+  .fa-walk .fa-leg-l, .fa-walk .fa-leg-r, .fa-walk .fa-head, .fa-walk .fa-body, .fa-idle .fa-head, .fa-type, .fa-type2 { animation: none; }
+}
+/* Coffee station — filling cup + steam + status light */
+@keyframes fa-fill { 0% { height: 0 } 80% { height: 100% } 100% { height: 100% } }
+@keyframes fa-steam { 0% { opacity: 0; transform: translateY(2px) } 50% { opacity: 0.8 } 100% { opacity: 0; transform: translateY(-5px) } }
+@keyframes fa-blink { 0%,100% { opacity: 1 } 50% { opacity: 0.2 } }
+.fa-fill { animation: fa-fill 3.5s ease-in-out infinite; }
+.fa-steam { animation: fa-steam 2.6s ease-in-out infinite; }
+.fa-blink { animation: fa-blink 1.4s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) { .fa-fill, .fa-steam, .fa-blink { animation: none; } }
+/* Sprite characters — gentle hop while walking, subtle breathe while idle */
+@keyframes fa-hop { 0%,100% { bottom: 0 } 50% { bottom: 3px } }
+@keyframes fa-breath2 { 0%,100% { bottom: 0 } 50% { bottom: 1px } }
+.fa-spr-idle { animation: fa-breath2 3.2s ease-in-out infinite; }
+/* 4-frame horizontal walk sheet (192px wide @ 48px frames) stepped while moving */
+@keyframes fa-walkcycle { from { background-position-x: 0; } to { background-position-x: -192px; } }
+.fa-walkcycle { animation: fa-walkcycle 0.5s steps(4) infinite; }
+/* 4-direction character sheet (6 cols: idle + 5 walk; rows = S/N/E/W). The walk
+   steps through cols 1..5; --cell is the on-screen frame size, --row the facing. */
+@keyframes fa-walksheet { from { background-position-x: calc(-1 * var(--cell)); } to { background-position-x: calc(-6 * var(--cell)); } }
+/* a gentle stride bob layered on top — sells "walking" for every agent */
+@keyframes fa-walkbob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+.fa-spr-walk { animation: fa-walksheet 0.62s steps(5) infinite, fa-walkbob 0.31s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .fa-spr-idle, .fa-walkcycle, .fa-spr-walk { animation: none; } }
+.floor-pixel-font { font-family: 'Press Start 2P', ui-monospace, monospace; letter-spacing: 0; }
+.floor-room svg, .floor-room img { image-rendering: pixelated; image-rendering: crisp-edges; }
+/* soft vignette so the room reads as a lit space */
+.floor-room::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 0 80px 10px rgba(0,0,0,0.45);
+}
+
+/* ═══════════════════════════════════════════════════
+   PULL-TO-REFRESH INDICATOR
+   Anchored at the horizontal centre of <main>; the inline
+   `transform: translate(-50%, ...)` drives it vertically with the gesture.
+   ═══════════════════════════════════════════════════ */
+.pull-indicator {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.15s ease;
+}
+.pull-indicator-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--c-track);
+  border-top-color: var(--c-accent);
+  animation: spin 0.7s linear infinite;
+}
+
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Task app ("Plan") — Tweek-style weekly planner. Flat lined-paper columns
+   on the cream/navy bg, big date headers, today accented, the weekend
+   (Sat/Sun) stacked in the last column. Task text sits flush-left like Tweek;
+   the check circle slides in on hover (always visible on touch). The whole
+   empty ruled area of a column is a click-to-type target. The Backlog is a
+   right-side drawer (hidden by default) instead of bottom lists. Mobile = a
+   vertical stack + the backlog as an edge sheet.
+   Plan: engine/docs/plans/task-app.md.
+   ───────────────────────────────────────────────────────────────────────── */
+.plan-wrap {
+  padding: 26px 18px 76px; max-width: 1600px; margin: 0 auto;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+/* The breathing room lives BELOW the title (between the header row and the
+   columns), not above "July 2026". */
+.plan-head { display: flex; align-items: center; gap: 10px; margin: 6px 0 80px; }
+.plan-title { font-size: 36px; font-weight: 700; color: var(--c-text-strong); letter-spacing: -0.5px; margin: 0; line-height: 42px; }
+/* Off the current week/day: title turns red + is a "back to now" button. */
+.plan-title-off { color: var(--c-accent); cursor: pointer; }
+.plan-title-off:hover { opacity: 0.82; }
+.plan-loading {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-left: 10px;
+  background: var(--c-text-faint); vertical-align: middle; animation: plan-pulse 1s ease-in-out infinite;
+}
+@keyframes plan-pulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.85; } }
+.plan-today-btn {
+  font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: 999px;
+  border: 1px solid var(--c-border); background: var(--c-surface); color: var(--c-text);
+  cursor: pointer; text-decoration: none; -webkit-tap-highlight-color: transparent;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.plan-today-btn:active { background: var(--c-surface-3); }
+.plan-btn-active { border-color: var(--c-accent-border); background: var(--c-accent-bg); color: var(--c-accent-strong); font-weight: 600; }
+/* Unviewed-only count: small + quiet so it reads as "new", not a red alarm. */
+.plan-count {
+  font-size: 10px; font-weight: 700; min-width: 15px; height: 15px; padding: 0 4px; border-radius: 999px;
+  background: var(--c-accent); color: var(--c-on-solid); display: inline-flex; align-items: center; justify-content: center;
+  line-height: 1; margin-left: -1px;
+}
+/* "New since last look" marker on an inbox row (shown while the drawer is open). */
+.plan-fresh-dot {
+  width: 7px; height: 7px; border-radius: 999px; background: var(--c-accent); flex-shrink: 0;
+}
+/* Event details popover — compact card beside the clicked calendar block.
+   Same chrome language as .plan-menu (paper bg, thin ink border, soft shadow). */
+.cal-pop {
+  position: fixed; z-index: 80; width: 272px; max-width: calc(100vw - 24px); box-sizing: border-box;
+  background: var(--c-bg); border: 1px solid var(--c-text-strong); border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16); padding: 13px 15px 14px;
+}
+.cal-pop-title { font-size: 14.5px; font-weight: 700; color: var(--c-text-strong); line-height: 1.3; padding-right: 20px; overflow-wrap: break-word; }
+.cal-pop-time { font-size: 12.5px; color: var(--c-text-dim); margin-top: 3px; display: flex; align-items: center; gap: 7px; }
+.cal-pop-cal {
+  font-size: 10.5px; font-weight: 600; color: var(--c-text-mid);
+  background: color-mix(in srgb, var(--c-text-strong) 8%, transparent);
+  padding: 1px 7px; border-radius: 999px; white-space: nowrap;
+}
+.cal-pop-row { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px; font-size: 12.5px; color: var(--c-text); line-height: 1.45; }
+.cal-pop-row > svg { flex-shrink: 0; margin-top: 2.5px; color: var(--c-text-dim); }
+.cal-pop-link { color: var(--c-accent-strong); text-decoration: none; font-weight: 600; }
+.cal-pop-link:hover { text-decoration: underline; }
+.cal-pop-loc { overflow-wrap: anywhere; }
+.cal-pop-att { display: flex; flex-direction: column; gap: 5px; min-width: 0; max-height: 128px; overflow-y: auto; }
+.cal-pop-att-row { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.cal-pop-att-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--c-text); }
+.cal-pop-att-name em { font-style: normal; font-size: 11px; color: var(--c-text-faint); }
+.cal-pop-dot { width: 7px; height: 7px; border-radius: 999px; flex-shrink: 0; }
+.cal-pop-dot.is-yes { background: var(--st-green-solid); }
+.cal-pop-dot.is-no { background: var(--st-red-solid); }
+.cal-pop-dot.is-maybe { background: var(--st-yellow-solid); }
+.cal-pop-dot.is-none { background: transparent; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c-text-strong) 35%, transparent); }
+.cal-pop-more { font-size: 11.5px; color: var(--c-text-faint); padding-left: 14px; }
+.cal-pop-open { position: absolute; top: 11px; right: 11px; color: var(--c-text-dim); display: inline-flex; }
+.cal-pop-open:hover { color: var(--c-text-strong); }
+
+/* Floating AI dump — small orange pill, bottom-right, above any mobile bars. */
+.plan-dump-fab {
+  position: fixed; right: 24px; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 45;
+  display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px;
+  border: none; cursor: pointer; background: var(--c-accent); color: var(--c-on-solid);
+  font-size: 13.5px; font-weight: 600; -webkit-tap-highlight-color: transparent;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--c-accent) 42%, transparent);
+}
+.plan-dump-fab:hover { filter: brightness(1.04); }
+.plan-dump-fab:active { transform: translateY(1px); }
+/* Trello-style segmented panel toggles (Inbox · Calendar) — floating pill bar
+   pinned to the bottom-centre of the viewport, like Trello's board switcher. */
+/* Centred on the CONTENT column, not the window: the column's midpoint is
+   50% + inset/2, so on the standalone Plan host (inset 0) this stays exactly
+   the 50% it always was. */
+.plan-segment { position: fixed; left: calc(50% + var(--shell-inset, 0px) / 2); bottom: calc(22px + env(safe-area-inset-bottom));
+  transform: translateX(-50%); z-index: 45; display: inline-flex; align-items: center; gap: 3px; padding: 5px;
+  background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18); }
+.plan-seg-btn { position: relative; display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 13px 8px; border: none; background: none; border-radius: 8px; cursor: pointer;
+  font-size: 14px; font-weight: 600; color: var(--c-text-dim); -webkit-tap-highlight-color: transparent; }
+.plan-seg-btn svg { opacity: 0.7; }
+.plan-seg-btn:hover { color: var(--c-text); }
+/* View toggle (Week/Day) sits first in the pill, split off by a hairline. */
+.plan-seg-div { width: 1px; align-self: stretch; margin: 4px 2px; background: var(--c-border); flex-shrink: 0; }
+.plan-seg-toggle svg { opacity: 0.85; }
+.plan-seg-btn.is-active { color: var(--c-accent-strong); background: var(--c-accent-bg); }
+.plan-seg-btn.is-active svg { opacity: 1; }
+/* Trello's active underline. */
+.plan-seg-btn.is-active::after { content: ""; position: absolute; left: 13px; right: 13px; bottom: 2px;
+  height: 2px; border-radius: 2px; background: var(--c-accent); }
+/* Mobile: the floating bar clears the BottomNav (full dashboard) — including
+   the create button, which is round and protrudes 24px above the bar's top
+   edge, so 60px of tab bar needs ~88px of clearance. The standalone
+   plan.example.com host has no bar at all, so it drops lower. The Dump FAB stacks
+   ABOVE the bar (icon-only) so the two never collide. */
+@media (max-width: 900px) {
+  .plan-segment { bottom: calc(88px + env(safe-area-inset-bottom)); }
+  html[data-standalone] .plan-segment { bottom: calc(16px + env(safe-area-inset-bottom)); }
+  .plan-dump-fab { bottom: calc(148px + env(safe-area-inset-bottom)); right: 16px; padding: 11px; }
+  .plan-dump-fab span { display: none; }
+  html[data-standalone] .plan-dump-fab { bottom: calc(74px + env(safe-area-inset-bottom)); }
+}
+.plan-navbtn {
+  width: 42px; height: 42px; border-radius: 50%; border: none; flex-shrink: 0;
+  background: var(--c-text-strong); color: var(--c-bg); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.plan-navbtn:active { opacity: 0.82; }
+
+/* Shell: the week grid + the optional backlog drawer side by side. */
+.plan-shell { display: flex; gap: 0; align-items: stretch; }
+
+/* Week grid: Mon–Fri are 5 columns; the 6th column stacks Sat over Sun. */
+.tw-week { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 24px; min-height: 462px; }
+.tw-col { display: flex; flex-direction: column; min-height: 0; }
+.tw-weekend { display: grid; grid-template-columns: 100%; grid-template-rows: minmax(210px, max-content) minmax(210px, auto); row-gap: 42px; }
+.tw-weekend .tw-col { min-height: 0; }
+
+.tw-head { display: flex; align-items: baseline; gap: 8px; height: 42px; box-sizing: border-box; padding-bottom: 12px; border-bottom: 2px solid var(--c-text-strong); }
+.tw-head-date { font-size: 21px; line-height: 28px; font-weight: 700; color: var(--c-text-strong); letter-spacing: -0.5px; white-space: nowrap; }
+.tw-head-dow { font-size: 21px; line-height: 28px; color: var(--c-text-strong); opacity: 0.2; margin-left: auto; font-weight: 400; white-space: nowrap; }
+.tw-today .tw-head { border-bottom-color: var(--c-accent); }
+.tw-today .tw-head-date, .tw-today .tw-head-dow { color: var(--c-accent); }
+.tw-today .tw-head-dow { opacity: 0.4; }
+
+/* Lined-paper body: a faint rule every 34px; rows are exactly 34px so each
+   task sits on a line and the empty column keeps ruling to the bottom. */
+.tw-body {
+  flex: 1; min-height: 42px; display: flex; flex-direction: column;
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 41px, var(--c-border) 41px, var(--c-border) 42px);
+}
+/* The ruled remainder of the column is the click-to-add target — no visible
+   affordance, exactly like Tweek. */
+.tw-fill { flex: 1; min-height: 42px; cursor: text; }
+
+.tw-task {
+  height: 42px; border-bottom: 1px solid transparent; padding-right: 30px; padding-top: 1px;
+  display: flex; align-items: center; gap: 6px; box-sizing: border-box; flex-shrink: 0;
+  cursor: pointer; -webkit-tap-highlight-color: transparent; position: relative;
+}
+/* The next free line: invisible until hovered (Tweek's add-input row). */
+.tw-add-row { height: 42px; border-bottom: 1px solid transparent; box-sizing: border-box; flex-shrink: 0; cursor: pointer; }
+.tw-add-row:hover { border-bottom-color: color-mix(in srgb, var(--c-accent) 40%, transparent); }
+/* Hover: the transparent bottom border becomes a 1px accent@40% line (it sits
+   exactly over the ruled background line), and the toggle fades in. */
+.tw-task:hover { border-bottom-color: color-mix(in srgb, var(--c-accent) 40%, transparent); }
+.tw-check {
+  position: absolute; top: 0; right: 0; height: 100%; width: 22px;
+  border: none; background: none; padding: 0;
+  color: var(--c-text-strong); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s; -webkit-tap-highlight-color: transparent;
+}
+.tw-task:hover .tw-check { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s, 0s; }
+.tw-check .tw-check-ring { transition: opacity 0.15s ease; }
+.tw-check:hover .tw-check-ring { opacity: 1; }
+.tw-done .tw-check svg { opacity: 0.3; }
+@media (hover: none) {
+  .tw-check { opacity: 0.5; visibility: visible; pointer-events: auto; }
+}
+/* Every title is a 22px span with 6px side padding and radius 11 (Tweek);
+   a label just paints its background. Desktop type is 14px (16px on small). */
+.tw-title {
+  font-size: 14px; line-height: 22px; height: 22px; border-radius: 11px; padding: 0 6px;
+  color: var(--c-text-strong); flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+.tw-spacer { flex: 1 1 0; min-width: 0; }
+.tw-done .tw-title { text-decoration: line-through; opacity: 0.3; }
+.tw-noise { opacity: 0.55; }
+.tw-note { flex-shrink: 0; color: var(--c-text-faint); display: flex; }
+.tw-star { flex-shrink: 0; background: none; border: none; cursor: pointer; padding: 0; color: var(--c-text-faint); display: flex; opacity: 0; -webkit-tap-highlight-color: transparent; }
+.tw-task:hover .tw-star { opacity: 0.65; }
+.tw-star-on { color: var(--c-accent); opacity: 1; }
+@media (hover: none) { .tw-star:not(.tw-star-on) { display: none; } }
+
+/* Tweek's in-place editor — their exact focus spec: one input row whose
+   active box bleeds -2px/-8px, radius 4, shadow 0 1px 4px 1px #0000001c. */
+.tw-add-card {
+  /* Transparent, like Tweek: their --input-active--background never resolves,
+     so the box is just the 11% shadow ring over the paper — the ruled lines
+     show through (the "magnifying glass"). Ring derives from the text colour
+     so it stays visible in dark mode. */
+  background: transparent; border-radius: 4px; margin: -1px -8px;
+  box-shadow: 0 1px 4px 1px color-mix(in srgb, var(--c-text-strong) 11%, transparent);
+  padding: 0 8px; box-sizing: border-box; flex-shrink: 0; height: 44px;
+  display: flex; align-items: center;
+}
+.tw-add-input {
+  display: block; width: 100%; height: 41px; border: 0; outline: none;
+  -webkit-appearance: none; appearance: none;
+  background: transparent; padding: 0; margin: 0;
+  font-family: inherit; font-size: 14px; color: var(--c-text-strong);
+}
+/* No browser focus ring on the bare planner inputs — the affordance is the
+   field / the card's soft grey ring, never a blue box. Chromium honours
+   `outline: none`, but WebKit/Safari also draws a native text-field focus glow
+   that only `-webkit-appearance: none` (above) + these resets clear. */
+.tw-add-input:focus, .tw-add-input:focus-visible,
+.plan-sub-addinput:focus, .plan-sub-addinput:focus-visible,
+.plan-sub-title:focus, .plan-sub-title:focus-visible {
+  outline: none; box-shadow: none;
+}
+.plan-sub-addinput, .plan-sub-title { -webkit-appearance: none; appearance: none; }
+
+/* Label pill hugs the text (Tweek): open = solid colour, done = pale tint. */
+.tw-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; }
+.tw-recur-ic { display: inline-block; vertical-align: -1.5px; margin-right: 4px; }
+.tw-task-dragging { opacity: 0; }
+/* The dragged card wears the exact same skin as the add-input box: transparent
+   with the 11% shadow ring + radius 4 (not a solid white card). */
+.tw-task-overlay {
+  background: transparent; border-radius: 4px;
+  box-shadow: 0 1px 4px 1px color-mix(in srgb, var(--c-text-strong) 11%, transparent);
+  padding: 0 8px; height: 44px;
+  display: flex; align-items: center; gap: 6px; color: var(--c-text-strong); cursor: grabbing;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Backlog drawer — the one incoming list (replaces the bottom Inbox/Someday). */
+.backlog-panel {
+  /* ~2 week columns: shares the row with the 6-column grid (flex 6) at a 2:6
+     ratio, so it stays ≈2 columns wide at any viewport. */
+  flex: 1.7 1 0; min-width: 230px; order: -1; margin-right: 16px; padding-right: 18px;
+  border-right: 1px solid var(--c-border-soft); display: flex; flex-direction: column;
+}
+/* Match the day-column header (.tw-head) exactly — same height + 2px rule — so
+   the Inbox's ruled lines line up with the column next to it. */
+.backlog-head { display: flex; align-items: center; gap: 8px; height: 42px; box-sizing: border-box; padding-bottom: 12px;
+  border-bottom: 2px solid var(--c-text-strong); }
+.backlog-title { font-size: 21px; line-height: 28px; font-weight: 700; color: var(--c-text-strong);
+  margin: 0; letter-spacing: -0.5px; flex: 1; }
+.backlog-sort {
+  font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px;
+  border: 1px solid var(--c-border); background: var(--c-surface); color: var(--c-text);
+  cursor: pointer; display: inline-flex; align-items: center; gap: 5px; -webkit-tap-highlight-color: transparent;
+}
+.backlog-sort:disabled { opacity: 0.6; cursor: default; }
+.backlog-close {
+  width: 28px; height: 28px; border-radius: 50%; border: none; background: none;
+  color: var(--c-text-faint); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.backlog-close:active { background: var(--c-surface-3); }
+.backlog-sub { font-size: 11.5px; color: var(--c-text-faint); margin: 2px 0 10px; }
+/* Hug the content (like the day column) so the ruled lines stop after the rows
+   EmptyRows draws — 5 when empty, tasks+1 otherwise — instead of ruling the
+   whole drawer to the bottom. */
+.backlog-body { flex: 0 0 auto; min-height: 0; }
+.backlog-divider {
+  height: 42px; display: flex; align-items: center; gap: 8px; color: var(--c-text-faint);
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em;
+}
+.backlog-divider::before, .backlog-divider::after { content: ''; flex: 1; height: 1px; background: var(--c-border); }
+
+/* Stack the week vertically well before true mobile. A 6-column grid gets
+   cramped (day headers wrap) in a narrow or split window long before 900px, so
+   above the mobile breakpoint we already go single-column — but keep the
+   desktop shell + side backlog (the ≤900 block adds the mobile chrome). */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .tw-week { grid-template-columns: 1fr; min-height: 0; }
+  .tw-weekend { display: flex; flex-direction: column; row-gap: 0; }
+  .tw-col, .tw-weekend .tw-col { min-height: 0; padding: 6px 0 10px; }
+  .tw-body { min-height: 42px; }
+  /* Stacked: leave exactly ONE blank ruled line (the .tw-add-row) after the
+     last task — collapse the fill so it doesn't add a second gap. */
+  .tw-fill { min-height: 0; max-height: 0; }
+}
+
+/* Same rule, moved for the embedded planner. Inside the dashboard shell the
+   week grid gets the CONTENT COLUMN, not the window — up to 310px narrower
+   (rail + app sidebar) — so it hits that cramped point ~310px sooner than the
+   media query above can see. Scoped to .shell-main, which only the shell
+   draws, so plan.example.com is untouched. */
+@media (min-width: 901px) and (max-width: 1490px) {
+  .shell-main .tw-week { grid-template-columns: 1fr; min-height: 0; }
+  .shell-main .tw-weekend { display: flex; flex-direction: column; row-gap: 0; }
+  .shell-main .tw-col, .shell-main .tw-weekend .tw-col { min-height: 0; padding: 6px 0 10px; }
+  .shell-main .tw-body { min-height: 42px; }
+  .shell-main .tw-fill { min-height: 0; max-height: 0; }
+}
+
+@media (max-width: 900px) {
+  .plan-wrap { padding: 18px 12px 150px; }
+  .plan-title { font-size: 28px; }
+  /* Two deliberate rows: the month on its own line, controls below. */
+  .plan-head { flex-wrap: wrap; row-gap: 8px; }
+  .plan-head .plan-title { flex-basis: 100%; }
+  .plan-shell { display: block; }
+  .tw-week { grid-template-columns: 1fr; }
+  .tw-col, .tw-weekend .tw-col { min-height: 0; padding: 6px 0 10px; }
+  .tw-weekend { row-gap: 0; }
+  .tw-week { min-height: 0; }
+  .tw-weekend { display: flex; flex-direction: column; row-gap: 0; }
+  .tw-body { min-height: 42px; }
+  /* Stacked: exactly ONE blank ruled line after the last task (see above). */
+  .tw-fill { min-height: 0; max-height: 0; }
+  .tw-title { font-size: 16px; }
+  .tw-add-input { font-size: 16px; }
+  .tw-add-card { margin: 0 -4px; }
+  .plan-head { margin: 2px 0 34px; }
+  /* Backlog = an edge sheet over the week. Clears MobileTopBar (48px +
+     safe-area) and BottomNav (60px) — same offsets as the docs drawer. */
+  .backlog-panel {
+    position: fixed; top: calc(48px + env(safe-area-inset-top)); left: 0; right: auto;
+    bottom: calc(60px + env(safe-area-inset-bottom)); width: min(92vw, 360px); margin: 0; z-index: 55;
+    background: var(--c-bg); border-right: 1px solid var(--c-border);
+    box-shadow: 12px 0 34px rgba(0, 0, 0, 0.22);
+    padding: 14px 16px 16px; overflow-y: auto;
+  }
+}
+
+/* tasks.example.com standalone (served bare, no MobileTopBar/BottomNav): reclaim the
+   space those fixed bars used to occupy so the planner + backlog reach the edges. */
+@media (max-width: 900px) {
+  html[data-standalone] .mobile-main { padding-bottom: env(safe-area-inset-bottom) !important; }
+  html[data-standalone] .backlog-panel {
+    top: env(safe-area-inset-top); bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ═══ Today view — list (left) + Google-Calendar day grid (right) ═══════════
+   Behind a Week↔Today toggle; additive + read-only, so it's trivially
+   revertible. The calendar's 42px hour rhythm matches the list's ruled rows so
+   the two columns share one horizon of lines. */
+.plan-viewtoggle { display: inline-flex; gap: 4px; margin-right: 4px; }
+
+/* Three independent slots in .plan-shell: Inbox (left, order -1) · main (week
+   grid or day list) · Calendar (right). Each is a persisted toggle, same in
+   every view. The calendar sticks in view (fixed height, no scroll) while a
+   tall week grid scrolls the page. */
+.plan-main { flex: 6 1 0; min-width: 0; display: flex; }
+.plan-main > .tw-week { flex: 1; }
+.plan-day { flex: 1; min-width: 0; }
+/* Day list with no calendar: cap + centre so it isn't a lone column in white. */
+.plan-shell.view-day:not(.cal-open) .plan-day { max-width: 720px; margin: 0 auto; }
+
+.plan-cal-slot { flex: 0 0 clamp(360px, 42%, 600px); margin-left: 28px; align-self: flex-start;
+  position: sticky; top: 8px; height: calc(100dvh - 246px); display: flex; }
+.plan-cal-slot > .today-cal { flex: 1; min-height: 0; }
+/* Day view: the calendar is the focus, so it takes more of the width. */
+.plan-shell.view-day .plan-cal-slot { flex-basis: clamp(400px, 54%, 720px); }
+
+.today-cal { --cal-gutter: 40px; display: flex; flex-direction: column; overflow: hidden;
+  position: relative; border-left: 1px solid var(--c-border-soft); padding-left: 26px; }
+
+.cal-head { display: flex; align-items: baseline; gap: 8px; height: 42px; box-sizing: border-box; padding-bottom: 12px;
+  border-bottom: 2px solid var(--c-text-strong); flex-shrink: 0; }
+.cal-head-dow-lg { font-size: 21px; line-height: 28px; font-weight: 700; letter-spacing: -0.5px;
+  color: var(--c-text-strong); }
+
+/* All-day band pinned under the header. */
+.cal-allday { display: flex; flex-direction: column; gap: 3px; min-height: 12px;
+  padding: 4px 6px 6px calc(var(--cal-gutter, 56px) + 2px); border-bottom: 1px solid var(--cal-rule); }
+.cal-allday-pill { border-radius: 8px; padding: 2px 9px; font-size: 12px; line-height: 16px;
+  font-weight: 600; color: var(--g4-ink); background: var(--g4); }
+
+/* Grid fills the remaining height (no scroll): solid rule at each hour, dashed
+   rules every 15 min (the :30 a touch stronger). Background = the page colour. */
+.cal-grid { position: relative; flex: 1; min-height: 0; margin-left: var(--cal-gutter); }
+/* Track inset top/bottom so the 6am/10pm labels + rules aren't clipped at the edges. */
+.cal-track { position: absolute; left: 0; right: 0; top: 13px; bottom: 13px; }
+.cal-rule-hour { position: absolute; left: 0; right: 6px; border-top: 1px solid var(--cal-rule); }
+.cal-rule-q { position: absolute; left: 0; right: 6px; border-top: 1px dashed var(--cal-rule-soft); opacity: 0.5; }
+.cal-rule-q.cal-rule-half { opacity: 1; }
+.cal-hour-label { position: absolute; left: calc(-1 * var(--cal-gutter)); width: calc(var(--cal-gutter) - 8px);
+  text-align: right; transform: translateY(-7px); font-size: 12px; font-weight: 500;
+  color: var(--c-text-dim); font-variant-numeric: tabular-nums; }
+
+.cal-event { position: absolute; box-sizing: border-box; border-radius: 8px;
+  padding: 3px 9px; min-height: 0; overflow: hidden; cursor: pointer;
+  color: var(--g4-ink); background: var(--g4); font-size: 13px; line-height: 16px; }
+.cal-event:hover { filter: brightness(1.06); }
+/* Tall events wrap to as many lines as fit; short (compact) events stay on one
+   line with an ellipsis; tiny (<25 min) shrink the type so the name still shows.
+   No time text — position already shows it (times are in the hover tooltip). */
+.cal-event-title { display: block; font-weight: 600; overflow: hidden; }
+.cal-event.is-compact { display: flex; align-items: center; padding-top: 0; padding-bottom: 0; }
+.cal-event.is-compact .cal-event-title { white-space: nowrap; text-overflow: ellipsis; }
+.cal-event.is-tiny { font-size: 10.5px; line-height: 12px; padding-left: 8px; padding-right: 8px; }
+/* Vintage Indigo shade ramp; default (uncoloured) event = the g4 primary. */
+.cal-event.g1 { background: var(--g1); color: var(--g1-ink); }
+.cal-event.g2 { background: var(--g2); color: var(--g2-ink); }
+.cal-event.g3 { background: var(--g3); color: var(--g3-ink); }
+.cal-event.g4 { background: var(--g4); color: var(--g4-ink); }
+.cal-event.g5 { background: var(--g5); color: var(--g5-ink); }
+
+/* Now: brand orange (never the sage), so "the moment" ≠ "the day". */
+.now-line { position: absolute; left: 0; right: 6px; height: 0; border-top: 2px solid var(--c-accent);
+  z-index: 8; pointer-events: none; }
+.now-line::before { content: ""; position: absolute; left: -5px; top: -5px; width: 9px; height: 9px;
+  border-radius: 50%; background: var(--c-accent); }
+
+.cal-empty { padding: 20px 6px; font-size: 13px; color: var(--c-text-faint); }
+.cal-loading { padding: 20px 6px; font-size: 13px; color: var(--c-text-faint); }
+
+@media (max-width: 1180px) {
+  .plan-cal-slot, .plan-shell.view-day .plan-cal-slot { flex-basis: clamp(320px, 46%, 520px); margin-left: 18px; }
+  .today-cal { padding-left: 18px; }
+}
+/* Embedded planner: the same tightening, ~310px early — see the .shell-main
+   week-grid note above. */
+@media (max-width: 1490px) {
+  .shell-main .plan-cal-slot, .shell-main .plan-shell.view-day .plan-cal-slot { flex-basis: clamp(320px, 46%, 520px); margin-left: 18px; }
+  .shell-main .today-cal { padding-left: 18px; }
+}
+@media (max-width: 900px) {
+  /* Stack: main first, then the calendar at a fixed height (fits the day, no
+     scroll — same window as desktop). */
+  .plan-cal-slot, .plan-shell.view-day .plan-cal-slot {
+    display: block; position: static; height: auto; flex-basis: auto; margin: 16px 0 0; }
+  .plan-shell.view-day:not(.cal-open) .plan-day { max-width: none; margin: 0; }
+  .today-cal { border-left: 0; padding-left: 0; margin-top: 0;
+    height: 68vh; border-top: 1px solid var(--c-border-soft); padding-top: 8px; }
+  .cal-head { position: static; }
+}
+
+/* Task card — Tweek's dialog: paper-coloured, radius 24, icon toolbar, big
+   borderless title over a thin rule, borderless notes, quiet day-strip. */
+.plan-card-overlay {
+  position: fixed; inset: 0; background: rgba(8, 12, 20, 0.45); z-index: 60;
+  display: flex; align-items: center; justify-content: center; padding: 0 12px;
+}
+.plan-card {
+  position: relative;
+  width: 100%; max-width: 512px; max-height: 90vh; overflow: visible;
+  background: var(--c-bg); border-radius: 24px; padding: 24px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35); box-sizing: border-box;
+}
+.plan-card-head { display: flex; align-items: center; margin-bottom: 40px; position: relative; }
+.plan-card-date {
+  display: inline-flex; align-items: center; gap: 10px; min-width: 0;
+  font-size: 16px; color: var(--c-text-strong); background: none; border: none; padding: 4px 6px;
+  margin: -4px -6px; border-radius: 8px; cursor: pointer; font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.plan-card-date:hover { background: color-mix(in srgb, var(--c-text-strong) 7%, transparent); }
+.plan-card-icon {
+  position: relative;
+  width: 32px; height: 36px; border-radius: 8px; border: none; background: none; padding: 0;
+  margin-left: 2px; display: flex; align-items: center; justify-content: center; color: var(--c-text-strong);
+  cursor: pointer; -webkit-tap-highlight-color: transparent; flex-shrink: 0;
+}
+.plan-card-icon:hover { background: color-mix(in srgb, var(--c-text-strong) 7%, transparent); }
+.plan-card-icon-on > svg, .plan-card-icon-open > svg,
+.plan-card-icon-on > .plan-card-labeldot { position: relative; z-index: 1; }
+.plan-card-icon-on, .plan-card-icon-open { color: var(--c-bg); }
+.plan-card-icon-on::before, .plan-card-icon-open::before {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 32px; height: 32px; border-radius: 50%; background: var(--c-text-strong);
+}
+.plan-card-icon-on:hover, .plan-card-icon-open:hover { background: var(--c-text-strong); }
+.plan-card-labeldot { width: 15px; height: 15px; border-radius: 50%; display: block; }
+.plan-menu {
+  position: absolute; z-index: 8; background: var(--c-bg);
+  border: 1px solid var(--c-text-strong); border-radius: 4px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.14); padding: 8px 0; width: 146px; box-sizing: border-box;
+}
+.plan-menu-right { right: 24px; top: 58px; }
+.plan-menu-item {
+  width: 100%; height: 34px; padding: 8px 16px; border: none; background: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-family: inherit; font-size: 14px; line-height: 1; color: var(--c-text-strong); cursor: pointer;
+  -webkit-tap-highlight-color: transparent; box-sizing: border-box; white-space: nowrap;
+}
+.plan-menu-item:hover { background: rgba(0, 0, 0, 0.05); }
+.plan-menu-item > svg { margin-top: 1px; flex-shrink: 0; }
+/* Colour grid (the ◯ menu) — same outlined chrome as the ⋯ menu. */
+.plan-colors {
+  right: 24px; top: 58px; width: auto; padding: 12px;
+  display: grid; grid-template-columns: repeat(3, 26px); gap: 12px; justify-items: center;
+}
+.plan-swatch-none { background: transparent; border: 2px solid color-mix(in srgb, var(--c-text-strong) 30%, transparent) !important; box-sizing: border-box; }
+/* Named label presets (Gmail-style): a colour dot + its meaning, check on the
+   selected one. Same outlined chrome as the ⋯ menu. */
+.plan-labels { right: 24px; top: 58px; width: auto; min-width: 170px; }
+.plan-label-item { gap: 10px; }
+.plan-label-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.plan-label-dot-none { border: 1.5px solid color-mix(in srgb, var(--c-text-strong) 35%, transparent); box-sizing: border-box; }
+.plan-label-name { flex: 1; text-align: left; }
+/* Calendar popover — Tweek's react-datepicker (24px cells, 12px, radius-4 box). */
+.plan-dp { left: 24px; top: 58px; width: auto; padding: 12px 12px 12px; }
+.plan-dp-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.plan-dp-month { font-size: 12px; font-weight: 700; color: var(--c-text-strong); }
+.plan-dp-nav {
+  width: 24px; height: 24px; border: none; background: none; border-radius: 50%; padding: 0;
+  display: flex; align-items: center; justify-content: center; color: var(--c-text-strong); cursor: pointer;
+}
+.plan-dp-nav:hover { background: color-mix(in srgb, var(--c-text-strong) 7%, transparent); }
+.plan-dp-grid { display: grid; grid-template-columns: repeat(7, 24px); }
+.plan-dp-dow { font-size: 12px; line-height: 24px; color: var(--c-text-strong); opacity: 0.4; text-align: center; padding-top: 12px; }
+.plan-dp-day {
+  width: 24px; height: 24px; border: none; background: none; border-radius: 12px; padding: 0;
+  font-family: inherit; font-size: 12px; line-height: 24px; color: var(--c-text-strong); cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.plan-dp-day:hover { background: color-mix(in srgb, var(--c-text-strong) 8%, transparent); }
+.plan-dp-out { opacity: 0.4; }
+.plan-dp-today { position: relative; }
+.plan-dp-today::after {
+  content: ''; position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%);
+  width: 14px; height: 2px; border-radius: 1px; background: var(--st-red-solid);
+}
+.plan-dp-sel { background: var(--c-text-strong); color: var(--c-bg); }
+.plan-dp-sel:hover { background: var(--c-text-strong); }
+.plan-dp-sel.plan-dp-today::after { background: var(--c-bg); }
+/* Formatting toolbar (RichNotes) — inserts markdown into the notes. */
+.plan-fmt { display: flex; align-items: center; gap: 8px; margin: 14px 0 16px; height: 20px; }
+.plan-fmt-btn {
+  min-width: 24px; height: 24px; padding: 0 5px; border: none; background: none; border-radius: 3px;
+  display: flex; align-items: center; justify-content: center; color: var(--c-text-strong);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.plan-fmt-btn:hover { background: color-mix(in srgb, var(--c-text-strong) 8%, transparent); }
+/* Active format at the cursor (bold/underline/heading/list) — grey box. */
+.plan-fmt-btn-on, .plan-fmt-btn-on:hover { background: color-mix(in srgb, var(--c-text-strong) 15%, transparent); }
+.plan-fmt-h { font-size: 15px; font-weight: 700; }
+.plan-fmt-b { font-size: 15px; font-weight: 800; }
+.plan-fmt-u { font-size: 15px; font-weight: 700; text-decoration: underline; }
+.plan-card-notes u { text-decoration: underline; }
+
+/* Command palette (Cmd/Ctrl+K) — Superhuman-style centred launcher. */
+.cmdk-overlay { position: fixed; inset: 0; z-index: 70; background: rgba(8, 12, 20, 0.42);
+  display: flex; align-items: flex-start; justify-content: center; padding: 12vh 16px 16px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+.cmdk { width: 100%; max-width: 560px; background: var(--c-bg); border: 1px solid var(--c-border);
+  border-radius: 14px; box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4); overflow: hidden; }
+.cmdk-input { width: 100%; box-sizing: border-box; border: 0; outline: none; background: transparent;
+  padding: 17px 18px; font-size: 17px; color: var(--c-text-strong); font-family: inherit;
+  border-bottom: 1px solid var(--c-border-soft); }
+.cmdk-input::placeholder { color: var(--c-text-faint); }
+.cmdk-list { max-height: 52vh; overflow-y: auto; padding: 6px; }
+.cmdk-empty { padding: 18px; text-align: center; color: var(--c-text-faint); font-size: 14px; }
+.cmdk-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0;
+  background: none; border-radius: 8px; cursor: pointer; text-align: left; -webkit-tap-highlight-color: transparent; }
+.cmdk-item-on { background: var(--c-accent-bg); }
+.cmdk-label { flex: 1; font-size: 14.5px; font-weight: 500; color: var(--c-text-strong); }
+.cmdk-item-on .cmdk-label { color: var(--c-accent-strong); }
+.cmdk-hint { flex-shrink: 0; min-width: 20px; height: 22px; padding: 0 7px; border-radius: 6px;
+  border: 1px solid var(--c-border); background: var(--c-surface); color: var(--c-text-dim);
+  font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+.plan-card-titlerow { display: flex; align-items: flex-start; gap: 12px; border-bottom: 1px solid color-mix(in srgb, var(--c-text-strong) 18%, transparent); padding-bottom: 10px; }
+.plan-card-title {
+  flex: 1; min-width: 0; font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: -0.5px;
+  border: 0; outline: none; background: transparent; color: var(--c-text-strong);
+  font-family: inherit; padding: 0;
+  /* Textarea so long names wrap to a 2nd+ row (auto-grown in JS). */
+  display: block; resize: none; overflow: hidden; white-space: pre-wrap; word-break: break-word;
+}
+.plan-card-title-done { text-decoration: line-through; opacity: 0.4; }
+.plan-card-check { border: 0; background: none; padding: 0; margin-top: 5px; color: var(--c-text-strong); cursor: pointer; display: flex; flex-shrink: 0; }
+.plan-card-check .tw-check-ring { opacity: 1; }
+.plan-card-notes {
+  width: 100%; min-height: 96px; border: 0; outline: none;
+  background: transparent; font-family: inherit; font-size: 16px; line-height: 1.5;
+  color: var(--c-text-strong); box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.plan-card-notes:empty::before { content: attr(data-placeholder); color: var(--c-text-faint); pointer-events: none; }
+.plan-card-notes h1, .plan-card-notes h2, .plan-card-notes h3 { font-size: 18px; font-weight: 700; margin: 8px 0 4px; }
+/* Tailwind Preflight resets list-style to none — restore the markers so
+   bulleted/numbered notes are actually visible in the card editor. */
+.plan-card-notes ul { margin: 4px 0; padding-left: 22px; list-style: disc outside; }
+.plan-card-notes ol { margin: 4px 0; padding-left: 22px; list-style: decimal outside; }
+/* Sub-levels (Tab to nest) get their own marker: 1. → A. → i. and disc → ○ → ▪. */
+.plan-card-notes ol ol { list-style-type: upper-alpha; }
+.plan-card-notes ol ol ol { list-style-type: lower-roman; }
+.plan-card-notes ol ol ol ol { list-style-type: decimal; }
+.plan-card-notes ul ul { list-style-type: circle; }
+/* The flows rich-text editor (workflow-ui.tsx RichTextField) needs the same
+   restore: a numbered list typed with its toolbar, or a prompt's "1. 2. 3.",
+   showed no markers at all. Paragraphs and lists keep the small gap the
+   crops show (a message body and a prompt alike). */
+.rt-editor ul { margin: 2px 0; padding-left: 24px; list-style: disc outside; }
+.rt-editor ol { margin: 2px 0; padding-left: 24px; list-style: decimal outside; }
+.rt-editor p + p, .rt-editor ul + p, .rt-editor ol + p { margin-top: 8px; }
+.rt-editor p + ul, .rt-editor p + ol { margin-top: 4px; }
+.plan-card-notes ul ul ul { list-style-type: square; }
+.plan-card-notes li { margin: 2px 0; display: list-item; }
+.plan-card-notes a { color: var(--c-accent-strong); text-decoration: underline; }
+.plan-card-notes b, .plan-card-notes strong { font-weight: 700; }
+
+/* Subtasks / action items on the task card */
+/* Card links (Akiflow-style): favicon + URL chips, paste-to-add. */
+.plan-card-links { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.plan-link-row { display: flex; align-items: center; gap: 6px; }
+.plan-link-main {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; text-decoration: none;
+  padding: 5px 8px; border-radius: 7px; background: color-mix(in srgb, var(--c-text-strong) 5%, transparent);
+  color: var(--c-text); font-size: 13px;
+}
+.plan-link-main:hover { background: color-mix(in srgb, var(--c-text-strong) 9%, transparent); }
+.plan-link-fav { flex-shrink: 0; width: 16px; height: 16px; border-radius: 3px; }
+.plan-link-fav-fb { display: inline-flex; align-items: center; justify-content: center; color: var(--c-text-faint); }
+.plan-link-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.plan-link-icon {
+  flex-shrink: 0; border: none; background: none; cursor: pointer; color: var(--c-text-faint);
+  padding: 4px; border-radius: 6px; display: inline-flex; transition: opacity 0.12s, color 0.12s, background 0.12s;
+}
+.plan-link-icon:hover { color: var(--c-text-strong); background: color-mix(in srgb, var(--c-text-strong) 8%, transparent); }
+/* The remove ✕ only appears on row hover; the + (add another) stays visible. */
+.plan-link-x { opacity: 0; }
+.plan-link-row:hover .plan-link-x { opacity: 1; }
+.plan-link-add {
+  display: inline-flex; align-items: center; gap: 8px; border: none; background: none; cursor: pointer;
+  color: var(--c-text-faint); font-size: 13px; padding: 5px 8px; border-radius: 7px; align-self: flex-start;
+}
+.plan-link-add:hover { color: var(--c-text); background: color-mix(in srgb, var(--c-text-strong) 5%, transparent); }
+.plan-link-input {
+  width: 100%; box-sizing: border-box; border: 1px solid var(--c-text-strong); border-radius: 7px;
+  padding: 6px 9px; font-size: 13px; font-family: inherit; color: var(--c-text-strong);
+  background: var(--c-bg); outline: none;
+}
+
+.plan-card-subs { margin-top: 10px; padding-top: 12px; border-top: 1px solid color-mix(in srgb, var(--c-text-strong) 10%, transparent); }
+.plan-subs-head { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-text-faint); margin-bottom: 6px; }
+.plan-subs-count { font-family: ui-monospace, monospace; font-weight: 500; }
+.plan-sub-row { display: flex; align-items: center; gap: 9px; padding: 1px 0; }
+.plan-sub-check { flex-shrink: 0; background: none; border: none; padding: 0; cursor: pointer; color: var(--c-text-strong); display: flex; -webkit-tap-highlight-color: transparent; }
+.plan-sub-title { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: inherit; font-size: 15px; line-height: 1.4; color: var(--c-text-strong); padding: 4px 0; }
+.plan-sub-done .plan-sub-title { text-decoration: line-through; color: var(--c-text-faint); }
+.plan-sub-del { flex-shrink: 0; background: none; border: none; padding: 4px; cursor: pointer; color: var(--c-text-faint); display: flex; opacity: 0; -webkit-tap-highlight-color: transparent; }
+.plan-sub-row:hover .plan-sub-del { opacity: 0.65; }
+.plan-sub-del:hover { color: var(--st-red-fg); opacity: 1; }
+.plan-sub-add { display: flex; align-items: center; gap: 9px; padding: 1px 0; }
+.plan-sub-plus { flex-shrink: 0; width: 17px; text-align: center; color: var(--c-text-faint); font-size: 18px; line-height: 1; }
+.plan-sub-addinput { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: inherit; font-size: 15px; line-height: 1.4; color: var(--c-text-strong); padding: 4px 0; }
+.plan-sub-addinput::placeholder { color: var(--c-text-faint); }
+
+/* Delete-confirm popover (Tweek-style outlined menu) */
+.plan-menu-del { right: 24px; top: 58px; width: auto; padding: 14px 16px; }
+.plan-del-msg { font-size: 14px; color: var(--c-text-strong); font-weight: 500; margin-bottom: 12px; white-space: nowrap; }
+.plan-del-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.plan-del-cancel, .plan-del-confirm { font-size: 13px; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; border: 1px solid var(--c-text-strong); background: none; color: var(--c-text-strong); }
+.plan-del-confirm { background: var(--st-red-solid); border-color: var(--st-red-solid); color: #fff; }
+/* Recurring delete: stacked scope choices above the Cancel row */
+.plan-del-scope { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.plan-del-scope-btn { font-size: 13px; text-align: left; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-family: inherit; border: 1px solid var(--c-border); background: none; color: var(--c-text-strong); white-space: nowrap; }
+.plan-del-scope-btn:hover { background: var(--st-red-tint, rgba(239,35,60,0.08)); border-color: var(--st-red-solid); color: var(--st-red-fg, var(--st-red-solid)); }
+
+.plan-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.plan-chip {
+  font-size: 12.5px; padding: 7px 11px; border-radius: 8px; border: 1px solid var(--c-border);
+  background: var(--c-surface-2); color: var(--c-text); cursor: pointer; font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.plan-chip-active { border-color: var(--c-accent-border); background: var(--c-accent-bg); color: var(--c-accent-strong); font-weight: 600; }
+.plan-swatches { display: flex; gap: 9px; flex-wrap: wrap; }
+.plan-swatch {
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;
+  -webkit-tap-highlight-color: transparent; display: flex; align-items: center; justify-content: center;
+  color: var(--c-on-solid);
+}
+.plan-swatch-on { box-shadow: 0 0 0 2px var(--c-bg), 0 0 0 4px var(--c-text-strong); }
+
+/* Dump overlay (the ＋ Dump button) — word-vomit box + the review list. */
+.capture-overlay {
+  position: fixed; inset: 0; background: rgba(8, 12, 20, 0.45); z-index: 70;
+  display: flex; align-items: flex-start; justify-content: center; padding: 9vh 16px 16px;
+}
+.capture-modal {
+  width: 100%; max-width: 560px; background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: 14px; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.3); padding: 16px;
+  max-height: 82vh; display: flex; flex-direction: column;
+}
+.capture-box {
+  width: 100%; min-height: 150px; font-size: 16px; line-height: 1.5; color: var(--c-text-strong);
+  background: var(--c-surface-inset); border: 1px solid var(--c-border); border-radius: 12px;
+  padding: 14px; outline: none; font-family: inherit; box-sizing: border-box; resize: vertical;
+}
+.capture-box::placeholder { color: var(--c-text-faint); }
+.capture-hint { font-size: 12px; color: var(--c-text-faint); margin-top: 10px; }
+.capture-actions { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.capture-primary {
+  font-size: 13.5px; font-weight: 600; padding: 10px 16px; border-radius: 999px; border: none;
+  background: var(--c-accent); color: var(--c-on-solid); cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.capture-primary:disabled { opacity: 0.5; cursor: default; }
+.capture-secondary {
+  font-size: 13px; font-weight: 500; padding: 9px 14px; border-radius: 999px;
+  border: 1px solid var(--c-border); background: var(--c-surface-2); color: var(--c-text); cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.capture-note { font-size: 12px; color: var(--c-text-faint); margin-bottom: 8px; }
+.capture-error { font-size: 12.5px; color: var(--st-red-fg); margin-top: 10px; }
+.dump-list { overflow-y: auto; margin: 2px 0; }
+.dump-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 2px; border-bottom: 1px solid var(--c-border-soft); }
+.dump-item-off .dump-title { text-decoration: line-through; color: var(--c-text-faint); }
+.dump-check {
+  position: static; opacity: 1; visibility: visible; pointer-events: auto;
+  width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0;
+  border: 1.5px solid var(--c-border-strong); border-radius: 50%;
+}
+.dump-check.tw-check-done { background: var(--st-green-solid); border-color: var(--st-green-solid); }
+.dump-title {
+  width: 100%; border: none; background: transparent; outline: none; padding: 0;
+  font-size: 14px; color: var(--c-text-strong); font-family: inherit;
+}
+.dump-notes { font-size: 12px; color: var(--c-text-faint); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Skill tab: render the SKILL.md markdown compact + boxed so it reads as a
+   skill rather than a docs page (the ## Flow section is stripped upstream). */
+.skill-doc { zoom: 0.82; }
+.skill-doc .docs-prose > :first-child { margin-top: 2px; }
+
+/* Reports grid — mobile reflow (≤760px): the 12-col drag/resize grid collapses
+   to 2 columns; KPI/small tiles (data-mspan="1") sit two-up, charts/wide tiles
+   (data-mspan="2") go full-width; the drag overlay cells are hidden. Desktop
+   uses the explicit grid-column/grid-row placement from the component. */
+@media (max-width: 760px) {
+  [data-rgrid] { grid-template-columns: 1fr 1fr !important; grid-auto-rows: auto !important; grid-auto-flow: row dense !important; gap: 12px !important; }
+  [data-rgrid] > .rw-card { grid-column: auto !important; grid-row: auto !important; width: auto !important; }
+  [data-rgrid] > .rw-card[data-mspan="2"] { grid-column: 1 / -1 !important; }
+  [data-rgrid] > div:not(.rw-card) { display: none !important; }
+  [data-rgrid] .rw-actions, [data-rgrid] .rw-rsz { display: none !important; }
+}
+
+/* ── The morning brief (plans/morning-brief.md) ─────────────────────────────
+   A full-bleed reader that opens OVER Plan. It borrows the portal palette but
+   runs its own warmer, quieter scale — this page is read once, slowly, and the
+   density that suits a working surface is wrong for it.
+
+   It ARRIVES rather than appears: the scrim fades, the
+   sheet springs up from 0.96, and the whole thing is over in 420ms. */
+:root {
+  --brief-bg: #FCFCFB;
+  --brief-wash: #F6F5F0;
+  --brief-ink: #2E2C27;
+  --brief-soft: #6B6A63;
+  --brief-grey: #B4B3A8;
+  --brief-line: #E4E3DC;
+  --brief-clay: #C6613F;
+  /* The three additions from the redesign handoff. The gradient ENDS on clay,
+     so it resolves into the palette rather than sitting outside it. */
+  --brief-gold: #F4C64B;
+  --brief-amber: #E58A4E;
+  --brief-gradient: linear-gradient(95deg, #F4C64B, #E58A4E 50%, #C6613F);
+  /* Masthead text, on the ink field. Fixed in both themes — the masthead is
+     always dark, so this must NOT flip with the theme. */
+  --brief-on-ink: #FCFCFB;
+  --brief-on-ink-dim: #B4B3A8;
+  --brief-rule-on-ink: rgba(232, 230, 222, .16);
+  /* Text on the gold starburst. Fixed for the same reason: the sticker is gold
+     in both themes, so its text must not flip to light and vanish. */
+  --brief-on-gold: #1A1712;
+}
+html[data-theme="dark"] {
+  --brief-bg: #12161F;
+  --brief-wash: #171C27;
+  --brief-ink: #E8E6DE;
+  --brief-soft: #A6A79E;
+  --brief-grey: #6C7180;
+  --brief-line: rgba(157, 184, 255, 0.14);
+  --brief-clay: #E08A66;
+  --brief-gold: #F4C64B;
+  --brief-amber: #E58A4E;
+  --brief-gradient: linear-gradient(95deg, #F4C64B, #E58A4E 50%, #C6613F);
+  --brief-on-ink: #FCFCFB;
+  --brief-on-ink-dim: #B4B3A8;
+  --brief-rule-on-ink: rgba(232, 230, 222, .16);
+  /* Text on the gold starburst. Fixed for the same reason: the sticker is gold
+     in both themes, so its text must not flip to light and vanish. */
+  --brief-on-gold: #1A1712;
+}
+
+@keyframes brief-scrim-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes brief-sheet-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.96) }
+  to   { opacity: 1; transform: translateY(0) scale(1) }
+}
+@keyframes brief-pulse { 0%, 100% { opacity: 0.25 } 50% { opacity: 1 } }
+
+.brief-scrim {
+  /* Above the whole mobile chrome stack (drawer 400, more-sheet 500/501). */
+  position: fixed; inset: 0; z-index: 600; display: flex; justify-content: center;
+  padding: 3vh 24px; overflow-y: auto; overscroll-behavior: contain;
+  background: color-mix(in srgb, var(--brief-ink) 42%, transparent);
+  -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px);
+  animation: brief-scrim-in 240ms ease both;
+}
+.brief-sheet {
+  position: relative; width: min(1020px, 100%); height: max-content;
+  background: var(--brief-bg); color: var(--brief-ink);
+  border: 2px solid var(--brief-ink); border-radius: 24px; overflow: hidden;
+  /* The 2b hard offset shadow, not a soft blur — this is the portal's language. */
+  box-shadow: 8px 10px 0 var(--brief-ink);
+  animation: brief-sheet-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .brief-scrim, .brief-sheet, .brief-fab-dot.is-unread { animation-duration: 1ms }
+}
+
+/* ── masthead ─────────────────────────────────────────────────────────────
+   Always the ink field, in both themes — so its text tokens are fixed rather
+   than theme-flipped, or the headline would go dark-on-dark. */
+.brief-mast { background: var(--brief-ink); padding: 22px 40px 30px; position: relative; overflow: hidden; }
+.brief-mast-glow {
+  position: absolute; right: -90px; top: -110px; width: 300px; height: 300px;
+  border-radius: 50%; background: var(--brief-gradient); opacity: .12; pointer-events: none;
+}
+.brief-mast-row { position: relative; display: flex; align-items: center; gap: 14px; }
+.brief-kicker {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px; letter-spacing: .3em; font-weight: 700; color: var(--brief-on-ink);
+}
+.brief-kicker-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--brief-gold); }
+.brief-mast-date {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px; letter-spacing: .14em; color: var(--brief-on-ink-dim);
+}
+.brief-close {
+  margin-left: auto; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px; font-weight: 700; color: var(--brief-ink); background: var(--brief-on-ink);
+  border: none; border-radius: 5px; padding: 4px 10px; cursor: pointer;
+}
+.brief-close:hover { background: var(--brief-gold); }
+
+.brief-title-row { position: relative; display: flex; gap: 40px; align-items: flex-end; margin-top: 26px; }
+.brief-headline {
+  flex: 1; min-width: 0; margin: 0;
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-size: clamp(38px, 6.4vw, 74px); font-weight: 800;
+  letter-spacing: -.05em; line-height: .9; color: var(--brief-on-ink);
+}
+.brief-counter {
+  flex: none; margin: 0; padding-bottom: 6px; text-align: right;
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-size: clamp(20px, 2.9vw, 38px); font-weight: 800; letter-spacing: -.04em; line-height: 1;
+  background: var(--brief-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── the chart ────────────────────────────────────────────────────────────── */
+.brief-chart-wrap { position: relative; margin-top: 30px; }
+.brief-chart { display: block; width: 100%; height: auto; overflow: visible; }
+.brief-axis {
+  display: flex; justify-content: space-between; margin-top: 9px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px; letter-spacing: .08em; color: var(--brief-on-ink-dim);
+}
+.brief-readout {
+  margin-top: 16px; padding-top: 15px; border-top: 1px solid var(--brief-rule-on-ink); min-height: 22px;
+}
+.brief-stats {
+  display: flex; gap: 22px; flex-wrap: wrap;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px; letter-spacing: .14em; color: var(--brief-on-ink-dim);
+}
+.brief-stats .is-clash { color: var(--brief-clay); }
+.brief-stats .brief-hint { margin-left: auto; }
+.brief-insp { display: flex; align-items: center; gap: 16px; }
+.brief-insp-time {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px; letter-spacing: .12em; font-weight: 700; color: var(--brief-gold);
+  flex: none; min-width: 94px;
+}
+.brief-insp-text { font-size: 14px; color: var(--brief-on-ink); flex: 1; min-width: 0; }
+
+/* ── needs you today ──────────────────────────────────────────────────────── */
+.brief-band { padding: 36px 40px 0; }
+.brief-band-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.brief-h2 {
+  margin: 0; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px; letter-spacing: .3em; font-weight: 700; color: var(--brief-ink);
+}
+.brief-count {
+  font-family: var(--font-mono, ui-monospace, monospace); font-size: 10px; font-weight: 700;
+  color: var(--brief-ink); background: var(--brief-gold); border-radius: 4px; padding: 2px 7px;
+}
+.brief-rule-note {
+  margin-left: auto; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px; letter-spacing: .14em; color: var(--brief-soft);
+}
+.brief-list { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+.brief-item {
+  display: flex; align-items: stretch;
+  border: 2px solid var(--brief-ink); border-radius: 16px; overflow: hidden; background: var(--brief-wash);
+}
+/* Numerals are --brief-soft, never gold or amber: gold on wash measures 1.46:1
+   and amber 2.39:1. Urgency lives in the reason tag instead. */
+.brief-num {
+  flex: none; width: 84px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-size: 44px; font-weight: 800; letter-spacing: -.045em; line-height: 1; color: var(--brief-soft);
+}
+.brief-item-body { flex: 1; min-width: 0; padding: 17px 18px 17px 0; display: flex; flex-direction: column; gap: 8px; }
+.brief-item-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.brief-item-title { flex: 1; font-size: 16.5px; font-weight: 700; color: var(--brief-ink); letter-spacing: -.012em; line-height: 1.3; }
+.brief-tag {
+  flex: none; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 9.5px; letter-spacing: .1em; font-weight: 700; border-radius: 4px; padding: 3px 9px;
+  color: var(--brief-bg); background: var(--brief-soft);
+}
+.brief-tag.is-blocked { background: var(--brief-clay); color: var(--brief-bg); }
+.brief-tag.is-owed { background: var(--brief-gold); color: var(--brief-ink); }
+/* The why-now. Prose, because that is the half a person actually reads — the
+   mono strip below says where it came from and never said what it was. */
+.brief-item-why {
+  margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--brief-soft);
+  max-width: 62ch;
+}
+.brief-meta {
+  /* Inline text, not a flex row — as flex, the source anchor became its own
+     item and the line broke straight after it on narrow screens. */
+  margin-top: 7px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px; letter-spacing: .07em; line-height: 1.5;
+  color: var(--brief-grey); overflow-wrap: anywhere;
+}
+.brief-meta a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.brief-meta a:hover { color: var(--brief-clay); }
+.brief-actions {
+  flex: none; width: 124px; display: flex; flex-direction: column;
+  border-left: 2px dashed var(--brief-grey); background: var(--brief-bg);
+}
+.brief-take {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px;
+  border: none; background: none; cursor: pointer;
+  font-family: inherit; font-size: 13.5px; font-weight: 800; color: var(--brief-ink);
+  border-bottom: 1px dashed var(--brief-grey);
+}
+.brief-take:hover:not(:disabled) { background: var(--brief-gold); }
+.brief-take.is-on { font-size: 12.5px; color: var(--brief-soft); background: var(--brief-wash); }
+.brief-not {
+  flex: none; border: none; background: none; cursor: pointer; padding: 9px 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px; font-weight: 700; letter-spacing: .06em; color: var(--brief-soft);
+}
+.brief-not:hover:not(:disabled) { background: var(--brief-wash); color: var(--brief-clay); }
+.brief-take:disabled, .brief-not:disabled { opacity: .55; cursor: default; }
+.brief-allclear { margin: 18px 0 0; font-size: 16px; color: var(--brief-soft); }
+
+/* ── push your work forward ───────────────────────────────────────────────── */
+.brief-artifact {
+  margin: 32px 0 0; padding: 24px 26px; background: var(--brief-wash); border-radius: 20px;
+  position: relative; overflow: hidden;
+  display: flex; gap: 26px; align-items: center; justify-content: space-between;
+}
+.brief-artifact-glow {
+  position: absolute; left: -50px; bottom: -70px; width: 190px; height: 190px;
+  border-radius: 50%; background: var(--brief-gradient); opacity: .14; pointer-events: none;
+}
+.brief-artifact-body { position: relative; flex: 1; min-width: 0; }
+.brief-artifact-kicker {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px; letter-spacing: .24em; font-weight: 700; color: var(--brief-soft);
+}
+.brief-artifact-title {
+  margin: 8px 0 0; font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-size: 26px; font-weight: 800; letter-spacing: -.032em; color: var(--brief-ink);
+}
+.brief-artifact-blurb { margin: 8px 0 0; max-width: 560px; font-size: 14.5px; line-height: 1.6; color: var(--brief-soft); }
+.brief-artifact-actions { position: relative; display: flex; align-items: center; gap: 14px; margin-top: 13px; }
+.brief-artifact-go {
+  font-size: 12.5px; font-weight: 800; color: var(--brief-ink);
+  text-decoration: none; border-bottom: 2px solid var(--brief-ink); padding-bottom: 1px;
+}
+.brief-artifact-go:hover { color: var(--brief-clay); border-bottom-color: var(--brief-clay); }
+.brief-artifact-note {
+  margin-left: auto; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px; color: var(--brief-soft);
+}
+
+/* ── your day + quietly handled — label left, rows right ──────────────────── */
+.brief-split { padding: 36px 40px 0; display: flex; gap: 34px; align-items: flex-start; }
+.brief-split-label { width: 180px; flex: none; }
+.brief-display {
+  margin: 0; font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; color: var(--brief-ink);
+}
+.brief-split-sub {
+  margin-top: 5px; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px; letter-spacing: .14em; color: var(--brief-soft);
+}
+.brief-split-rows { flex: 1; min-width: 0; }
+.brief-day-row {
+  display: flex; align-items: baseline; gap: 14px; width: 100%; text-align: left;
+  padding: 9px 0; border: none; border-top: 1px solid var(--brief-line); background: none;
+  cursor: crosshair; color: var(--brief-ink); font-family: inherit;
+}
+.brief-day-time {
+  flex: none; width: 54px; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11.5px; font-weight: 700; color: var(--brief-soft);
+}
+.brief-day-title { flex: 1; font-size: 14.5px; }
+.brief-day-len { font-family: var(--font-mono, ui-monospace, monospace); font-size: 10.5px; color: var(--brief-soft); }
+.brief-day-row.is-clash {
+  background: var(--brief-wash); border-left: 3px solid var(--brief-clay);
+  /* Bleeds 12px past the rail on each side. `width: auto` collapsed the row to
+     its content, which stopped the duration right-aligning. */
+  margin: 0 -12px; padding-left: 12px; padding-right: 12px;
+  width: calc(100% + 24px); box-sizing: border-box;
+}
+.brief-day-row.is-clash .brief-day-time, .brief-day-row.is-clash .brief-day-len { color: var(--brief-clay); }
+.brief-day-row.is-clash .brief-day-title { font-weight: 600; }
+.brief-day-row.is-clash-first { border-radius: 8px 8px 0 0; }
+.brief-day-row.is-clash-last { border-radius: 0 0 8px 8px; border-top: none; }
+
+/* ── a selected meeting, and the prep beside it ───────────────────────────── */
+.brief-day-grid { flex: 1; min-width: 0; display: flex; gap: 30px; align-items: flex-start; }
+.brief-day-grid > .brief-split-rows { flex: 1 1 52%; }
+.brief-day-row.is-selected { background: var(--brief-wash); }
+.brief-day-row.is-selected .brief-day-title { font-weight: 600; }
+/* A meeting that has prep waiting says so, quietly — otherwise the only way to
+   find one is to click every row in turn. */
+.brief-day-prepdot {
+  flex: none; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--brief-gold); align-self: center;
+}
+.brief-day-detail {
+  flex: 1 1 48%; min-width: 0; position: sticky; top: 8px;
+  padding: 16px 18px; border: 1px solid var(--brief-line); border-radius: 12px;
+  background: var(--brief-wash);
+}
+.brief-detail-title {
+  margin: 0; font-size: 15.5px; font-weight: 700; line-height: 1.35; color: var(--brief-ink);
+}
+.brief-detail-when { font-weight: 500; color: var(--brief-soft); white-space: nowrap; }
+.brief-detail-facts { margin: 7px 0 0; font-size: 13px; color: var(--brief-soft); }
+.brief-prep-none { margin: 14px 0 0; font-size: 12.5px; color: var(--brief-soft); font-style: italic; }
+.brief-detail-link {
+  /* Block, so it drops below the starburst instead of crowding it inline. */
+  display: block; margin-top: 16px;
+  font-family: var(--font-mono, ui-monospace, monospace); font-size: 10.5px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--brief-soft);
+}
+
+/* The starburst. Dia's affordance, and the one place on the page that gets to
+   look like a sticker — it is the only button that hands you finished work. */
+.brief-prep-burst {
+  margin-top: 15px; padding: 15px 19px; border: none; cursor: pointer;
+  background: var(--brief-gold); color: var(--brief-on-gold);
+  font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 13px; font-weight: 800;
+  transform: rotate(-4deg); transition: transform .18s ease, filter .18s ease;
+  clip-path: polygon(
+    50% 0%, 60% 8%, 72% 4%, 76% 16%, 89% 17%, 88% 30%, 99% 36%, 92% 47%,
+    100% 57%, 89% 63%, 92% 76%, 79% 77%, 76% 90%, 64% 86%, 55% 97%, 46% 88%,
+    34% 95%, 28% 83%, 15% 84%, 17% 71%, 5% 65%, 13% 55%, 3% 45%, 14% 39%,
+    9% 26%, 22% 25%, 24% 12%, 36% 16%, 42% 4%);
+}
+.brief-prep-burst:hover { transform: rotate(-4deg) scale(1.05); filter: brightness(1.04); }
+.brief-prep-burst.is-open { transform: rotate(0deg); clip-path: none; border-radius: 999px; padding: 8px 16px; font-size: 12px; }
+.brief-prep-body { margin-top: 14px; border-top: 1px solid var(--brief-line); padding-top: 12px; }
+.brief-prep-line { margin: 0 0 8px; font-size: 13.5px; line-height: 1.5; color: var(--brief-ink); }
+.brief-prep-line:last-of-type { margin-bottom: 0; }
+.brief-prep-basis {
+  margin: 11px 0 0; font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--brief-soft);
+}
+
+.brief-disclose {
+  display: flex; align-items: center; gap: 11px; width: 100%; text-align: left;
+  padding: 9px 0; border: none; border-top: 1px solid var(--brief-line); background: none;
+  cursor: pointer; font-family: inherit; font-size: 15px; color: var(--brief-ink);
+}
+.brief-disclose-mark {
+  flex: none; width: 22px; height: 22px; border-radius: 7px; background: var(--brief-line);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 11px;
+}
+.brief-caret { font-family: var(--font-mono, ui-monospace, monospace); font-size: 12px; font-weight: 700; color: var(--brief-soft); }
+.brief-quiet-row {
+  display: flex; align-items: center; gap: 11px; padding: 8px 0; border-top: 1px solid var(--brief-line);
+}
+.brief-quiet-dot { flex: none; width: 7px; height: 7px; margin-left: 8px; border-radius: 50%; background: var(--brief-grey); }
+.brief-quiet-text { flex: 1; font-size: 14px; color: var(--brief-ink); }
+.brief-quiet-by { font-family: var(--font-mono, ui-monospace, monospace); font-size: 10.5px; color: var(--brief-soft); }
+
+/* ── honesty strip ────────────────────────────────────────────────────────── */
+.brief-foot {
+  margin-top: 22px; padding: 22px 40px 26px; border-top: 3px dashed var(--brief-line);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-family: var(--font-mono, ui-monospace, monospace); font-size: 10.5px; color: var(--brief-soft);
+}
+.brief-rebuild {
+  margin-left: auto; border: none; background: none; cursor: pointer; padding: 0 0 1px;
+  font-family: var(--font-mono, ui-monospace, monospace); font-size: 11px; font-weight: 700;
+  color: var(--brief-ink); border-bottom: 2px solid var(--brief-gold);
+}
+.brief-rebuild:disabled { color: var(--brief-soft); border-bottom-color: var(--brief-line); cursor: default; }
+
+.brief-loading { padding: 72px 40px; color: var(--brief-soft); font-size: 15px; text-align: center; }
+.brief-loading-dot {
+  display: inline-block; width: 7px; height: 7px; margin-right: 10px; border-radius: 50%;
+  background: var(--brief-clay); animation: brief-pulse 1.2s ease-in-out infinite;
+}
+
+/* ── the quiet way in: a pill bottom-LEFT, where nothing else lives ───────── */
+.brief-fab {
+  /* Bottom-left of the CONTENT column — clears the shell's rail when the
+     planner renders inside the dashboard (0 on its own host). */
+  position: fixed; left: calc(var(--shell-inset, 0px) + 24px); bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 45;
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px;
+  border: 1px solid var(--c-border); background: var(--c-surface); color: var(--c-text);
+  font-size: 13px; font-weight: 600; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+.brief-fab:hover { color: var(--c-text-strong); border-color: var(--c-border-strong); }
+.brief-fab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); }
+.brief-fab-dot.is-unread { animation: brief-pulse 2.4s ease-in-out infinite; }
+
+/* ── mobile: the masthead and the cards both need a stacked variant ───────── */
+@media (max-width: 900px) {
+  .brief-scrim { padding: 0; }
+  .brief-sheet { border-radius: 0; border-width: 0; box-shadow: none; min-height: 100%; }
+  .brief-mast { padding: 18px 20px 24px; }
+  .brief-title-row { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 20px; }
+  .brief-counter { text-align: left; padding-bottom: 0; }
+  .brief-band, .brief-split { padding-left: 20px; padding-right: 20px; }
+  .brief-split { flex-direction: column; gap: 14px; }
+  .brief-split-label { width: auto; }
+  /* The detail pane drops under the rail rather than beside it, and stops
+     sticking — a sticky pane in a column layout follows you past its own list. */
+  .brief-day-grid { flex-direction: column; gap: 16px; width: 100%; }
+  .brief-day-detail { position: static; width: 100%; }
+  /* The three-column card stacks: numeral + title on top, actions as a row. */
+  .brief-item { flex-direction: column; }
+  .brief-num { width: auto; justify-content: flex-start; padding: 14px 18px 0; font-size: 34px; }
+  .brief-item-body { padding: 8px 18px 14px; }
+  .brief-actions {
+    width: auto; flex-direction: row; border-left: none; border-top: 2px dashed var(--brief-grey);
+  }
+  .brief-take { border-bottom: none; border-right: 1px dashed var(--brief-grey); padding: 12px 0; }
+  .brief-not { flex: 1; }
+  .brief-artifact { flex-direction: column; align-items: flex-start; margin-inline: 0; }
+  .brief-artifact-actions { flex-wrap: wrap; }
+  .brief-artifact-note { margin-left: 0; }
+  .brief-foot { padding: 18px 20px calc(24px + env(safe-area-inset-bottom)); }
+  .brief-fab { bottom: calc(148px + env(safe-area-inset-bottom)); left: calc(var(--shell-inset, 0px) + 16px); padding: 10px; }
+  .brief-fab span { display: none; }
+  html[data-standalone] .brief-fab { bottom: calc(74px + env(safe-area-inset-bottom)); }
+}
+
+/* ── Flows run canvas motion (3a · Calm handoff). Short, functional; every
+   one collapses to instant under prefers-reduced-motion below. ── */
+@keyframes tr-pop { 0% { transform: scale(.4); opacity: 0; } 60% { transform: scale(1.18); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes tr-chip-in { from { transform: translateX(10px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes tr-feed-in { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes tr-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+@keyframes tr-pulse { 0%, 100% { box-shadow: 0 0 0 0 var(--amb); } 50% { box-shadow: 0 0 0 5px transparent; } }
+@keyframes tr-flow-down { to { background-position: 0 12px; } }
+@keyframes tr-sweep { from { transform: translateX(-100%); } to { transform: translateX(220%); } }
+@keyframes tr-stripes { to { background-position: 14px 0; } }
+@keyframes tr-dots { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.tr-pop { animation: tr-pop .32s var(--ease-out, cubic-bezier(0.2, 0, 0, 1)) both; }
+.tr-chip { animation: tr-chip-in .28s var(--ease-out, cubic-bezier(0.2, 0, 0, 1)) both; }
+.tr-feed { animation: tr-feed-in .3s var(--ease-out, cubic-bezier(0.2, 0, 0, 1)) both; }
+.tr-shake { animation: tr-shake .3s ease-in-out 1; }
+.tr-pulse { animation: tr-pulse 1.2s ease-out infinite; }
+.tr-flow { background: repeating-linear-gradient(to bottom, var(--blu) 0 6px, transparent 6px 12px) !important; background-size: 2px 12px !important; animation: tr-flow-down .45s linear infinite; }
+.tr-sweep { animation: tr-sweep 1.1s ease-in-out infinite; }
+.tr-stripes { background-image: repeating-linear-gradient(-45deg, var(--amb) 0 5px, transparent 5px 10px); background-size: 14px 14px; animation: tr-stripes .6s linear infinite; }
+.tr-dot { animation: tr-dots 1.1s ease-in-out infinite; }
+.tr-dot:nth-child(2) { animation-delay: .18s; }
+.tr-dot:nth-child(3) { animation-delay: .36s; }
+.tr-spin { animation: spin .8s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .tr-pop, .tr-chip, .tr-feed, .tr-shake, .tr-pulse, .tr-flow, .tr-sweep, .tr-stripes, .tr-dot, .tr-spin { animation: none !important; }
+}
+
+/* The number stepper draws its own ▲▼ column (workflow-ui.tsx NumberStepper);
+   the browser's spinner would double it. */
+.num-stepper-input::-webkit-outer-spin-button,
+.num-stepper-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.num-stepper-input { -moz-appearance: textfield; appearance: textfield; }
+
+/* ── LinkedIn inbox thread ──────────────────────────────────────────────────
+   The three things the thread needs that an inline style cannot express: a
+   breakpoint, keyframes, and a scrollbar that would otherwise cut the presets
+   row in half. Everything else about a card is inline next to its markup. */
+
+/* A card is two thirds of the column until the person rail collapses, at which
+   point the thread is the whole width and 66% leaves a canyon down the middle. */
+.li-card { max-width: 66%; }
+@media (max-width: 1199px) { .li-card { max-width: 82%; } }
+
+@keyframes li-typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+.li-typing-dot { animation: li-typing 1.2s ease-in-out infinite; }
+.li-typing-dot:nth-child(2) { animation-delay: .15s; }
+.li-typing-dot:nth-child(3) { animation-delay: .3s; }
+
+/* The presets row scrolls sideways past the visible chips. A visible bar under
+   them would eat the row's height and sit on the composer's top rule. */
+.li-presets { scrollbar-width: none; -ms-overflow-style: none; }
+.li-presets::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) { .li-typing-dot { animation: none !important; } }
+
+/* ── LinkedIn inbox list (the ledger) ───────────────────────────────────────
+   Rows need real :hover and :focus-visible — a React hover flag cannot follow
+   a pointer that leaves through a scroll, and it cannot see a focus ring. The
+   dynamic parts (weights, tints, the label dot) stay inline; the states live
+   here. */
+
+.li-row {
+  display: grid;
+  grid-template-columns: 18px 220px minmax(0, 1fr) 56px;
+  gap: 12px;
+  align-items: center;
+  padding: 9px 20px;
+  border-bottom: 1px solid var(--line2);
+  cursor: pointer;
+  background: transparent;
+  transition: background var(--dur-hover, .12s) var(--ease-out, ease-out);
+}
+.li-row[data-unread="true"] { padding: 10px 20px; }
+.li-row[data-due="true"] { background: var(--amb-bg); }
+/* No separate hover treatment: hovering a row selects it (see LedgerRow's
+   onMouseEnter), so the selected-card rule below is the only state there is.
+   Two visuals for "the row under your attention" is what made pointing and
+   arrowing feel like different modes. */
+
+/* The selected row lifts into a card — whether the pointer or J/K put it
+   there. */
+.li-row[data-selected="true"] {
+  margin: 2px 12px;
+  padding: 10px 8px;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: var(--el-1);
+}
+.li-row[data-selected="true"][data-due="true"] { background: var(--amb-bg); }
+.li-row:active { transform: translate(1px, 1px); }
+.li-row[data-selected="true"]:active { box-shadow: none; }
+.li-row:focus-visible { outline: 2px solid var(--blu); outline-offset: -2px; }
+
+/* The action cluster rides in the WHEN cell of the selected row, beside the
+   time — that row's last column is auto, so both fit. */
+.li-row-actions { display: none; }
+.li-row[data-selected="true"] { grid-template-columns: 18px 220px minmax(0, 1fr) auto; }
+.li-row[data-selected="true"] .li-row-actions { display: flex; }
+
+/* Done / snooze from the row: it collapses rather than blinking out. An
+   animation, not a transition — `max-height` has no from-value to leave when
+   its computed value is `none`, so a transition here snapped shut. */
+@keyframes li-row-collapse {
+  from { max-height: 120px; opacity: 1; }
+  /* The bottom hairline has to go too, or the row leaves a 1px scar behind. */
+  to   { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; border-bottom-width: 0; }
+}
+.li-row-leaving {
+  overflow: hidden;
+  animation: li-row-collapse .16s var(--ease-out, ease-out) forwards;
+}
+
+/* The gold offset shadow has to survive hover — .hv-btn's ink shadow is
+   !important, so a button that owns the gold one needs its own rule. */
+.hv-gold:hover { box-shadow: 4px 4px 0 var(--gold-b), var(--glow-extra) !important; }
+.hv-gold:active { box-shadow: 2px 2px 0 var(--gold-b), var(--glow-extra) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .li-row, .li-row:active { transition: none !important; transform: none !important; }
+  /* The collapse keeps its opacity, drops its motion (§7). */
+  .li-row-leaving { animation-name: li-row-fade !important; }
+  @keyframes li-row-fade { from { opacity: 1; } to { opacity: 0; } }
+}
+
+/* ── LinkedIn inbox on a phone ───────────────────────────────────────────────
+   Four ruled columns need ~460px before the preview starts losing words, so
+   below 700px the row folds: name and time on the first line, the preview on
+   the second, and the hover cluster gone (there is no hover on a touch screen
+   — those three actions live in the thread header instead, which is why they
+   grow icon forms at the same breakpoint). */
+@media (max-width: 700px) {
+  .li-row,
+  .li-row[data-selected="true"] {
+    grid-template-columns: 14px minmax(0, 1fr) 40px;
+    grid-template-areas: "dot who when" "dot msg msg";
+    column-gap: 10px;
+    row-gap: 3px;
+    padding: 10px 14px;
+  }
+  .li-row[data-selected="true"] { margin: 2px 8px; padding: 10px 10px; }
+  .li-row > *:nth-child(1) { grid-area: dot; align-self: start; margin-top: 7px; }
+  .li-row > *:nth-child(2) { grid-area: who; }
+  .li-row > *:nth-child(3) { grid-area: msg; }
+  .li-row > *:nth-child(4) { grid-area: when; }
+  /* Reachable only by hover, so on a phone it is not reachable at all. */
+  .li-row .li-row-actions { display: none !important; }
+  .li-row .li-row-when { display: flex !important; }
+
+  /* Column names label columns that no longer exist; the filter chips stay. */
+  .li-col-label { display: none !important; }
+  [data-li-ledger-head] { display: flex !important; gap: 7px; padding: 8px 14px; overflow-x: auto; }
+
+  /* A phone has no J, K or ⌘. */
+  .li-keys { display: none !important; }
+  .li-send-hint { display: none !important; }
+  :root { --li-field-pr: 16px; }
+
+  /* The thread header keeps all three actions by shedding their labels. */
+  .li-hdr-btn { padding: 8px !important; }
+  .li-hdr-btn-text { display: none !important; }
+  .li-hdr-btn-icon { display: flex !important; }
+  .li-src-tag { display: none !important; }
+
+  /* Cards take the width the rail is no longer using. */
+  .li-card { max-width: 86%; }
+}
+
+/* The presets label is the first thing to go when the chip strip is the whole
+   row's worth of width. */
+@media (max-width: 700px) { .li-presets-label { display: none !important; } }
+
+/* LinkedIn Editor: the composer|preview split is a fixed two-column grid. On a
+   phone that leaves each column ~180px, so the composer's formatting toolbar
+   overflows its column and the preview card ends up covering half its buttons
+   (#, emoji, image, video, attach become unclickable). Stack to one column so
+   the composer gets the full width and the preview sits below it. */
+.li-editor-split { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
+@media (max-width: 760px) {
+  .li-editor-split { grid-template-columns: 1fr; }
+  .li-editor-split > :first-child { border-right: 0 !important; border-bottom: 2px solid var(--ink); }
+}
+
+/* ── ScrollRow (app/components/ScrollRow.tsx): one scrolling row of chips or
+   tabs. The frame keeps the caller's class (.ph-filters stays sticky, on
+   paper, with its rule); the track scrolls. An edge with more past it gets a
+   drawn cap — a paper strip with a framed chevron — never a fade. */
+.gx-srow { position: relative; min-width: 0; }
+.gx-srow > .gx-srow-track {
+  display: flex; align-items: center; min-width: 0; overflow-x: auto; overflow-y: hidden;
+  scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+}
+.gx-srow > .gx-srow-track::-webkit-scrollbar { display: none; }
+/* Trailing room: the last chip never sits flush against the edge. */
+.gx-srow > .gx-srow-track::after { content: ''; flex: 0 0 4px; align-self: stretch; }
+.gx-srow-more {
+  position: absolute; top: 0; bottom: 0; width: 40px; z-index: 1; padding: 0; margin: 0; border: 0;
+  display: grid; place-items: center; background: var(--srow-bg, var(--bg)); color: var(--tx); cursor: pointer;
+}
+.gx-srow-more[data-side="end"] { right: 0; }
+.gx-srow-more[data-side="start"] { left: 0; }
+.gx-srow-more > svg {
+  box-sizing: content-box; padding: 3px; border: 2px solid var(--ink); border-radius: 8px;
+  background: var(--card); box-shadow: var(--el-1);
+}
+.gx-srow-more:active > svg { transform: translate(1px, 1px); box-shadow: none; }
+/* .ph-filters as a ScrollRow: the frame keeps sticky/paper/rule, the track
+   takes the padding and gap. */
+.ph-filters.gx-srow { display: block; overflow: visible; padding: 0; gap: 0; }
+.ph-filters.gx-srow > .gx-srow-track { padding: 8px 12px; gap: 6px; }
+.ph-filters.gx-srow > .gx-srow-track::after { flex-basis: 8px; }
+/* Menu items (app/flows/MenuPanel.tsx): the keyboard focus is a visible ring. */
+.gx-menuitem:focus-visible { outline: 2.5px solid var(--gold); outline-offset: -2px; background: var(--sel); }
